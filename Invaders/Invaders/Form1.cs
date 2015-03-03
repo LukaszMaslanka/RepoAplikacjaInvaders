@@ -15,5 +15,22 @@ namespace Invaders
         {
             InitializeComponent();
         }
+
+        Rysuj animacjaTla = new Rysuj();
+
+        private void animationTimer_Tick(object sender, EventArgs e)
+        {
+            using (Graphics g = CreateGraphics())
+            {
+                animacjaTla.AnimujTlo(g);
+            }
+            
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            animacjaTla.AnimujTlo(g);
+        }
     }
 }
