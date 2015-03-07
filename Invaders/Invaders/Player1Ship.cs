@@ -31,7 +31,7 @@ namespace Invaders
         }
 
         int klatka = 0;
-        public void statekAnimation()
+        public void StatekAnimation()
         {
             klatka++;
             switch (klatka)

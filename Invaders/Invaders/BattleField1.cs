@@ -53,7 +53,7 @@ namespace Invaders
         //Point ruszaj = new Point();
         private void timer2_Tick(object sender, EventArgs e)
         {
-            player1Ship1.statekAnimation();
+            player1Ship1.StatekAnimation();
             
             /*ruszaj = player1Ship1.Location;
             ruszaj.Y +=1;
