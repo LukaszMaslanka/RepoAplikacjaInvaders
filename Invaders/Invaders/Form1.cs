@@ -11,14 +11,22 @@ namespace Invaders
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Konstruktor Form1 ustawienie pola wycisz na false
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
+            wycisz = true;
         }
 
         Rysuj animacjaTla = new Rysuj();
-        //Point p = new Point();
 
+        /// <summary>
+        /// Zegar: Interval 150, Enabled True, wywolanie metody AnimujTlo z klasy Rysuj
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void animationTimer_Tick(object sender, EventArgs e)
         {
             using (Graphics g = CreateGraphics())
@@ -26,12 +34,13 @@ namespace Invaders
                 animacjaTla.AnimujTlo(g);
             }
             
-            /*animationTimer.Interval = 10;
-            p = pictureBox1.Location;
-            p.Y -= 1;
-            pictureBox1.Location = p;*/
         }
 
+        /// <summary>
+        /// Powiazanie animacji z formularzem. Btak zaklocen podczas przesuwania formy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -41,14 +50,21 @@ namespace Invaders
         System.Media.SoundPlayer odtDzwiek;
         bool wycisz;
 
+        /// <summary>
+        /// Utworzenie obiektu SoundPlayer oraz wywolanie metody wyciszDzwiek
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            wycisz = true;
             odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.GameTheme);
-            odtDzwiek.PlayLooping();
+             wyciszDzwiek();
         }
 
-        private void wyciszBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Metoda wysterowywuje przycisk wyciszBtn oraz zatrzymuje i odtwarza dzwiek w zaleznosci od pola wycisz
+        /// </summary>
+        private void wyciszDzwiek()
         {
             if (wycisz)
             {
@@ -62,6 +78,11 @@ namespace Invaders
                 odtDzwiek.PlayLooping();
                 wycisz = true;
             }
+        }
+
+        private void wyciszBtn_Click(object sender, EventArgs e)
+        {
+            wyciszDzwiek();
         }
 
         private void jedenGraczBtn_Click(object sender, EventArgs e)
@@ -83,19 +104,30 @@ namespace Invaders
             Close();
         }
 
+        /// <summary>
+        /// Metoda stworzona na potrzeby utworzenia nowego wątku
+        /// </summary>
         public static void ThreadProc()
         {
-            BattleField1 form2;
             Application.Run(new BattleField1());
         }
         
-        
+        /// <summary>
+        /// Utworzenie nowego watku który wywołuje nową formę BattlField1. Zamknięcie Form1. Zatrzymanie dzwieku.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void grajBtn_Click(object sender, EventArgs e)
         {
             System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
             t.Start();
             this.Dispose();
             odtDzwiek.Stop();
+        }
+
+        private void banerAnimationTimer_Tick(object sender, EventArgs e)
+        {
+            invadersBanner1.banerAnimation(banerAnimationTimer);
         }
     }
 }

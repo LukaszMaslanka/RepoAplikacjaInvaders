@@ -73,11 +73,24 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gwiazdy.cs" />
     <Compile Include="InvadersBanner.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="InvadersBanner.Designer.cs">
       <DependentUpon>InvadersBanner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player1Ship.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Player1Ship.Designer.cs">
+      <DependentUpon>Player1Ship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player2Ship.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Player2Ship.Designer.cs">
+      <DependentUpon>Player2Ship.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +103,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InvadersBanner.resx">
       <DependentUpon>InvadersBanner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Player1Ship.resx">
+      <DependentUpon>Player1Ship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Player2Ship.resx">
+      <DependentUpon>Player2Ship.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -145,6 +164,12 @@
     <None Include="Resources\graj.png" />
     <None Include="Resources\statystyki.png" />
     <None Include="Resources\wyjscie.png" />
+    <None Include="Resources\player1_2.gif" />
+    <None Include="Resources\player1_3.gif" />
+    <None Include="Resources\player1_4.gif" />
+    <None Include="Resources\player2_2.gif" />
+    <None Include="Resources\player2_3.gif" />
+    <None Include="Resources\player2_4.gif" />
     <Content Include="WynikiDB.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

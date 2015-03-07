@@ -23,21 +23,21 @@ namespace Invaders
             return bitmap;
         }
 
-        Bitmap[] AnimacjaTla;
+        Bitmap[] tloBitmap;
         private void InicjalizacjaObrazow()
         {
-            AnimacjaTla = new Bitmap[11];
-            AnimacjaTla[0] = KonwertujNaBitmap(Properties.Resources.background1, 800, 700);
-            AnimacjaTla[1] = KonwertujNaBitmap(Properties.Resources.background2, 800, 700);
-            AnimacjaTla[2] = KonwertujNaBitmap(Properties.Resources.background3, 800, 700);
-            AnimacjaTla[3] = KonwertujNaBitmap(Properties.Resources.background4, 800, 700);
-            AnimacjaTla[4] = KonwertujNaBitmap(Properties.Resources.background5, 800, 700);
-            AnimacjaTla[5] = KonwertujNaBitmap(Properties.Resources.background6, 800, 700);
-            AnimacjaTla[6] = KonwertujNaBitmap(Properties.Resources.background7, 800, 700);
-            AnimacjaTla[7] = KonwertujNaBitmap(Properties.Resources.background8, 800, 700);
-            AnimacjaTla[8] = KonwertujNaBitmap(Properties.Resources.background9, 800, 700);
-            AnimacjaTla[9] = KonwertujNaBitmap(Properties.Resources.background10, 800, 700);
-            AnimacjaTla[10] = KonwertujNaBitmap(Properties.Resources.background11, 800, 700);
+            tloBitmap = new Bitmap[11];
+            tloBitmap[0] = KonwertujNaBitmap(Properties.Resources.background1, 800, 700);
+            tloBitmap[1] = KonwertujNaBitmap(Properties.Resources.background2, 800, 700);
+            tloBitmap[2] = KonwertujNaBitmap(Properties.Resources.background3, 800, 700);
+            tloBitmap[3] = KonwertujNaBitmap(Properties.Resources.background4, 800, 700);
+            tloBitmap[4] = KonwertujNaBitmap(Properties.Resources.background5, 800, 700);
+            tloBitmap[5] = KonwertujNaBitmap(Properties.Resources.background6, 800, 700);
+            tloBitmap[6] = KonwertujNaBitmap(Properties.Resources.background7, 800, 700);
+            tloBitmap[7] = KonwertujNaBitmap(Properties.Resources.background8, 800, 700);
+            tloBitmap[8] = KonwertujNaBitmap(Properties.Resources.background9, 800, 700);
+            tloBitmap[9] = KonwertujNaBitmap(Properties.Resources.background10, 800, 700);
+            tloBitmap[10] = KonwertujNaBitmap(Properties.Resources.background11, 800, 700);
         }
 
         int cell = 0;
@@ -66,7 +66,7 @@ namespace Invaders
                 default: cell = 0;
                     break;
             }
-            g.DrawImage(AnimacjaTla[cell],0,0);
+            g.DrawImage(tloBitmap[cell],0,0);
         }
     }
 }

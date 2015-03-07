@@ -1,6 +1,6 @@
 ﻿namespace Invaders
 {
-    partial class InvadersBanner
+    partial class Player1Ship
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,18 +30,19 @@
         {
             this.SuspendLayout();
             // 
-            // InvadersBanner
+            // Player1Ship
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.DoubleBuffered = true;
-            this.Name = "InvadersBanner";
-            this.Size = new System.Drawing.Size(416, 65);
+            this.AutoSize = true;
+            this.Name = "Player1Ship";
+            this.Size = new System.Drawing.Size(51, 51);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
 
     }
 }
