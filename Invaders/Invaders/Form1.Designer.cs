@@ -33,9 +33,11 @@
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.wyciszBtn = new System.Windows.Forms.Button();
             this.panelPlayer1 = new System.Windows.Forms.Panel();
+            this.player1Ship1 = new Invaders.Player1Ship();
             this.player1Name = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelPlayer2 = new System.Windows.Forms.Panel();
+            this.player2Ship1 = new Invaders.Player2Ship();
             this.player2Name = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.grajBtn = new System.Windows.Forms.Button();
@@ -44,8 +46,6 @@
             this.statystyki = new System.Windows.Forms.Button();
             this.wyjscie = new System.Windows.Forms.Button();
             this.banerAnimationTimer = new System.Windows.Forms.Timer(this.components);
-            this.player1Ship1 = new Invaders.Player1Ship();
-            this.player2Ship1 = new Invaders.Player2Ship();
             this.invadersBanner1 = new Invaders.InvadersBanner();
             this.panelPlayer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -83,6 +83,17 @@
             this.panelPlayer1.TabIndex = 2;
             this.panelPlayer1.Visible = false;
             // 
+            // player1Ship1
+            // 
+            this.player1Ship1.AutoSize = true;
+            this.player1Ship1.BackColor = System.Drawing.Color.Transparent;
+            this.player1Ship1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player1Ship1.BackgroundImage")));
+            this.player1Ship1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.player1Ship1.Location = new System.Drawing.Point(114, 3);
+            this.player1Ship1.Name = "player1Ship1";
+            this.player1Ship1.Size = new System.Drawing.Size(51, 51);
+            this.player1Ship1.TabIndex = 4;
+            // 
             // player1Name
             // 
             this.player1Name.Location = new System.Drawing.Point(0, 38);
@@ -112,6 +123,16 @@
             this.panelPlayer2.Size = new System.Drawing.Size(170, 60);
             this.panelPlayer2.TabIndex = 4;
             this.panelPlayer2.Visible = false;
+            // 
+            // player2Ship1
+            // 
+            this.player2Ship1.BackColor = System.Drawing.Color.Transparent;
+            this.player2Ship1.BackgroundImage = global::Invaders.Properties.Resources.Player2;
+            this.player2Ship1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.player2Ship1.Location = new System.Drawing.Point(3, 3);
+            this.player2Ship1.Name = "player2Ship1";
+            this.player2Ship1.Size = new System.Drawing.Size(51, 51);
+            this.player2Ship1.TabIndex = 10;
             // 
             // player2Name
             // 
@@ -191,27 +212,6 @@
             this.banerAnimationTimer.Enabled = true;
             this.banerAnimationTimer.Tick += new System.EventHandler(this.banerAnimationTimer_Tick);
             // 
-            // player1Ship1
-            // 
-            this.player1Ship1.AutoSize = true;
-            this.player1Ship1.BackColor = System.Drawing.Color.Transparent;
-            this.player1Ship1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player1Ship1.BackgroundImage")));
-            this.player1Ship1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.player1Ship1.Location = new System.Drawing.Point(114, 3);
-            this.player1Ship1.Name = "player1Ship1";
-            this.player1Ship1.Size = new System.Drawing.Size(51, 51);
-            this.player1Ship1.TabIndex = 4;
-            // 
-            // player2Ship1
-            // 
-            this.player2Ship1.BackColor = System.Drawing.Color.Transparent;
-            this.player2Ship1.BackgroundImage = global::Invaders.Properties.Resources.Player2;
-            this.player2Ship1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.player2Ship1.Location = new System.Drawing.Point(3, 3);
-            this.player2Ship1.Name = "player2Ship1";
-            this.player2Ship1.Size = new System.Drawing.Size(51, 51);
-            this.player2Ship1.TabIndex = 10;
-            // 
             // invadersBanner1
             // 
             this.invadersBanner1.BackColor = System.Drawing.Color.Transparent;
@@ -239,6 +239,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Invaders";

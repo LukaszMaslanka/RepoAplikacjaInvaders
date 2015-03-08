@@ -20,21 +20,24 @@ namespace Invaders
             }
         }
 
-        public Gwiazdy(Rectangle obszar, Random losuj)
+        Rectangle obszarRysowania;
+        public Gwiazdy(Rectangle obszarRysowania, Random losuj)
         {
-            InicjalizujGwiazdy(obszar, losuj);
+            this.obszarRysowania = obszarRysowania;
+            InicjalizujGwiazdy(losuj);
+            
         }
 
         List<Gwiazda> gwiazdki = new List<Gwiazda>();
         Point punkty = new Point();
         Pen olowek = new Pen(Brushes.White,2);
 
-        private void InicjalizujGwiazdy(Rectangle obszar, Random losuj)
+        private void InicjalizujGwiazdy(Random losuj)
         {         
             for (int i = 0; i < 300; i++)
             {
-                punkty.X = losuj.Next(obszar.Width);
-                punkty.Y = losuj.Next(obszar.Height);
+                punkty.X = losuj.Next(obszarRysowania.Width);
+                punkty.Y = losuj.Next(obszarRysowania.Height);
                 gwiazdki.Add(new Gwiazda(punkty,olowek));
             }
         }
@@ -56,8 +59,8 @@ namespace Invaders
 
             for (int i = 0; i < 4; i++)
             {
-                punkty.X = losuj.Next(790);
-                punkty.Y = losuj.Next(690);
+                punkty.X = losuj.Next(obszarRysowania.Width);
+                punkty.Y = losuj.Next(obszarRysowania.Height);
                 gwiazdki.Add(new Gwiazda(punkty, olowek));
             }
         }
