@@ -11,16 +11,25 @@ namespace Invaders
 {
     public partial class BattleField1 : Form
     {
-        Najezdzca Dron = new Najezdzca(TypNajezdzcy.Dron,new Point(10,10),100,Rysuj.KonwertujNaBitmap(Properties.Resources.Dron, 51,51));
+        Gra gra;
         Rectangle obszarRysowania;
+        Random losuj;
+        Gwiazdy gwiazdy;
+        StatekGracza statekGracza;
+        Point lokalizacjaStatku = new Point(344, 590);
         List<Keys> keysPressed = new List<Keys>();
 
         public BattleField1()
         {
             InitializeComponent();
-            obszarRysowania = new Rectangle(0, 0, this.Width, this.Height);
+            obszarRysowania = new Rectangle(0, 0, this.Width-17, this.Height-60);
+
             losuj = new Random();
+
             gwiazdy = new Gwiazdy(obszarRysowania, losuj);
+            statekGracza = new StatekGracza(lokalizacjaStatku,Gracze.Player1,obszarRysowania,"Łukasz");
+            
+            gra = new Gra(gwiazdy,statekGracza,obszarRysowania,losuj);
         }
 
         public static void ThreadProc()
@@ -34,60 +43,48 @@ namespace Invaders
             t.Start();
         }
 
-        Gwiazdy gwiazdy;
-        Random losuj;
-
         private void animationTimer_Tick(object sender, EventArgs e)
         {
-            using (Graphics g = CreateGraphics())
-            {
-                gwiazdy.RysujGwiazdy(g);
-                gwiazdy.Migotanie(losuj);
-                this.Refresh();
-            }
+            gra.MrugajGwiazdami();
+            gra.Go();
+            this.Refresh();
         }
 
         private void BattleField1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            gwiazdy.RysujGwiazdy(g);
-            Dron.RysujStatek(g);
+            gra.RysujGre(g);
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            if (player1Ship1.Zywy)
-            {
-                player1Ship1.StatekAnimation();
-            }
-            else
-            {
-                player1Ship1.StatekDestroy();
-            }
-
-
-            Point p = new Point();
             foreach (Keys key in keysPressed)
             {
                 if (key == Keys.Right)
                 {
-                    p = player1Ship1.Location;
-                    p.X += 10;
-                    player1Ship1.Location = p;
+                    gra.PrzesunGracza(Direction.Prawo);
+                    lokalizacjaStatku = statekGracza.Lokalizacja;
                     return;
                 }
                 if (key == Keys.Left)
                 {
-                    p = player1Ship1.Location;
-                    p.X -= 10;
-                    player1Ship1.Location = p;
+                    gra.PrzesunGracza(Direction.Lewo);
+                    lokalizacjaStatku = statekGracza.Lokalizacja;
                     return;
                 }
+                
             }
         }
         
         private void BattleField1_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Space)
+            {
+                gra.WystrzelPocisk(lokalizacjaStatku);
+                //this.Invalidate();
+                return;
+            }
+
             if (keysPressed.Contains(e.KeyCode))
             {
                 keysPressed.Remove(e.KeyCode);

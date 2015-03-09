@@ -74,6 +74,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gra.cs" />
+    <Compile Include="Gracze.cs" />
     <Compile Include="Gwiazdy.cs" />
     <Compile Include="InvadersBanner.cs">
       <SubType>UserControl</SubType>
@@ -82,21 +84,11 @@
       <DependentUpon>InvadersBanner.cs</DependentUpon>
     </Compile>
     <Compile Include="Najezdzca.cs" />
-    <Compile Include="Player1Ship.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Player1Ship.Designer.cs">
-      <DependentUpon>Player1Ship.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Player2Ship.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Player2Ship.Designer.cs">
-      <DependentUpon>Player2Ship.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rysuj.cs" />
+    <Compile Include="StatekGracza.cs" />
+    <Compile Include="Strzal.cs" />
     <Compile Include="TypNajezdzcy.cs" />
     <EmbeddedResource Include="BattleField1.resx">
       <DependentUpon>BattleField1.cs</DependentUpon>
@@ -106,12 +98,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InvadersBanner.resx">
       <DependentUpon>InvadersBanner.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Player1Ship.resx">
-      <DependentUpon>Player1Ship.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Player2Ship.resx">
-      <DependentUpon>Player2Ship.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -180,6 +166,9 @@
     <None Include="Resources\boom_4.gif" />
     <None Include="Resources\boom_5.gif" />
     <None Include="Resources\boom_6.gif" />
+    <None Include="Resources\Mysliwiec.png" />
+    <None Include="Resources\MysliwiecStealth.png" />
+    <None Include="Resources\Niszczyciel.png" />
     <Content Include="WynikiDB.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -19,7 +19,7 @@ namespace Invaders
             InitializeComponent();
             wycisz = true;
         }
-
+        
         Rysuj animacjaTla = new Rysuj();
 
         /// <summary>
@@ -27,6 +27,7 @@ namespace Invaders
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        
         private void animationTimer_Tick(object sender, EventArgs e)
         {
             using (Graphics g = CreateGraphics())
@@ -85,8 +86,10 @@ namespace Invaders
             wyciszDzwiek();
         }
 
+        public String GraczName;
         private void jedenGraczBtn_Click(object sender, EventArgs e)
         {
+            GraczName = player1Name.Text;
             panelPlayer1.Visible = true;
             panelPlayer2.Visible = false;
             grajBtn.Visible = true;

@@ -17,7 +17,7 @@ namespace Invaders
 
         public TypNajezdzcy TypNajezdzcy { get; private set; }
 
-        public Rectangle Obszar
+        public Rectangle wielkoscNajezdzcy
         {
             get
             {
@@ -27,7 +27,7 @@ namespace Invaders
 
         public int IloscPunktow { get; private set; }
 
-        public Najezdzca(TypNajezdzcy typNajezdzcy, Point lokalizacja, int iloscPunktow, Bitmap obraz)
+        public Najezdzca(TypNajezdzcy typNajezdzcy, Point lokalizacja, int iloscPunktow, Bitmap obraz, Rectangle obszarGry)
         {
             this.TypNajezdzcy = typNajezdzcy;
             this.Lokalizacja = lokalizacja;
@@ -70,8 +70,11 @@ namespace Invaders
             eksplozja[4] = Rysuj.KonwertujNaBitmap(Properties.Resources.boom_5, 51, 51);
             eksplozja[5] = Rysuj.KonwertujNaBitmap(Properties.Resources.boom_6, 51, 51);
         }
-        public void StatekDestroy(Graphics g, int klatka)
+
+        int klatka = 0;
+        public void StatekDestroy(Graphics g)
         {
+            klatka++;
             switch (klatka)
 	        {
                 case 1: obraz = eksplozja[0]; g.DrawImage(obraz,Lokalizacja); break;

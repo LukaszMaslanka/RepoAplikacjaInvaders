@@ -32,31 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BattleField1));
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
-            this.player1Ship1 = new Invaders.Player1Ship();
-            ((System.ComponentModel.ISupportInitialize)(this.player1Ship1)).BeginInit();
             this.SuspendLayout();
             // 
             // animationTimer
             // 
             this.animationTimer.Enabled = true;
-            this.animationTimer.Interval = 330;
+            this.animationTimer.Interval = 55;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             // 
             // gameTimer
             // 
             this.gameTimer.Enabled = true;
+            this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
-            // 
-            // player1Ship1
-            // 
-            this.player1Ship1.BackColor = System.Drawing.Color.Transparent;
-            this.player1Ship1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player1Ship1.BackgroundImage")));
-            this.player1Ship1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.player1Ship1.Location = new System.Drawing.Point(367, 590);
-            this.player1Ship1.Name = "player1Ship1";
-            this.player1Ship1.Size = new System.Drawing.Size(51, 51);
-            this.player1Ship1.TabIndex = 0;
-            this.player1Ship1.TabStop = false;
             // 
             // BattleField1
             // 
@@ -64,9 +52,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(784, 661);
-            this.Controls.Add(this.player1Ship1);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "BattleField1";
@@ -76,9 +62,7 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.BattleField1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BattleField1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BattleField1_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.player1Ship1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -86,6 +70,5 @@
 
         private System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.Timer gameTimer;
-        private Player1Ship player1Ship1;
     }
 }

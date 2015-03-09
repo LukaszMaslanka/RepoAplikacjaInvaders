@@ -33,11 +33,9 @@
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.wyciszBtn = new System.Windows.Forms.Button();
             this.panelPlayer1 = new System.Windows.Forms.Panel();
-            this.player1Ship1 = new Invaders.Player1Ship();
             this.player1Name = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelPlayer2 = new System.Windows.Forms.Panel();
-            this.player2Ship1 = new Invaders.Player2Ship();
             this.player2Name = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.grajBtn = new System.Windows.Forms.Button();
@@ -47,10 +45,14 @@
             this.wyjscie = new System.Windows.Forms.Button();
             this.banerAnimationTimer = new System.Windows.Forms.Timer(this.components);
             this.invadersBanner1 = new Invaders.InvadersBanner();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panelPlayer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelPlayer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // animationTimer
@@ -74,7 +76,7 @@
             // panelPlayer1
             // 
             this.panelPlayer1.BackColor = System.Drawing.Color.Transparent;
-            this.panelPlayer1.Controls.Add(this.player1Ship1);
+            this.panelPlayer1.Controls.Add(this.pictureBox1);
             this.panelPlayer1.Controls.Add(this.player1Name);
             this.panelPlayer1.Controls.Add(this.pictureBox2);
             this.panelPlayer1.Location = new System.Drawing.Point(538, 229);
@@ -82,17 +84,6 @@
             this.panelPlayer1.Size = new System.Drawing.Size(170, 60);
             this.panelPlayer1.TabIndex = 2;
             this.panelPlayer1.Visible = false;
-            // 
-            // player1Ship1
-            // 
-            this.player1Ship1.AutoSize = true;
-            this.player1Ship1.BackColor = System.Drawing.Color.Transparent;
-            this.player1Ship1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player1Ship1.BackgroundImage")));
-            this.player1Ship1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.player1Ship1.Location = new System.Drawing.Point(114, 3);
-            this.player1Ship1.Name = "player1Ship1";
-            this.player1Ship1.Size = new System.Drawing.Size(51, 51);
-            this.player1Ship1.TabIndex = 4;
             // 
             // player1Name
             // 
@@ -115,7 +106,7 @@
             // panelPlayer2
             // 
             this.panelPlayer2.BackColor = System.Drawing.Color.Transparent;
-            this.panelPlayer2.Controls.Add(this.player2Ship1);
+            this.panelPlayer2.Controls.Add(this.pictureBox4);
             this.panelPlayer2.Controls.Add(this.player2Name);
             this.panelPlayer2.Controls.Add(this.pictureBox3);
             this.panelPlayer2.Location = new System.Drawing.Point(78, 229);
@@ -123,16 +114,6 @@
             this.panelPlayer2.Size = new System.Drawing.Size(170, 60);
             this.panelPlayer2.TabIndex = 4;
             this.panelPlayer2.Visible = false;
-            // 
-            // player2Ship1
-            // 
-            this.player2Ship1.BackColor = System.Drawing.Color.Transparent;
-            this.player2Ship1.BackgroundImage = global::Invaders.Properties.Resources.Player2;
-            this.player2Ship1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.player2Ship1.Location = new System.Drawing.Point(3, 3);
-            this.player2Ship1.Name = "player2Ship1";
-            this.player2Ship1.Size = new System.Drawing.Size(51, 51);
-            this.player2Ship1.TabIndex = 10;
             // 
             // player2Name
             // 
@@ -222,6 +203,24 @@
             this.invadersBanner1.Size = new System.Drawing.Size(416, 65);
             this.invadersBanner1.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Invaders.Properties.Resources.Player1;
+            this.pictureBox1.Location = new System.Drawing.Point(114, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(51, 51);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Invaders.Properties.Resources.Player2;
+            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(51, 51);
+            this.pictureBox4.TabIndex = 10;
+            this.pictureBox4.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,6 +250,8 @@
             this.panelPlayer2.ResumeLayout(false);
             this.panelPlayer2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -272,9 +273,8 @@
         private System.Windows.Forms.Button statystyki;
         private System.Windows.Forms.Button wyjscie;
         private System.Windows.Forms.Timer banerAnimationTimer;
-        private Player1Ship player1Ship1;
-        private Player2Ship player2Ship1;
-
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
 
