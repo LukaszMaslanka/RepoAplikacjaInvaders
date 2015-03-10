@@ -17,6 +17,20 @@ namespace Invaders
 
         public TypNajezdzcy TypNajezdzcy { get; private set; }
 
+        private Direction kierunekNajezdzcy = Direction.Prawo;
+        public Direction KierunekNajezdzcy 
+        {
+            get
+            {
+                return kierunekNajezdzcy;
+            }
+            set
+            {
+                kierunekNajezdzcy = value;
+                Przesun();
+            }
+        }
+
         public Rectangle wielkoscNajezdzcy
         {
             get
@@ -27,7 +41,7 @@ namespace Invaders
 
         public int IloscPunktow { get; private set; }
 
-        public Najezdzca(TypNajezdzcy typNajezdzcy, Point lokalizacja, int iloscPunktow, Bitmap obraz, Rectangle obszarGry)
+        public Najezdzca(TypNajezdzcy typNajezdzcy, Point lokalizacja, int iloscPunktow, Bitmap obraz)
         {
             this.TypNajezdzcy = typNajezdzcy;
             this.Lokalizacja = lokalizacja;
@@ -36,9 +50,9 @@ namespace Invaders
             InicjalizacjaObrazow();
         }
 
-        public void Przesun(Direction kierunek)
+        public void Przesun()
         {
-            switch (kierunek)
+            switch (kierunekNajezdzcy)
             {
                 case Direction.Lewo: Lokalizacja.X -= PoziomyInterval;
                     break;

@@ -17,16 +17,19 @@ namespace Invaders
         private Direction kierunek;
         private Rectangle granice;
 
-        public Strzal(Point lokalizacja, Direction kierunek, Rectangle granice)
+        private Brush kolorPocisku;
+
+        public Strzal(Point lokalizacja, Direction kierunek, Rectangle granice, Brush kolorPocisku)
         {
             this.Lokalizacja = lokalizacja;
             this.kierunek = kierunek;
             this.granice = granice;
+            this.kolorPocisku = kolorPocisku;
         }
 
         public void RysujPocisk(Graphics g)
         {
-            g.FillRectangle(Brushes.Red, new Rectangle(Lokalizacja.X, Lokalizacja.Y, szerokoscPocisku, dlugoscPocisku));
+            g.FillRectangle(kolorPocisku, new Rectangle(Lokalizacja.X + 25, Lokalizacja.Y, szerokoscPocisku, dlugoscPocisku));
         }
 
         public bool PrzesunPocisk(Direction kierunek)

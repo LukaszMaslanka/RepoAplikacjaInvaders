@@ -22,6 +22,7 @@ namespace Invaders
         public BattleField1()
         {
             InitializeComponent();
+
             obszarRysowania = new Rectangle(0, 0, this.Width-17, this.Height-60);
 
             losuj = new Random();
@@ -80,8 +81,7 @@ namespace Invaders
         {
             if (e.KeyCode == Keys.Space)
             {
-                gra.WystrzelPocisk(lokalizacjaStatku);
-                //this.Invalidate();
+                gra.WystrzelPociskGracza(lokalizacjaStatku);
                 return;
             }
 
