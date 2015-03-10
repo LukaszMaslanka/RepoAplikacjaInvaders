@@ -13,6 +13,8 @@ namespace Invaders
         private int fala = 0;
         private int pominieteKlatki = 0;
 
+        private Direction kierunekNajezdzcow = Direction.Prawo;
+
         private Rectangle granice;
         private Random losuj;
 
@@ -43,7 +45,7 @@ namespace Invaders
             for (int i = 0; i < Najezdzcy.Count; i++)
             {
                 Najezdzcy[i].RysujStatek(g);
-                Najezdzcy[i].Przesun();
+                Najezdzcy[i].Przesun(kierunekNajezdzcow);
             }
 
             statekGracza.RysujStatek(g);
@@ -65,13 +67,13 @@ namespace Invaders
                 Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Niszczyciel, new Point(j, 0), 200,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.Niszczyciel, 51, 51)));
 
-                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.MysliwiecStealth, new Point(j, 100), 150,
+                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.MysliwiecStealth, new Point(j, 60), 150,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.MysliwiecStealth, 51, 51)));
 
-                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Mysliwiec, new Point(j, 200), 120,
+                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Mysliwiec, new Point(j, 120), 120,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.Mysliwiec, 51, 51)));
 
-                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Dron,new Point(j, 300), 50,
+                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Dron,new Point(j, 180), 50,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.Dron, 51, 51)));
                 j = j +55; 
             }
@@ -115,38 +117,53 @@ namespace Invaders
             }*/
         }
 
+        
         private void PrzesunNajezdzcow()
         {
-
             var najezdzcyPrawo = from _najezdzcy in Najezdzcy
                                  where _najezdzcy.wielkoscNajezdzcy.Right >= granice.Right
-                                 select _najezdzcy;
+                                 group _najezdzcy by _najezdzcy.TypNajezdzcy
+                                     into _najezdzcyGroup
+                                     select _najezdzcyGroup;
 
             var najezdzcyLewo = from _najezdzcy in Najezdzcy
                                 where _najezdzcy.wielkoscNajezdzcy.Left <= granice.Left
-                                select _najezdzcy;
+                                group _najezdzcy by _najezdzcy.TypNajezdzcy
+                                    into _najezdzcyGroup
+                                    select _najezdzcyGroup;
+            //Koniec gry
+            /*var najezdzcyDol = from _najezdzcy in Najezdzcy
+                               where _najezdzcy.wielkoscNajezdzcy.Bottom >= granice.Bottom - 51
+                               group _najezdzcy by _najezdzcy.TypNajezdzcy
+                                   into _najezdzcyGroup
+                                   select _najezdzcyGroup;*/
 
-            var najezdzcyDol = from _najezdzcy in Najezdzcy
-                                where _najezdzcy.wielkoscNajezdzcy.Bottom >= granice.Bottom - 51
-                                select _najezdzcy;
-
-
-            foreach (Najezdzca najezdzca in najezdzcyPrawo)
+            foreach (var najezdzca in najezdzcyPrawo)
             {
-                najezdzca.KierunekNajezdzcy = Direction.Dol;
-                najezdzca.KierunekNajezdzcy = Direction.Lewo;
+                kierunekNajezdzcow = Direction.Dol;
+                for (int i = 0; i < Najezdzcy.Count; i++)
+                {
+                    Najezdzcy[i].Przesun(kierunekNajezdzcow);
+                }
+                kierunekNajezdzcow = Direction.Lewo;
+                break;
             }
 
-            foreach (Najezdzca najezdzca in najezdzcyLewo)
+            foreach (var najezdzca in najezdzcyLewo)
             {
-                najezdzca.KierunekNajezdzcy = Direction.Dol;
-                najezdzca.KierunekNajezdzcy = Direction.Prawo;
+                kierunekNajezdzcow = Direction.Dol;
+                for (int i = 0; i < Najezdzcy.Count; i++)
+                {
+                    Najezdzcy[i].Przesun(kierunekNajezdzcow);
+                }
+                kierunekNajezdzcow = Direction.Prawo;
+                break;
             }
-
-            foreach (Najezdzca najezdzca in najezdzcyDol)
+            //koniec gry
+            /*foreach (var najezdzca in najezdzcyDol)
             {
-                najezdzca.KierunekNajezdzcy = Direction.Gora;
-            }
+                System.Windows.Forms.MessageBox.Show("Test");
+            }*/
         }
         
 

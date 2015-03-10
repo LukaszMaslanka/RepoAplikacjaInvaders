@@ -17,7 +17,7 @@ namespace Invaders
 
         public TypNajezdzcy TypNajezdzcy { get; private set; }
 
-        private Direction kierunekNajezdzcy = Direction.Prawo;
+        /*private Direction kierunekNajezdzcy = Direction.Prawo;
         public Direction KierunekNajezdzcy 
         {
             get
@@ -27,9 +27,9 @@ namespace Invaders
             set
             {
                 kierunekNajezdzcy = value;
-                Przesun();
+                Przesun(kierunekNajezdzcy);
             }
-        }
+        }*/
 
         public Rectangle wielkoscNajezdzcy
         {
@@ -50,7 +50,7 @@ namespace Invaders
             InicjalizacjaObrazow();
         }
 
-        public void Przesun()
+        public void Przesun(Direction kierunekNajezdzcy)
         {
             switch (kierunekNajezdzcy)
             {
