@@ -15,6 +15,14 @@ namespace Invaders
         public Point Lokalizacja;
 
         private Direction kierunek;
+        public Direction Kierunek 
+        {
+            get
+            {
+                return kierunek;
+            }
+            private set { }
+        }
         private Rectangle granice;
 
         private Brush kolorPocisku;
@@ -32,7 +40,7 @@ namespace Invaders
             g.FillRectangle(kolorPocisku, new Rectangle(Lokalizacja.X + 25, Lokalizacja.Y, szerokoscPocisku, dlugoscPocisku));
         }
 
-        public bool PrzesunPocisk(Direction kierunek)
+        public bool PrzesunPocisk()
         {
             if (kierunek == Direction.Gora)
             {

@@ -17,20 +17,6 @@ namespace Invaders
 
         public TypNajezdzcy TypNajezdzcy { get; private set; }
 
-        /*private Direction kierunekNajezdzcy = Direction.Prawo;
-        public Direction KierunekNajezdzcy 
-        {
-            get
-            {
-                return kierunekNajezdzcy;
-            }
-            set
-            {
-                kierunekNajezdzcy = value;
-                Przesun(kierunekNajezdzcy);
-            }
-        }*/
-
         public Rectangle wielkoscNajezdzcy
         {
             get

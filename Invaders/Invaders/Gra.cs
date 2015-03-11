@@ -10,8 +10,7 @@ namespace Invaders
     {
         private int punkty = 0;
         private int iloscZyc = 2;
-        private int fala = 0;
-        private int pominieteKlatki = 0;
+        private int fala = 1;
 
         private Direction kierunekNajezdzcow = Direction.Prawo;
 
@@ -47,16 +46,19 @@ namespace Invaders
                 Najezdzcy[i].RysujStatek(g);
                 Najezdzcy[i].Przesun(kierunekNajezdzcow);
             }
-
+            for (int i = 0; i < pociskiNajezdzcow.Count; i++)
+            {
+                pociskiNajezdzcow[i].RysujPocisk(g);
+            }
+           
             statekGracza.RysujStatek(g);
-            
             for (int i = 0; i < pociskiGracza.Count; i++)
             {
                 pociskiGracza[i].RysujPocisk(g);
-                pociskiGracza[i].PrzesunPocisk(Direction.Gora);
+                pociskiGracza[i].PrzesunPocisk();
             }
 
-            g.DrawString("Pilot: " + statekGracza.GraczName,new Font("Arial",10,FontStyle.Regular),Brushes.Yellow,0,640);
+            g.DrawString("Pilot: " + statekGracza.GraczName + " Ilość żyć: " + iloscZyc + " punkty: " + punkty,new Font("Arial",10,FontStyle.Regular),Brushes.Green,0,640);
         }
 
         private void InicjalizacjaNajezdzcow()
@@ -101,23 +103,66 @@ namespace Invaders
             
         }
 
-
-        public void WystzelPociskNajezdzcy(Point Lokalizacja)
+        private void WystzelPociskNajezdzcy()
         {
+            if (Najezdzcy.Count == 0) return;
 
-            /*var najezdzcyOgnia = from _najezdzcy in Najezdzcy
-                                 group _najezdzcy by _najezdzcy.Lokalizacja.X
-                                 into _najezdzcyGroup
-                                 orderby _najezdzcyGroup.Key descending
-                                 select _najezdzcyGroup;
-            
-            foreach (var najezdzca in najezdzcyOgnia)
+            var strzelcy = from _strzelcy in Najezdzcy
+                           group _strzelcy by _strzelcy.Lokalizacja.X into _strzelcyGroup
+                           orderby _strzelcyGroup.Key descending
+                           select _strzelcyGroup;
+
+            var losujStrzelca = strzelcy.ElementAt(losuj.Next(strzelcy.ToList().Count));
+            var dolnyStrzelec = losujStrzelca.Last();
+
+            Point lokalizacjaPocisku = new Point(dolnyStrzelec.Lokalizacja.X, dolnyStrzelec.Lokalizacja.Y + 26);
+            Strzal pociskNajezdzcy = new Strzal(lokalizacjaPocisku, Direction.Dol, granice, Brushes.Red);
+
+            if (pociskiNajezdzcow.Count < fala)
             {
-                pociskiNajezdzcow.Add(new Strzal(Lokalizacja, Direction.Gora, granice, Brushes.Red));
-            }*/
+                pociskiNajezdzcow.Add(pociskNajezdzcy);
+            }
         }
 
-        
+        private void NajezdzcaTrafiony()
+        {
+            List<Strzal> strzalytrafione = new List<Strzal>();
+            List<Najezdzca> zestrzeleniNajezdzcy = new List<Najezdzca>();
+            
+            foreach (Strzal strzal in pociskiGracza)
+            {
+                var zestrzeleni = from _najezdzca in Najezdzcy
+                    where _najezdzca.wielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
+                        && strzal.Kierunek == Direction.Gora
+                    select new {zestrzeleniNajezdzcy = _najezdzca, StrzalTrafiony = strzal};
+                
+                if (zestrzeleni.Count() > 0)
+                {
+                    foreach (var zestrzelony in zestrzeleni)
+                    {
+                        strzalytrafione.Add(zestrzelony.StrzalTrafiony);
+                        zestrzeleniNajezdzcy.Add(zestrzelony.zestrzeleniNajezdzcy);
+                    }   
+                }
+            }
+
+            foreach (Najezdzca najezdzca in zestrzeleniNajezdzcy)
+            {
+                punkty += najezdzca.IloscPunktow;
+                Najezdzcy.Remove(najezdzca);
+            }
+
+            foreach (Strzal shot in strzalytrafione)
+            {
+                pociskiGracza.Remove(shot);
+            }
+        }
+
+        private void GraczTrafiony()
+        {
+
+        }
+
         private void PrzesunNajezdzcow()
         {
             var najezdzcyPrawo = from _najezdzcy in Najezdzcy
@@ -159,6 +204,7 @@ namespace Invaders
                 kierunekNajezdzcow = Direction.Prawo;
                 break;
             }
+
             //koniec gry
             /*foreach (var najezdzca in najezdzcyDol)
             {
@@ -169,15 +215,26 @@ namespace Invaders
 
         public void Go()
         {
-            PrzesunNajezdzcow();
+            WystzelPociskNajezdzcy();
+
+            for (int i = 0; i < pociskiNajezdzcow.Count; i++)
+            {
+                if (!pociskiNajezdzcow[i].PrzesunPocisk())
+                {
+                    pociskiNajezdzcow.RemoveAt(i);
+                }
+            }
 
             for (int i = 0; i < pociskiGracza.Count; i++)
             {
-                if (!pociskiGracza[i].PrzesunPocisk(Direction.Gora))
+                if (!pociskiGracza[i].PrzesunPocisk())
                 {
                     pociskiGracza.RemoveAt(i);
                 }
             }
+
+            PrzesunNajezdzcow();
+            NajezdzcaTrafiony();
         }
     }
 }
