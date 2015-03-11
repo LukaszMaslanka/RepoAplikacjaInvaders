@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Threading;
 
 namespace Invaders
 {
     class Gra
     {
         private int punkty = 0;
-        private int iloscZyc = 2;
+        private int iloscZyc = 3;
         private int fala = 1;
+        private int poziomTrudnosci = 20;
+        EventArgs e = null;
 
         private Direction kierunekNajezdzcow = Direction.Prawo;
 
@@ -24,6 +27,8 @@ namespace Invaders
         private List<Strzal> pociskiNajezdzcow = new List<Strzal>();
 
         private Gwiazdy gwiazdy;
+
+        public event EventHandler GameOVer;
 
         public Gra(Gwiazdy gwiazdy, StatekGracza statekGracza, Rectangle obszarGry, Random losuj)
         {
@@ -44,7 +49,6 @@ namespace Invaders
             for (int i = 0; i < Najezdzcy.Count; i++)
             {
                 Najezdzcy[i].RysujStatek(g);
-                Najezdzcy[i].Przesun(kierunekNajezdzcow);
             }
             for (int i = 0; i < pociskiNajezdzcow.Count; i++)
             {
@@ -118,7 +122,7 @@ namespace Invaders
             Point lokalizacjaPocisku = new Point(dolnyStrzelec.Lokalizacja.X, dolnyStrzelec.Lokalizacja.Y + 26);
             Strzal pociskNajezdzcy = new Strzal(lokalizacjaPocisku, Direction.Dol, granice, Brushes.Red);
 
-            if (pociskiNajezdzcow.Count < fala)
+            if (pociskiNajezdzcow.Count < 2)
             {
                 pociskiNajezdzcow.Add(pociskNajezdzcy);
             }
@@ -157,10 +161,37 @@ namespace Invaders
                 pociskiGracza.Remove(shot);
             }
         }
-
+        
         private void GraczTrafiony()
-        {
+        {   
+            bool usunPocisk = false;
+            var graczZestrzelony = from celnyPocisk in pociskiNajezdzcow
+                                   where celnyPocisk.Kierunek == Direction.Dol && statekGracza.wielkoscStatku.Contains(celnyPocisk.Lokalizacja)
+                                   select celnyPocisk;
+            
+            if (graczZestrzelony.Count() > 0)
+            {
+                iloscZyc--;
+                
+                statekGracza.Zywy = false;
 
+                if (iloscZyc > 0)
+                {
+                    usunPocisk = true;
+                }
+                else
+                {
+                    GameOVer(this, e);
+                }
+            }
+
+            if (usunPocisk)
+            {
+                foreach (Strzal strzal in pociskiNajezdzcow.ToList())
+                {
+                    pociskiNajezdzcow.Remove(strzal);
+                }
+            }
         }
 
         private void PrzesunNajezdzcow()
@@ -176,12 +207,12 @@ namespace Invaders
                                 group _najezdzcy by _najezdzcy.TypNajezdzcy
                                     into _najezdzcyGroup
                                     select _najezdzcyGroup;
-            //Koniec gry
-            /*var najezdzcyDol = from _najezdzcy in Najezdzcy
+
+            var najezdzcyDol = from _najezdzcy in Najezdzcy
                                where _najezdzcy.wielkoscNajezdzcy.Bottom >= granice.Bottom - 51
                                group _najezdzcy by _najezdzcy.TypNajezdzcy
                                    into _najezdzcyGroup
-                                   select _najezdzcyGroup;*/
+                                   select _najezdzcyGroup;
 
             foreach (var najezdzca in najezdzcyPrawo)
             {
@@ -205,18 +236,19 @@ namespace Invaders
                 break;
             }
 
-            //koniec gry
-            /*foreach (var najezdzca in najezdzcyDol)
+            foreach (var najezdzca in najezdzcyDol)
             {
-                System.Windows.Forms.MessageBox.Show("Test");
-            }*/
+                GameOVer(this, e);
+            }
+
+            for (int i = 0; i < Najezdzcy.Count; i++)
+            {
+                Najezdzcy[i].Przesun(kierunekNajezdzcow);
+            }
         }
-        
 
         public void Go()
         {
-            WystzelPociskNajezdzcy();
-
             for (int i = 0; i < pociskiNajezdzcow.Count; i++)
             {
                 if (!pociskiNajezdzcow[i].PrzesunPocisk())
@@ -233,8 +265,11 @@ namespace Invaders
                 }
             }
 
+            WystzelPociskNajezdzcy();
             PrzesunNajezdzcow();
+            GraczTrafiony();
             NajezdzcaTrafiony();
+            
         }
     }
 }

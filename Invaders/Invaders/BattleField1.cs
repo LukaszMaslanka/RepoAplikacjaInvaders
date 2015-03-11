@@ -18,12 +18,13 @@ namespace Invaders
         StatekGracza statekGracza;
         Point lokalizacjaStatku = new Point(344, 590);
         List<Keys> keysPressed = new List<Keys>();
-
+        private bool koniecGry = false;
+        
         public BattleField1()
         {
             InitializeComponent();
 
-            obszarRysowania = new Rectangle(0, 0, this.Width-17, this.Height-60);
+            obszarRysowania = new Rectangle(0, 0, this.Width-5, this.Height-60);
 
             losuj = new Random();
 
@@ -31,8 +32,15 @@ namespace Invaders
             statekGracza = new StatekGracza(lokalizacjaStatku,Gracze.Player1,obszarRysowania,"Łukasz");
             
             gra = new Gra(gwiazdy,statekGracza,obszarRysowania,losuj);
+            gra.GameOVer += new EventHandler(gra_GameOVer);
         }
 
+        void gra_GameOVer(object sender, EventArgs e)
+        {
+            gameTimer.Stop();
+            koniecGry = true;
+        }
+ 
         public static void ThreadProc()
         {
             Application.Run(new Form1());
@@ -47,7 +55,6 @@ namespace Invaders
         private void animationTimer_Tick(object sender, EventArgs e)
         {
             gra.MrugajGwiazdami();
-            gra.Go();
             this.Refresh();
         }
 
@@ -55,10 +62,17 @@ namespace Invaders
         {
             Graphics g = e.Graphics;
             gra.RysujGre(g);
+
+            /*if (koniecGry)
+                g.DrawString("Koniec Gry", new Font("Arial", 25, FontStyle.Regular), Brushes.Yellow,
+                    new Point(this.Width/2,this.Height/2));*/
+
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            gra.Go();
+
             foreach (Keys key in keysPressed)
             {
                 if (key == Keys.Right)
