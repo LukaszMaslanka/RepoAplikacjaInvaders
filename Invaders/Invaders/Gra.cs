@@ -12,7 +12,7 @@ namespace Invaders
         private int punkty = 0;
         private int iloscZyc = 3;
         private int fala = 1;
-        private int poziomTrudnosci = 20;
+        private int poziomTrudnosci = 1;
         EventArgs e = null;
 
         private Direction kierunekNajezdzcow = Direction.Prawo;
@@ -68,18 +68,18 @@ namespace Invaders
         private void InicjalizacjaNajezdzcow()
         {
             int j = 1;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < poziomTrudnosci; i++)
             {
-                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Niszczyciel, new Point(j, 0), 200,
+                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Niszczyciel, new Point(j, 0), 30,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.Niszczyciel, 51, 51)));
 
-                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.MysliwiecStealth, new Point(j, 60), 150,
+                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.MysliwiecStealth, new Point(j, 60), 20,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.MysliwiecStealth, 51, 51)));
 
-                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Mysliwiec, new Point(j, 120), 120,
+                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Mysliwiec, new Point(j, 120), 15,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.Mysliwiec, 51, 51)));
 
-                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Dron,new Point(j, 180), 50,
+                Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Dron,new Point(j, 180), 10,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.Dron, 51, 51)));
                 j = j +55; 
             }
@@ -122,7 +122,7 @@ namespace Invaders
             Point lokalizacjaPocisku = new Point(dolnyStrzelec.Lokalizacja.X, dolnyStrzelec.Lokalizacja.Y + 26);
             Strzal pociskNajezdzcy = new Strzal(lokalizacjaPocisku, Direction.Dol, granice, Brushes.Red);
 
-            if (pociskiNajezdzcow.Count < 2)
+            if (pociskiNajezdzcow.Count < fala)
             {
                 pociskiNajezdzcow.Add(pociskNajezdzcy);
             }
@@ -192,6 +192,20 @@ namespace Invaders
                     pociskiNajezdzcow.Remove(strzal);
                 }
             }
+        }
+
+        private void nastepnaFala()
+        {
+            if (Najezdzcy.Count == 0)
+            {
+                kierunekNajezdzcow = Direction.Prawo;
+                poziomTrudnosci++;
+                if (fala <= 2 && poziomTrudnosci > 5)
+                    fala++;
+
+                Najezdzcy.Clear();
+                InicjalizacjaNajezdzcow();
+            } 
         }
 
         private void PrzesunNajezdzcow()
@@ -269,6 +283,7 @@ namespace Invaders
             PrzesunNajezdzcow();
             GraczTrafiony();
             NajezdzcaTrafiony();
+            nastepnaFala();
             
         }
     }

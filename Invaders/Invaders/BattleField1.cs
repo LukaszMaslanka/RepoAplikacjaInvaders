@@ -63,9 +63,9 @@ namespace Invaders
             Graphics g = e.Graphics;
             gra.RysujGre(g);
 
-            /*if (koniecGry)
+            if (koniecGry)
                 g.DrawString("Koniec Gry", new Font("Arial", 25, FontStyle.Regular), Brushes.Yellow,
-                    new Point(this.Width/2,this.Height/2));*/
+                    new Point(this.Width/2,this.Height/2));
 
         }
 
