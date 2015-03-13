@@ -61,7 +61,8 @@ namespace Invaders
                 pociskiGracza[i].RysujPocisk(g);
             }
 
-            g.DrawString("Pilot: " + statekGracza.GraczName + " Ilość żyć: " + iloscZyc + " punkty: " + punkty,new Font("Arial",10,FontStyle.Regular),Brushes.Green,0,640);
+            g.DrawString("Pilot: " + statekGracza.GraczName + " Ilość żyć: " + iloscZyc + " punkty: " + punkty + 
+                " Poziom trudności: " + poziomTrudnosci, new Font("Arial",10,FontStyle.Regular),Brushes.Green,0,640);
         }
 
         private void InicjalizacjaNajezdzcow()
@@ -181,6 +182,7 @@ namespace Invaders
                 }
                 else
                 {
+                    pociskiNajezdzcow.Clear();
                     GameOVer(this, e);
                 }
             }
@@ -200,7 +202,7 @@ namespace Invaders
             {
                 kierunekNajezdzcow = Direction.Prawo;
                 poziomTrudnosci++;
-                if (fala <= 2 && poziomTrudnosci > 5)
+                if (fala <= 2 && poziomTrudnosci > 4)
                     fala++;
 
                 Najezdzcy.Clear();
@@ -252,6 +254,7 @@ namespace Invaders
 
             foreach (var najezdzca in najezdzcyDol)
             {
+                pociskiNajezdzcow.Clear();
                 GameOVer(this, e);
             }
 
