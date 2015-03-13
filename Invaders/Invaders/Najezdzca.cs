@@ -25,6 +25,17 @@ namespace Invaders
             }
         }
 
+        public bool koniecAnimacji = false;
+        private bool zestrzelony = false;
+        public bool Zestrzelony 
+        {
+            get { return zestrzelony; } 
+            set
+            {
+                zestrzelony = value;
+            }
+        }
+
         public int IloscPunktow { get; private set; }
 
         public Najezdzca(TypNajezdzcy typNajezdzcy, Point lokalizacja, int iloscPunktow, Bitmap obraz)
@@ -55,10 +66,18 @@ namespace Invaders
 
         public void RysujStatek(Graphics g)
         {
-            g.DrawImage(obraz, Lokalizacja);
+            if (zestrzelony)
+            {
+                StatekDestroy();
+                g.DrawImage(obraz, Lokalizacja);  
+            }
+            else
+            {
+                g.DrawImage(obraz, Lokalizacja);  
+            }
         }
 
-        Bitmap[] eksplozja;
+       Bitmap[] eksplozja;
 
         private void InicjalizacjaObrazow()
         {
@@ -72,19 +91,18 @@ namespace Invaders
         }
 
         int klatka = 0;
-        public void StatekDestroy(Graphics g)
+        public Bitmap StatekDestroy()
         {
             klatka++;
             switch (klatka)
 	        {
-                case 1: obraz = eksplozja[0]; g.DrawImage(obraz,Lokalizacja); break;
-                case 2: obraz = eksplozja[1]; g.DrawImage(obraz,Lokalizacja); break;
-                case 3: obraz = eksplozja[2]; g.DrawImage(obraz,Lokalizacja); break;
-                case 4: obraz = eksplozja[3]; g.DrawImage(obraz,Lokalizacja); break;
-                case 5: obraz = eksplozja[4]; g.DrawImage(obraz,Lokalizacja); break;
-                case 6: obraz = eksplozja[5]; g.DrawImage(obraz,Lokalizacja); break;
-                default: obraz = eksplozja[5]; g.DrawImage(obraz,Lokalizacja); klatka = 0;
-                    break;
+                case 1: obraz = eksplozja[0]; return obraz;
+                case 2: obraz = eksplozja[1]; return obraz;
+                case 3: obraz = eksplozja[2]; return obraz;
+                case 4: obraz = eksplozja[3]; return obraz;
+                case 5: obraz = eksplozja[4]; return obraz;
+                case 6: obraz = eksplozja[5]; return obraz;
+                default: klatka = 0; obraz = eksplozja[0]; koniecAnimacji = true; return obraz;
 	        }
         }
     }

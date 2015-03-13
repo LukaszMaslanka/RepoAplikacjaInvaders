@@ -59,7 +59,6 @@ namespace Invaders
             for (int i = 0; i < pociskiGracza.Count; i++)
             {
                 pociskiGracza[i].RysujPocisk(g);
-                pociskiGracza[i].PrzesunPocisk();
             }
 
             g.DrawString("Pilot: " + statekGracza.GraczName + " Ilość żyć: " + iloscZyc + " punkty: " + punkty,new Font("Arial",10,FontStyle.Regular),Brushes.Green,0,640);
@@ -152,8 +151,9 @@ namespace Invaders
 
             foreach (Najezdzca najezdzca in zestrzeleniNajezdzcy)
             {
+                najezdzca.Zestrzelony = true;
                 punkty += najezdzca.IloscPunktow;
-                Najezdzcy.Remove(najezdzca);
+                //Najezdzcy.Remove(najezdzca);
             }
 
             foreach (Strzal shot in strzalytrafione)
@@ -283,6 +283,15 @@ namespace Invaders
             PrzesunNajezdzcow();
             GraczTrafiony();
             NajezdzcaTrafiony();
+
+            for (int i = 0; i < Najezdzcy.Count; i++)
+            {
+                if (Najezdzcy[i].Zestrzelony == true && Najezdzcy[i].koniecAnimacji == true)
+                {
+                    Najezdzcy.RemoveAt(i);
+                }
+                
+            }
             nastepnaFala();
             
         }
