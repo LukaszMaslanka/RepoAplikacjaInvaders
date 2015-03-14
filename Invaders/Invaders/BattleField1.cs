@@ -11,6 +11,7 @@ namespace Invaders
 {
     public partial class BattleField1 : Form
     {
+        Form1 form1;
         Gra gra;
         Rectangle obszarRysowania;
         Random losuj;
@@ -21,8 +22,9 @@ namespace Invaders
         private bool koniecGry = false;
         private bool graczWygral = false;
         
-        public BattleField1()
+        public BattleField1(Form1 form1)
         {
+            this.form1 = form1;
             InitializeComponent();
 
             obszarRysowania = new Rectangle(0, 0, this.Width-5, this.Height-60);
@@ -30,7 +32,7 @@ namespace Invaders
             losuj = new Random();
 
             gwiazdy = new Gwiazdy(obszarRysowania, losuj);
-            statekGracza = new StatekGracza(lokalizacjaStatku,Gracze.Player1,obszarRysowania,"Łukasz");
+            statekGracza = new StatekGracza(lokalizacjaStatku,Gracze.Player1,obszarRysowania,form1.GraczName);
             
             gra = new Gra(gwiazdy,statekGracza,obszarRysowania,losuj);
             gra.GameOVer += new EventHandler(gra_GameOVer);
@@ -56,8 +58,9 @@ namespace Invaders
 
         private void BattleField1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
-            t.Start();
+            /*System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
+            t.Start();*/
+            form1.Show();
         }
 
         private void animationTimer_Tick(object sender, EventArgs e)

@@ -19,7 +19,8 @@ namespace Invaders
             InitializeComponent();
             wycisz = true;
         }
-        
+
+        public string GraczName;
         Rysuj animacjaTla = new Rysuj();
 
         /// <summary>
@@ -86,10 +87,9 @@ namespace Invaders
             wyciszDzwiek();
         }
 
-        public String GraczName;
         private void jedenGraczBtn_Click(object sender, EventArgs e)
         {
-            GraczName = player1Name.Text;
+            
             panelPlayer1.Visible = true;
             panelPlayer2.Visible = false;
             grajBtn.Visible = true;
@@ -110,10 +110,10 @@ namespace Invaders
         /// <summary>
         /// Metoda stworzona na potrzeby utworzenia nowego wątku
         /// </summary>
-        public static void ThreadProc()
+        /*public static void ThreadProc()
         {
             Application.Run(new BattleField1());
-        }
+        }*/
         
         /// <summary>
         /// Utworzenie nowego watku który wywołuje nową formę BattlField1. Zamknięcie Form1. Zatrzymanie dzwieku.
@@ -122,10 +122,15 @@ namespace Invaders
         /// <param name="e"></param>
         private void grajBtn_Click(object sender, EventArgs e)
         {
-            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
+            /*System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
             t.Start();
             this.Dispose();
-            odtDzwiek.Stop();
+            odtDzwiek.Stop();*/
+            GraczName = player1Name.Text;
+            this.Hide();
+            BattleField1 battlefield1 = new BattleField1(this);
+            battlefield1.Owner = this;
+            battlefield1.ShowDialog();
         }
 
         private void banerAnimationTimer_Tick(object sender, EventArgs e)
