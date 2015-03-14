@@ -19,6 +19,7 @@ namespace Invaders
         Point lokalizacjaStatku = new Point(344, 590);
         List<Keys> keysPressed = new List<Keys>();
         private bool koniecGry = false;
+        private bool graczWygral = false;
         
         public BattleField1()
         {
@@ -33,6 +34,13 @@ namespace Invaders
             
             gra = new Gra(gwiazdy,statekGracza,obszarRysowania,losuj);
             gra.GameOVer += new EventHandler(gra_GameOVer);
+            gra.PlayerWins += new EventHandler(gra_PlayerWins);
+        }
+
+        void gra_PlayerWins(object sender, EventArgs e)
+        {
+            gameTimer.Stop();
+            graczWygral = true;
         }
 
         void gra_GameOVer(object sender, EventArgs e)
@@ -64,9 +72,18 @@ namespace Invaders
             gra.RysujGre(g);
 
             if (koniecGry)
+            {
                 g.DrawString("Koniec Gry", new Font("Arial", 25, FontStyle.Regular), Brushes.Yellow,
-                    new Point(this.Width/2,this.Height/2));
-
+                    new Point(this.Width / 2, this.Height / 2));
+                animationTimer.Stop();
+            }
+                
+            if (graczWygral)
+            {
+                g.DrawString("Gracz " + statekGracza.GraczName + " uzyskał " + gra.punkty, new Font("Arial", 25, FontStyle.Regular), Brushes.Green,
+                    new Point(this.Width / 2, this.Height / 2));
+                animationTimer.Stop();
+            }
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -87,7 +104,6 @@ namespace Invaders
                     lokalizacjaStatku = statekGracza.Lokalizacja;
                     return;
                 }
-                
             }
         }
         
@@ -118,8 +134,11 @@ namespace Invaders
                 }
                 else
                 {
-                    gameTimer.Start();
-                    animationTimer.Start();
+                    if (koniecGry == true && graczWygral == true)
+                    {
+                        gameTimer.Start();
+                        animationTimer.Start(); 
+                    }
                 }
             }
         }

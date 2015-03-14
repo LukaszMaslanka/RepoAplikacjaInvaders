@@ -9,10 +9,12 @@ namespace Invaders
 {
     class Gra
     {
-        private int punkty = 0;
+        public int punkty = 0;
         private int iloscZyc = 3;
-        private int fala = 1;
-        private int poziomTrudnosci = 1;
+        private int iloscStrzalowNajezdzcy = 1;
+        //poziomTrudnosc inicjalizuje także ilosc najeźdzców w linni. 
+        //Podczas wyświetalania poziomTrudnsci -3. Ilosc możliwych poziomów wynosi 7
+        private int poziomTrudnosci = 4;
         EventArgs e = null;
 
         private Direction kierunekNajezdzcow = Direction.Prawo;
@@ -29,6 +31,7 @@ namespace Invaders
         private Gwiazdy gwiazdy;
 
         public event EventHandler GameOVer;
+        public event EventHandler PlayerWins;
 
         public Gra(Gwiazdy gwiazdy, StatekGracza statekGracza, Rectangle obszarGry, Random losuj)
         {
@@ -42,7 +45,7 @@ namespace Invaders
         public void RysujGre(Graphics g)
         {
             
-            g.DrawRectangle(new Pen(Brushes.Yellow, 1), granice);
+            g.DrawRectangle(new Pen(Brushes.Black, 0), granice);
 
             gwiazdy.RysujGwiazdy(g);
 
@@ -62,7 +65,7 @@ namespace Invaders
             }
 
             g.DrawString("Pilot: " + statekGracza.GraczName + " Ilość żyć: " + iloscZyc + " punkty: " + punkty + 
-                " Poziom trudności: " + poziomTrudnosci, new Font("Arial",10,FontStyle.Regular),Brushes.Green,0,640);
+                " Poziom trudności: " + (poziomTrudnosci - 3), new Font("Arial",10,FontStyle.Regular),Brushes.Green,0,640);
         }
 
         private void InicjalizacjaNajezdzcow()
@@ -100,11 +103,11 @@ namespace Invaders
 
         public void WystrzelPociskGracza(Point Lokalizacja)
         {
+            Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
             if (pociskiGracza.Count < 2)
             {
-                pociskiGracza.Add(new Strzal(Lokalizacja, Direction.Gora, granice, Brushes.DeepSkyBlue));
+                pociskiGracza.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, granice, Brushes.DeepSkyBlue));
             }
-            
         }
 
         private void WystzelPociskNajezdzcy()
@@ -122,7 +125,7 @@ namespace Invaders
             Point lokalizacjaPocisku = new Point(dolnyStrzelec.Lokalizacja.X, dolnyStrzelec.Lokalizacja.Y + 26);
             Strzal pociskNajezdzcy = new Strzal(lokalizacjaPocisku, Direction.Dol, granice, Brushes.Red);
 
-            if (pociskiNajezdzcow.Count < fala)
+            if (pociskiNajezdzcow.Count < iloscStrzalowNajezdzcy)
             {
                 pociskiNajezdzcow.Add(pociskNajezdzcy);
             }
@@ -182,6 +185,7 @@ namespace Invaders
                 }
                 else
                 {
+                    pociskiGracza.Clear();
                     pociskiNajezdzcow.Clear();
                     GameOVer(this, e);
                 }
@@ -200,14 +204,26 @@ namespace Invaders
         {
             if (Najezdzcy.Count == 0)
             {
-                kierunekNajezdzcow = Direction.Prawo;
-                poziomTrudnosci++;
-                if (fala <= 2 && poziomTrudnosci > 4)
-                    fala++;
+                // Poziom trudnosci -1 dla poprawnego czyszczenia najezdzcow po zakonczonej fali
+                if (poziomTrudnosci > 9)
+                {
+                    pociskiGracza.Clear();
+                    pociskiNajezdzcow.Clear();
+                    PlayerWins(this, e);
+                }
+                else
+                {
+                    poziomTrudnosci++;
 
-                Najezdzcy.Clear();
-                InicjalizacjaNajezdzcow();
-            } 
+                    kierunekNajezdzcow = Direction.Prawo;
+
+                    if (iloscStrzalowNajezdzcy <= 2 && poziomTrudnosci > 8)
+                        iloscStrzalowNajezdzcy++;
+
+                    Najezdzcy.Clear();
+                    InicjalizacjaNajezdzcow();
+                }
+            }
         }
 
         private void PrzesunNajezdzcow()
@@ -254,6 +270,7 @@ namespace Invaders
 
             foreach (var najezdzca in najezdzcyDol)
             {
+                pociskiGracza.Clear();
                 pociskiNajezdzcow.Clear();
                 GameOVer(this, e);
             }
@@ -293,10 +310,9 @@ namespace Invaders
                 {
                     Najezdzcy.RemoveAt(i);
                 }
-                
             }
+
             nastepnaFala();
-            
         }
     }
 }
