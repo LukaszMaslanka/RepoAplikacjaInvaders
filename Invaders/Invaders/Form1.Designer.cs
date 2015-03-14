@@ -33,9 +33,11 @@
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.wyciszBtn = new System.Windows.Forms.Button();
             this.panelPlayer1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.player1Name = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelPlayer2 = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.player2Name = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.grajBtn = new System.Windows.Forms.Button();
@@ -45,14 +47,12 @@
             this.wyjscie = new System.Windows.Forms.Button();
             this.banerAnimationTimer = new System.Windows.Forms.Timer(this.components);
             this.invadersBanner1 = new Invaders.InvadersBanner();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panelPlayer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelPlayer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // animationTimer
@@ -85,6 +85,15 @@
             this.panelPlayer1.TabIndex = 2;
             this.panelPlayer1.Visible = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Invaders.Properties.Resources.Player1;
+            this.pictureBox1.Location = new System.Drawing.Point(114, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(51, 51);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
             // player1Name
             // 
             this.player1Name.Location = new System.Drawing.Point(0, 38);
@@ -114,6 +123,15 @@
             this.panelPlayer2.Size = new System.Drawing.Size(170, 60);
             this.panelPlayer2.TabIndex = 4;
             this.panelPlayer2.Visible = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Invaders.Properties.Resources.Player2;
+            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(51, 51);
+            this.pictureBox4.TabIndex = 10;
+            this.pictureBox4.TabStop = false;
             // 
             // player2Name
             // 
@@ -191,6 +209,7 @@
             // banerAnimationTimer
             // 
             this.banerAnimationTimer.Enabled = true;
+            this.banerAnimationTimer.Interval = 2000;
             this.banerAnimationTimer.Tick += new System.EventHandler(this.banerAnimationTimer_Tick);
             // 
             // invadersBanner1
@@ -202,24 +221,6 @@
             this.invadersBanner1.Name = "invadersBanner1";
             this.invadersBanner1.Size = new System.Drawing.Size(416, 65);
             this.invadersBanner1.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Invaders.Properties.Resources.Player1;
-            this.pictureBox1.Location = new System.Drawing.Point(114, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(51, 51);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Invaders.Properties.Resources.Player2;
-            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(51, 51);
-            this.pictureBox4.TabIndex = 10;
-            this.pictureBox4.TabStop = false;
             // 
             // Form1
             // 
@@ -246,12 +247,12 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.panelPlayer1.ResumeLayout(false);
             this.panelPlayer1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelPlayer2.ResumeLayout(false);
             this.panelPlayer2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }

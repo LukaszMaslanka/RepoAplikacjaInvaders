@@ -25,6 +25,7 @@ namespace Invaders
         public BattleField1(Form1 form1)
         {
             this.form1 = form1;
+            form1.odtDzwiek.Stop();
             InitializeComponent();
 
             obszarRysowania = new Rectangle(0, 0, this.Width-5, this.Height-60);
@@ -32,7 +33,7 @@ namespace Invaders
             losuj = new Random();
 
             gwiazdy = new Gwiazdy(obszarRysowania, losuj);
-            statekGracza = new StatekGracza(lokalizacjaStatku,Gracze.Player1,obszarRysowania,form1.GraczName);
+            statekGracza = new StatekGracza(lokalizacjaStatku,Gracze.Player1,obszarRysowania,form1.GraczName1);
             
             gra = new Gra(gwiazdy,statekGracza,obszarRysowania,losuj);
             gra.GameOVer += new EventHandler(gra_GameOVer);
@@ -51,16 +52,27 @@ namespace Invaders
             koniecGry = true;
         }
  
-        public static void ThreadProc()
-        {
-            Application.Run(new Form1());
-        }
-
         private void BattleField1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /*System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
-            t.Start();*/
-            form1.Show();
+            animationTimer.Stop();
+            gameTimer.Stop();
+            if (e.Cancel = MessageBox.Show("Czy przerwać grę?", "Koniec gry", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                if (koniecGry == false && graczWygral == false)
+                {
+                    gameTimer.Start();
+                    animationTimer.Start();
+                }
+            }
+            else
+            {
+                form1.Show();
+                if (form1.wycisz)
+                    form1.odtDzwiek.PlayLooping();
+                else
+                    form1.odtDzwiek.Stop();
+            }
+            
         }
 
         private void animationTimer_Tick(object sender, EventArgs e)
@@ -127,22 +139,7 @@ namespace Invaders
             //Przy zakonczeniu gry nalezy zapisac wynik do bazy. trzeba bedzie utworzyc metoda zakonczgre!!
             if (e.KeyCode == Keys.Q)
             {
-                gameTimer.Stop();
-                animationTimer.Stop();
-                DialogResult result = MessageBox.Show("Czy przerwać grę?" , "Koniec gry" , MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-
-                    this.Close();
-                }
-                else
-                {
-                    if (koniecGry == true && graczWygral == true)
-                    {
-                        gameTimer.Start();
-                        animationTimer.Start(); 
-                    }
-                }
+                this.Close();
             }
         }
 

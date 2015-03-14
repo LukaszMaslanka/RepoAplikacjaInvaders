@@ -17,10 +17,13 @@ namespace Invaders
         public Form1()
         {
             InitializeComponent();
-            wycisz = true;
         }
 
-        public string GraczName;
+        public System.Media.SoundPlayer odtDzwiek;
+        public bool wycisz = false;
+        private bool dwochGraczy = false;
+        public string GraczName1;
+        public string GraczName2;
         Rysuj animacjaTla = new Rysuj();
 
         /// <summary>
@@ -48,9 +51,6 @@ namespace Invaders
             Graphics g = e.Graphics;
             animacjaTla.AnimujTlo(g);
         }
-
-        System.Media.SoundPlayer odtDzwiek;
-        bool wycisz;
 
         /// <summary>
         /// Utworzenie obiektu SoundPlayer oraz wywolanie metody wyciszDzwiek
@@ -89,7 +89,7 @@ namespace Invaders
 
         private void jedenGraczBtn_Click(object sender, EventArgs e)
         {
-            
+            dwochGraczy = false;
             panelPlayer1.Visible = true;
             panelPlayer2.Visible = false;
             grajBtn.Visible = true;
@@ -97,6 +97,7 @@ namespace Invaders
 
         private void dwochGraczyBtn_Click(object sender, EventArgs e)
         {
+            dwochGraczy = true;
             panelPlayer1.Visible = true;
             panelPlayer2.Visible = true;
             grajBtn.Visible = true;
@@ -106,31 +107,24 @@ namespace Invaders
         {
             Close();
         }
-
-        /// <summary>
-        /// Metoda stworzona na potrzeby utworzenia nowego wątku
-        /// </summary>
-        /*public static void ThreadProc()
-        {
-            Application.Run(new BattleField1());
-        }*/
-        
-        /// <summary>
-        /// Utworzenie nowego watku który wywołuje nową formę BattlField1. Zamknięcie Form1. Zatrzymanie dzwieku.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+      
         private void grajBtn_Click(object sender, EventArgs e)
         {
-            /*System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
-            t.Start();
-            this.Dispose();
-            odtDzwiek.Stop();*/
-            GraczName = player1Name.Text;
             this.Hide();
-            BattleField1 battlefield1 = new BattleField1(this);
-            battlefield1.Owner = this;
-            battlefield1.ShowDialog();
+
+            if (dwochGraczy)
+            {
+                GraczName1 = player1Name.Text;
+                GraczName2 = player2Name.Text;
+                BattleField2 battlefield2 = new BattleField2(this);
+                battlefield2.ShowDialog();
+            }
+            else
+            {
+                GraczName1 = player1Name.Text;
+                BattleField1 battlefield1 = new BattleField1(this);
+                battlefield1.ShowDialog();
+            }
         }
 
         private void banerAnimationTimer_Tick(object sender, EventArgs e)

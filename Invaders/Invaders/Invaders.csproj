@@ -67,6 +67,12 @@
     <Compile Include="BattleField1.Designer.cs">
       <DependentUpon>BattleField1.cs</DependentUpon>
     </Compile>
+    <Compile Include="BattleField2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BattleField2.Designer.cs">
+      <DependentUpon>BattleField2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Direction.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -92,6 +98,9 @@
     <Compile Include="TypNajezdzcy.cs" />
     <EmbeddedResource Include="BattleField1.resx">
       <DependentUpon>BattleField1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BattleField2.resx">
+      <DependentUpon>BattleField2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
