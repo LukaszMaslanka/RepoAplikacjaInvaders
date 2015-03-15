@@ -121,8 +121,14 @@
   <data name="2graczy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2graczy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MysliwiecStealth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MysliwiecStealth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="background9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background9.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InvadersBanner5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InvadersBanner5.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="background4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -132,9 +138,6 @@
   </data>
   <data name="statystyki" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\statystyki.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="InvadersBanner8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InvadersBanner8.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="background7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background7.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,17 +151,11 @@
   <data name="Player2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Player2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Niszczyciel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Niszczyciel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="graj" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\graj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="boom_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\boom_5.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="boom_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\boom_4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="boom_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\boom_2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gracz2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gracz2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,23 +172,23 @@
   <data name="background8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background8.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="player2_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\player2_4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="InvadersBanner2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\InvadersBanner2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="background1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="InvadersBanner6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InvadersBanner6.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Mysliwiec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mysliwiec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="background6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\background6.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="boom_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boom_2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="player2_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\player2_3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GameTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GameTheme.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="wyjscie" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wyjscie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,8 +199,8 @@
   <data name="background11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background11.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="boom_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\boom_1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="boom_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boom_4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="boom_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\boom_3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,8 +211,14 @@
   <data name="playSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\playSound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="InvadersBanner5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InvadersBanner5.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GameIco" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GameIco.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InvadersBanner8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InvadersBanner8.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="background5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background5.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="InvadersBanner4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\InvadersBanner4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -223,26 +226,32 @@
   <data name="player1_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\player1_3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="boom_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\boom_6.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="InvadersBanner3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InvadersBanner3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="InvadersBanner6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InvadersBanner6.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="player2_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\player2_2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GameIco" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GameIco.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="boom_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boom_1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gracz1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gracz1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="player1_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\player1_4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="InvadersBanner7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\InvadersBanner7.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="player1_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\player1_4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="background6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background6.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gracz1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gracz1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boom_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boom_5.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GameTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GameTheme.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="background3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,19 +259,34 @@
   <data name="background10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background10.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="background5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\background5.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="InvadersBanner3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InvadersBanner3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="player2_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\player2_4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="boom_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boom_6.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Mysliwiec" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Mysliwiec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="gameover_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameover_1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MysliwiecStealth" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MysliwiecStealth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="gameover_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameover_2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Niszczyciel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Niszczyciel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="gameover_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameover_3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gameover_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameover_4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gameover_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameover_5.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gameover_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameover_6.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gameover_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameover_7.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gameover_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameover_8.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

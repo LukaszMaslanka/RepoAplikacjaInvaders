@@ -11,16 +11,14 @@ namespace Invaders
 {
     public partial class Form1 : Form
     {
-        /// <summary>
-        /// Konstruktor Form1 ustawienie pola wycisz na false
-        /// </summary>
+
         public Form1()
         {
             InitializeComponent();
         }
 
         public System.Media.SoundPlayer odtDzwiek;
-        public bool wycisz = false;
+        public bool wycisz = true;
         private bool dwochGraczy = false;
         public string GraczName1;
         public string GraczName2;

@@ -80,6 +80,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameOverBanner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GameOverBanner.Designer.cs">
+      <DependentUpon>GameOverBanner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gra.cs" />
     <Compile Include="Gracze.cs" />
     <Compile Include="Gwiazdy.cs" />
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameOverBanner.resx">
+      <DependentUpon>GameOverBanner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InvadersBanner.resx">
       <DependentUpon>InvadersBanner.cs</DependentUpon>
@@ -178,6 +187,14 @@
     <None Include="Resources\Mysliwiec.png" />
     <None Include="Resources\MysliwiecStealth.png" />
     <None Include="Resources\Niszczyciel.png" />
+    <None Include="Resources\gameover_1.gif" />
+    <None Include="Resources\gameover_2.gif" />
+    <None Include="Resources\gameover_3.gif" />
+    <None Include="Resources\gameover_4.gif" />
+    <None Include="Resources\gameover_5.gif" />
+    <None Include="Resources\gameover_6.gif" />
+    <None Include="Resources\gameover_7.gif" />
+    <None Include="Resources\gameover_8.gif" />
     <Content Include="WynikiDB.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

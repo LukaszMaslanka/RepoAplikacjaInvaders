@@ -89,14 +89,14 @@ namespace Invaders
             if (koniecGry)
             {
                 g.DrawString("Koniec Gry", new Font("Arial", 25, FontStyle.Regular), Brushes.Yellow,
-                    new Point(this.Width / 2, this.Height / 2));
+                    new Point((this.Width / 2) - 100, (this.Height / 2) - 100));
                 animationTimer.Stop();
             }
                 
             if (graczWygral)
             {
-                g.DrawString("Gracz " + statekGracza.GraczName + " uzyskał " + gra.punkty, new Font("Arial", 25, FontStyle.Regular), Brushes.Green,
-                    new Point(this.Width / 2, this.Height / 2));
+                g.DrawString("Gracz " + statekGracza.GraczName + "\n" + "uzyskał " + gra.punkty + " punktów", new Font("Arial", 25, FontStyle.Regular), Brushes.Green,
+                    new Point((this.Width / 2) -200, (this.Height / 2)-100));
                 animationTimer.Stop();
             }
         }
