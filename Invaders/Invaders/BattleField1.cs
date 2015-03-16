@@ -21,11 +21,18 @@ namespace Invaders
         List<Keys> keysPressed = new List<Keys>();
         private bool koniecGry = false;
         private bool graczWygral = false;
+
         
         public BattleField1(Form1 form1)
         {
             this.form1 = form1;
-            form1.odtDzwiek.Stop();
+            //wykorzystanie ukrytej pierwszej formy do odtworzenia dźwięku
+            if (form1.wycisz)
+            {
+                form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.GameSound);
+                form1.odtDzwiek.PlayLooping();
+            }
+            
             InitializeComponent();
 
             obszarRysowania = new Rectangle(0, 0, this.Width-5, this.Height-60);
@@ -66,6 +73,7 @@ namespace Invaders
             }
             else
             {
+                form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.GameTheme);
                 form1.Show();
                 if (form1.wycisz)
                     form1.odtDzwiek.PlayLooping();
@@ -88,16 +96,16 @@ namespace Invaders
 
             if (koniecGry)
             {
-                g.DrawString("Koniec Gry", new Font("Arial", 25, FontStyle.Regular), Brushes.Yellow,
-                    new Point((this.Width / 2) - 100, (this.Height / 2) - 100));
+                g.DrawString(statekGracza.GraczName + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 680, 640);
                 animationTimer.Stop();
+                gameOverBanner1.Visible = true;
             }
                 
             if (graczWygral)
             {
-                g.DrawString("Gracz " + statekGracza.GraczName + "\n" + "uzyskał " + gra.punkty + " punktów", new Font("Arial", 25, FontStyle.Regular), Brushes.Green,
-                    new Point((this.Width / 2) -200, (this.Height / 2)-100));
+                g.DrawString(statekGracza.GraczName + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 690, 640);
                 animationTimer.Stop();
+                gameOverBanner1.Visible = true;
             }
         }
 

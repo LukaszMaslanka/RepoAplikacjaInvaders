@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BattleField1));
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.gameOverBanner1 = new Invaders.GameOverBanner();
             this.SuspendLayout();
             // 
             // animationTimer
@@ -46,12 +47,24 @@
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
+            // gameOverBanner1
+            // 
+            this.gameOverBanner1.BackColor = System.Drawing.Color.Transparent;
+            this.gameOverBanner1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gameOverBanner1.BackgroundImage")));
+            this.gameOverBanner1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.gameOverBanner1.Location = new System.Drawing.Point(125, 66);
+            this.gameOverBanner1.Name = "gameOverBanner1";
+            this.gameOverBanner1.Size = new System.Drawing.Size(535, 65);
+            this.gameOverBanner1.TabIndex = 0;
+            this.gameOverBanner1.Visible = false;
+            // 
             // BattleField1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.gameOverBanner1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -71,5 +84,6 @@
 
         private System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.Timer gameTimer;
+        private GameOverBanner gameOverBanner1;
     }
 }
