@@ -11,7 +11,6 @@ namespace Invaders
 {
     class Gra
     {
-        Form1 form1;
         public int punkty = 0;
         private int iloscZyc = 3;
         private int iloscStrzalowNajezdzcy = 1;
@@ -40,36 +39,52 @@ namespace Invaders
         WMPLib.WindowsMediaPlayer laserShot = new WMPLib.WindowsMediaPlayer();
         WMPLib.WindowsMediaPlayer boom = new WMPLib.WindowsMediaPlayer();
 
-        public Gra(Gwiazdy gwiazdy, StatekGracza statekGracza, Rectangle obszarGry, Random losuj)
+        public static bool wavSkopiowane = true;
+
+        public static void kopiujWav()
         {
-            //kopiowanie pliku do folderu TEMP
             if (File.Exists(Path.GetTempPath() + "SoundLaserShot.wav"))
             {
-                //System.Windows.Forms.MessageBox.Show("Plik Istnieje");
+                //Plik istnieje;
+                wavSkopiowane = true;
             }
             else
             {
                 try
                 {
                     File.Copy(@"Resources\SoundLaserShot.wav", Path.GetTempPath() + "SoundLaserShot.wav");
+                    wavSkopiowane = true;
                 }
                 catch (Exception e)
                 {
-
                     System.Windows.Forms.MessageBox.Show("Błąd: " + e.Message);
+                    wavSkopiowane = false;
                 }
-                
+
             }
 
             if (File.Exists(Path.GetTempPath() + "SoundBoom.wav"))
             {
-                //System.Windows.Forms.MessageBox.Show("Plik Istnieje");
+                //Plik istnieje
+                wavSkopiowane = true;
             }
             else
             {
-                File.Copy(@"Resources\SoundBoom.wav", Path.GetTempPath() + "SoundBoom.wav");
+                try
+                {
+                    File.Copy(@"Resources\SoundBoom.wav", Path.GetTempPath() + "SoundBoom.wav");
+                    wavSkopiowane = true;
+                }
+                catch (Exception e)
+                {
+                    System.Windows.Forms.MessageBox.Show("Błąd: " + e.Message);
+                    wavSkopiowane = false;
+                }
             }
+        }
 
+        public Gra(Gwiazdy gwiazdy, StatekGracza statekGracza, Rectangle obszarGry, Random losuj)
+        {           
             this.gwiazdy = gwiazdy;
             this.statekGracza = statekGracza;
             this.granice = obszarGry;
@@ -79,7 +94,6 @@ namespace Invaders
 
         public void RysujGre(Graphics g)
         {
-            
             g.DrawRectangle(new Pen(Brushes.Black, 0), granice);
 
             gwiazdy.RysujGwiazdy(g);
@@ -138,8 +152,11 @@ namespace Invaders
 
         public void WystrzelPociskGracza(Point Lokalizacja)
         {
-            laserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
-
+            if (wavSkopiowane)
+            {
+                laserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
+            }
+            
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
             if (pociskiGracza.Count < 2)
             {
@@ -193,7 +210,10 @@ namespace Invaders
 
             foreach (Najezdzca najezdzca in zestrzeleniNajezdzcy)
             {
-                boom.URL = Path.GetTempPath() + "SoundBoom.wav";
+                if (wavSkopiowane)
+                {
+                    boom.URL = Path.GetTempPath() + "SoundBoom.wav";
+                }
                 najezdzca.Zestrzelony = true;
                 punkty += najezdzca.IloscPunktow;
                 //Najezdzcy.Remove(najezdzca);
@@ -215,7 +235,10 @@ namespace Invaders
             if (graczZestrzelony.Count() > 0)
             {
                 iloscZyc--;
-                boom.URL = Path.GetTempPath() + "SoundBoom.wav";
+                if (wavSkopiowane)
+                {
+                    boom.URL = Path.GetTempPath() + "SoundBoom.wav";
+                }
                 
                 statekGracza.Zywy = false;
 

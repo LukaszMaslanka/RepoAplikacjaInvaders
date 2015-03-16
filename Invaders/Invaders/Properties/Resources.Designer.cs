@@ -620,6 +620,15 @@ namespace Invaders.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream SoundGameOver {
+            get {
+                return ResourceManager.GetStream("SoundGameOver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream SoundLaserShot {
             get {
                 return ResourceManager.GetStream("SoundLaserShot", resourceCulture);

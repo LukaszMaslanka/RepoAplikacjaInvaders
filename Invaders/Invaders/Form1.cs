@@ -108,6 +108,8 @@ namespace Invaders
       
         private void grajBtn_Click(object sender, EventArgs e)
         {
+            Gra.kopiujWav();
+
             this.Hide();
 
             if (dwochGraczy)

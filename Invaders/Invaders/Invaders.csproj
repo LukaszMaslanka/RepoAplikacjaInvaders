@@ -51,6 +51,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -107,6 +109,11 @@
     <Compile Include="StatekGracza.cs" />
     <Compile Include="Strzal.cs" />
     <Compile Include="TypNajezdzcy.cs" />
+    <Compile Include="WynikiDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WynikiDBDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BattleField1.resx">
       <DependentUpon>BattleField1.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +134,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,6 +144,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="WynikiDBDataSet.xsc">
+      <DependentUpon>WynikiDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WynikiDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WynikiDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="WynikiDBDataSet.xss">
+      <DependentUpon>WynikiDBDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\background1.gif" />
@@ -197,6 +216,7 @@
     <None Include="Resources\gameover_8.gif" />
     <None Include="Resources\SoundBoom.wav" />
     <None Include="Resources\SoundLaserShot.wav" />
+    <None Include="Resources\SoundGameOver.wav" />
     <Content Include="WynikiDB.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
