@@ -54,22 +54,6 @@ namespace Invaders
             form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
             form1.odtDzwiek.Play();
             graczWygral = true;
-
-            string connectionString = "Data Source=|DataDirectory|\\WynikiDB.sdf";
-
-            /*using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "INSERT INTO WynikiGraczy(Nick,IloscPunktow) VALUES(@param1,@param2)";
-
-                    command.Parameters.AddWithValue("@param1", statekGracza.GraczName);
-                    command.Parameters.AddWithValue("@param2", gra.punkty);
-
-                    command.ExecuteNonQuery(); 
-                }
-            }*/
         }
 
         void gra_GameOVer(object sender, EventArgs e)
