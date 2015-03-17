@@ -152,16 +152,14 @@ namespace Invaders
 
         public void WystrzelPociskGracza(Point Lokalizacja)
         {
-            if (wavSkopiowane)
-            {
-                laserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
-            }
-            
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
             if (pociskiGracza.Count < 2)
             {
                 pociskiGracza.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, granice, Brushes.DeepSkyBlue));
-                laserShot.controls.play();
+                if (wavSkopiowane)
+                {
+                    laserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
+                }
             }
         }
 
@@ -215,7 +213,7 @@ namespace Invaders
                     boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }
                 najezdzca.Zestrzelony = true;
-                punkty += najezdzca.IloscPunktow;
+                //punkty += najezdzca.IloscPunktow;
             }
 
             foreach (Strzal shot in strzalytrafione)
@@ -370,7 +368,9 @@ namespace Invaders
             {
                 if (Najezdzcy[i].Zestrzelony == true && Najezdzcy[i].koniecAnimacji == true)
                 {
+                    punkty += Najezdzcy[i].IloscPunktow;
                     Najezdzcy.RemoveAt(i);
+                    
                 }
             }
 

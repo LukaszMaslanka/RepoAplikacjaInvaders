@@ -46,6 +46,7 @@
             this.statystyki = new System.Windows.Forms.Button();
             this.wyjscie = new System.Windows.Forms.Button();
             this.banerAnimationTimer = new System.Windows.Forms.Timer(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.invadersBanner1 = new Invaders.InvadersBanner();
             this.panelPlayer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -97,6 +98,7 @@
             // player1Name
             // 
             this.player1Name.Location = new System.Drawing.Point(0, 38);
+            this.player1Name.MaxLength = 20;
             this.player1Name.Name = "player1Name";
             this.player1Name.Size = new System.Drawing.Size(108, 20);
             this.player1Name.TabIndex = 3;
@@ -136,6 +138,7 @@
             // player2Name
             // 
             this.player2Name.Location = new System.Drawing.Point(60, 38);
+            this.player2Name.MaxLength = 20;
             this.player2Name.Name = "player2Name";
             this.player2Name.Size = new System.Drawing.Size(108, 20);
             this.player2Name.TabIndex = 3;
@@ -194,6 +197,7 @@
             this.statystyki.Size = new System.Drawing.Size(108, 30);
             this.statystyki.TabIndex = 8;
             this.statystyki.UseVisualStyleBackColor = true;
+            this.statystyki.Click += new System.EventHandler(this.statystyki_Click);
             // 
             // wyjscie
             // 
@@ -212,6 +216,17 @@
             this.banerAnimationTimer.Interval = 2000;
             this.banerAnimationTimer.Tick += new System.EventHandler(this.banerAnimationTimer_Tick);
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox1.Location = new System.Drawing.Point(199, 416);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox1.Size = new System.Drawing.Size(386, 158);
+            this.textBox1.TabIndex = 11;
+            this.textBox1.Visible = false;
+            // 
             // invadersBanner1
             // 
             this.invadersBanner1.BackColor = System.Drawing.Color.Transparent;
@@ -227,6 +242,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.wyjscie);
             this.Controls.Add(this.statystyki);
             this.Controls.Add(this.dwochGraczyBtn);
@@ -254,6 +270,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -276,6 +293,7 @@
         private System.Windows.Forms.Timer banerAnimationTimer;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

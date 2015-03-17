@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Invaders
 {
@@ -130,6 +131,19 @@ namespace Invaders
         private void banerAnimationTimer_Tick(object sender, EventArgs e)
         {
             invadersBanner1.banerAnimation(banerAnimationTimer);
+        }
+
+        private void statystyki_Click(object sender, EventArgs e)
+        {
+            string wyniki = "";
+            StreamReader odczytDanych = new StreamReader("wyniki.txt");
+            while (!odczytDanych.EndOfStream)
+            {
+                wyniki = odczytDanych.ReadToEnd();
+            }
+            odczytDanych.Close();
+            textBox1.Visible = true;
+            textBox1.Text = wyniki;
         }
     }
 }

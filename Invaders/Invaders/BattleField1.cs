@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Invaders
 {
@@ -53,6 +54,41 @@ namespace Invaders
             form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
             form1.odtDzwiek.Play();
             graczWygral = true;
+            
+            //Odczyt danych z pliku do zmiennej w celu wpisania ich przy zapisie nowego pliku
+            string wyniki = "";
+            if (File.Exists("wyniki.txt"))
+            {
+                StreamReader odczytDanych = new StreamReader("wyniki.txt");
+                while (!odczytDanych.EndOfStream)
+                {
+                    wyniki = odczytDanych.ReadToEnd();
+                }
+                odczytDanych.Close();
+            }
+            //Zapisa danych do pliku
+            StreamWriter zapisDanych = new StreamWriter("wyniki.txt");
+            int roznica = 20;
+            int dlugoscLancucha = 0;
+            if (statekGracza.NazwaStatku.Length < 20)
+            {
+                dlugoscLancucha = roznica - statekGracza.NazwaStatku.Length;
+            }
+            
+            zapisDanych.Write("Gracz: " + statekGracza.NazwaStatku);
+            for (int i = 0; i < dlugoscLancucha; i++)
+			{
+			    zapisDanych.Write(" ");
+			}
+            zapisDanych.Write(" | punkty: " + gra.punkty);
+            zapisDanych.WriteLine("\n");
+            for (int i = 0; i < 38 + gra.punkty.ToString().Length; i++)
+            {
+                zapisDanych.Write("-");
+            }
+            zapisDanych.WriteLine("\n");
+            zapisDanych.Write(wyniki);
+            zapisDanych.Close();
         }
 
         void gra_GameOVer(object sender, EventArgs e)
