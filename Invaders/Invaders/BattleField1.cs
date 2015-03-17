@@ -23,7 +23,6 @@ namespace Invaders
         private bool koniecGry = false;
         private bool graczWygral = false;
 
-        
         public BattleField1(Form1 form1)
         {
             this.form1 = form1;
@@ -54,6 +53,25 @@ namespace Invaders
             form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
             form1.odtDzwiek.Play();
             graczWygral = true;
+<<<<<<< HEAD
+=======
+
+            string connectionString = "";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO WynikiGraczy(Nick,IloscPunktow) VALUES(@param1,@param2)";
+
+                    command.Parameters.AddWithValue("@param1", statekGracza.NazwaStatku);
+                    command.Parameters.AddWithValue("@param2", gra.punkty);
+
+                    command.ExecuteNonQuery(); 
+                }
+            }
+>>>>>>> 0ff112726dfdc4831ce3bdbc7553add24281ce95
         }
 
         void gra_GameOVer(object sender, EventArgs e)
@@ -101,14 +119,14 @@ namespace Invaders
 
             if (koniecGry)
             {
-                g.DrawString(statekGracza.GraczName + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 680, 640);
+                g.DrawString(statekGracza.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 680, 640);
                 animationTimer.Stop();
                 gameOverBanner1.Visible = true;
             }
                 
             if (graczWygral)
             {
-                g.DrawString(statekGracza.GraczName + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 690, 640);
+                g.DrawString(statekGracza.NazwaStatku + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 690, 640);
                 animationTimer.Stop();
                 gameOverBanner1.Visible = true;
             }

@@ -113,7 +113,7 @@ namespace Invaders
                 pociskiGracza[i].RysujPocisk(g);
             }
 
-            g.DrawString("Pilot: " + statekGracza.GraczName + " Ilość żyć: " + iloscZyc + " punkty: " + punkty + 
+            g.DrawString("Pilot: " + statekGracza.NazwaStatku + " Ilość żyć: " + iloscZyc + " punkty: " + punkty + 
                 " Poziom trudności: " + (poziomTrudnosci - 3), new Font("Arial",10,FontStyle.Regular),Brushes.Green,0,640);
         }
 
@@ -216,7 +216,6 @@ namespace Invaders
                 }
                 najezdzca.Zestrzelony = true;
                 punkty += najezdzca.IloscPunktow;
-                //Najezdzcy.Remove(najezdzca);
             }
 
             foreach (Strzal shot in strzalytrafione)

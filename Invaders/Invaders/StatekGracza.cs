@@ -8,9 +8,9 @@ namespace Invaders
 {
     class StatekGracza
     {
-        public String GraczName;
+        public String NazwaStatku;
 
-        private Gracze TypGracza;
+        private Gracze typGracza;
 
         public Point Lokalizacja;
 
@@ -43,10 +43,10 @@ namespace Invaders
         Bitmap[] statekGracz2Bitmap;
         Bitmap[] eksplozja;
 
-        public StatekGracza(Point lokalizacja, Gracze TypGracza, Rectangle obszarGry,String GraczName)
+        public StatekGracza(Point lokalizacja, Gracze TypGracza, Rectangle obszarGry,String nazwaStatku)
         {
-            this.GraczName = GraczName;
-            this.TypGracza = TypGracza;
+            this.NazwaStatku = nazwaStatku;
+            this.typGracza = TypGracza;
             this.Lokalizacja = lokalizacja;
             this.obszarGry = obszarGry;
             InicjalizacjaObrazow();
@@ -119,7 +119,7 @@ namespace Invaders
         private Bitmap ObrazStatku()
         {
             klatka++;
-            if (TypGracza == Gracze.Player1)
+            if (typGracza == Gracze.Player1)
 	        {
                 switch (klatka)
                 {

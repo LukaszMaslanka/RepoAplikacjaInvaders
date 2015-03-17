@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Invaders
 {
@@ -40,6 +41,21 @@ namespace Invaders
                 else
                     form1.odtDzwiek.Stop();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string connectionString = "Data Source=|DataDirectory|\\WynikiDB.sdf";
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Błąd: " + error.Message);
+            }
+            
         }
     }
 }
