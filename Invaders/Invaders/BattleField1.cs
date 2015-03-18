@@ -23,6 +23,7 @@ namespace Invaders
         List<Keys> keysPressed = new List<Keys>();
         private bool koniecGry = false;
         private bool graczWygral = false;
+        string wyniki = "";
 
         public BattleField1(Form1 form1)
         {
@@ -47,16 +48,9 @@ namespace Invaders
             gra.GameOVer += new EventHandler(gra_GameOVer);
             gra.PlayerWins += new EventHandler(gra_PlayerWins);
         }
-
-        void gra_PlayerWins(object sender, EventArgs e)
+        void OdczytajDane()
         {
-            gameTimer.Stop();
-            form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
-            form1.odtDzwiek.Play();
-            graczWygral = true;
-            
             //Odczyt danych z pliku do zmiennej w celu wpisania ich przy zapisie nowego pliku
-            string wyniki = "";
             if (File.Exists("wyniki.txt"))
             {
                 StreamReader odczytDanych = new StreamReader("wyniki.txt");
@@ -66,7 +60,11 @@ namespace Invaders
                 }
                 odczytDanych.Close();
             }
-            //Zapisa danych do pliku
+        }
+
+        void ZapiszDane()
+        {
+            //Zapis danych do pliku
             StreamWriter zapisDanych = new StreamWriter("wyniki.txt");
             int roznica = 20;
             int dlugoscLancucha = 0;
@@ -74,12 +72,12 @@ namespace Invaders
             {
                 dlugoscLancucha = roznica - statekGracza.NazwaStatku.Length;
             }
-            
+
             zapisDanych.Write("Gracz: " + statekGracza.NazwaStatku);
             for (int i = 0; i < dlugoscLancucha; i++)
-			{
-			    zapisDanych.Write(" ");
-			}
+            {
+                zapisDanych.Write(" ");
+            }
             zapisDanych.Write(" | punkty: " + gra.punkty);
             zapisDanych.WriteLine("\n");
             for (int i = 0; i < 38 + gra.punkty.ToString().Length; i++)
@@ -90,6 +88,16 @@ namespace Invaders
             zapisDanych.Write(wyniki);
             zapisDanych.Close();
         }
+        void gra_PlayerWins(object sender, EventArgs e)
+        {
+            gameTimer.Stop();
+            form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
+            form1.odtDzwiek.Play();
+            graczWygral = true;
+
+            OdczytajDane();
+            ZapiszDane();
+        }
 
         void gra_GameOVer(object sender, EventArgs e)
         {
@@ -97,6 +105,9 @@ namespace Invaders
             form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
             form1.odtDzwiek.Play();
             koniecGry = true;
+
+            OdczytajDane();
+            ZapiszDane();
         }
  
         private void BattleField1_FormClosing(object sender, FormClosingEventArgs e)
@@ -120,7 +131,6 @@ namespace Invaders
                 else
                     form1.odtDzwiek.Stop();
             }
-            
         }
 
         private void animationTimer_Tick(object sender, EventArgs e)
@@ -136,14 +146,14 @@ namespace Invaders
 
             if (koniecGry)
             {
-                g.DrawString(statekGracza.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 680, 640);
+                g.DrawString(statekGracza.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 340, 640);
                 animationTimer.Stop();
                 gameOverBanner1.Visible = true;
             }
                 
             if (graczWygral)
             {
-                g.DrawString(statekGracza.NazwaStatku + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 690, 640);
+                g.DrawString(statekGracza.NazwaStatku + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 340, 640);
                 animationTimer.Stop();
                 gameOverBanner1.Visible = true;
             }
@@ -184,7 +194,6 @@ namespace Invaders
             }
             keysPressed.Add(e.KeyCode);
 
-            //Przy zakonczeniu gry nalezy zapisac wynik do bazy. trzeba bedzie utworzyc metoda zakonczgre!!
             if (e.KeyCode == Keys.Q)
             {
                 this.Close();

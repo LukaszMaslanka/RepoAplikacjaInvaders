@@ -23,17 +23,7 @@ namespace Invaders
 
         private void BattleField2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //animationTimer.Stop();
-           // gameTimer.Stop();
-            if (e.Cancel = MessageBox.Show("Czy przerwać grę?", "Koniec gry", MessageBoxButtons.YesNo) != DialogResult.Yes)
-            {
-                /*if (koniecGry == false && graczWygral == false)
-                {
-                    gameTimer.Start();
-                    animationTimer.Start();
-                }*/
-            }
-            else
+            if (e.Cancel = MessageBox.Show("Czy przerwać grę?", "Koniec gry", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 form1.Show();
                 if (form1.wycisz)
