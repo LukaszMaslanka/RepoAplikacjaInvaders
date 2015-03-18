@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace Invaders
 {
-    class Gwiazdy
+    public class Gwiazdy
     {
         private struct Gwiazda
         {

@@ -140,21 +140,15 @@ namespace Invaders
         /// <param name="e"></param>
         private void statystyki_Click(object sender, EventArgs e)
         {
-            string wyniki = "";
             try
             {
-                StreamReader odczytDanych = new StreamReader("wyniki.txt");
-                while (!odczytDanych.EndOfStream)
-                {
-                    wyniki = odczytDanych.ReadToEnd();
-                }
-                odczytDanych.Close();
+                ObslugaPlikow.OdczytajDane();
+                textBox1.Text = ObslugaPlikow.wyniki;
                 textBox1.Visible = true;
-                textBox1.Text = wyniki;
+                
             }
             catch (Exception error)
             {
-
                 MessageBox.Show("Błąd: Nie można odnaleźć pliku z wynikam." + "\n" +
                     "Czy rozgrałeś już pierwszą partie gry?", "Błąd" );
             }

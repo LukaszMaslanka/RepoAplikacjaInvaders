@@ -14,7 +14,7 @@ namespace Invaders
     public partial class BattleField1 : Form
     {
         Form1 form1;
-        Gra gra;
+        GraDla1 gra;
         Rectangle obszarRysowania;
         Random losuj;
         Gwiazdy gwiazdy;
@@ -44,9 +44,9 @@ namespace Invaders
             gwiazdy = new Gwiazdy(obszarRysowania, losuj);
             statekGracza = new StatekGracza(lokalizacjaStatku,Gracze.Player1,form1.GraczName1);
             
-            gra = new Gra(gwiazdy,statekGracza,obszarRysowania,losuj);
+            gra = new GraDla1(gwiazdy,statekGracza,obszarRysowania,losuj);
 
-            gra.GameOVer += new EventHandler(gra_GameOVer);
+            gra.GameOver += new EventHandler(gra_GameOVer);
             gra.PlayerWins += new EventHandler(gra_PlayerWins);
         }
         /// <summary>
@@ -213,12 +213,6 @@ namespace Invaders
         
         private void BattleField1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
-            {
-                gra.WystrzelPociskGracza(lokalizacjaStatku);
-                return;
-            }
-
             if (keysPressed.Contains(e.KeyCode))
             {
                 keysPressed.Remove(e.KeyCode);
@@ -233,6 +227,12 @@ namespace Invaders
 
         private void BattleField1_KeyUp(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Space)
+            {
+                gra.WystrzelPociskGracza(lokalizacjaStatku);
+                return;
+            }
+
             if (keysPressed.Contains(e.KeyCode))
             {
                 keysPressed.Remove(e.KeyCode);

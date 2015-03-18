@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace Invaders
 {
-    class Strzal
+    public class Strzal
     {
         private const int przesunInterval = 20;
         private const int szerokoscPocisku = 5;

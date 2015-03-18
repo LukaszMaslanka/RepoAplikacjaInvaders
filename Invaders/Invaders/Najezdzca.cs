@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace Invaders
 {
-    class Najezdzca
+    public class Najezdzca
     {
         private const int PionowyInterval = 40;
         private const int PoziomyInterval = 5;
