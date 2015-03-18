@@ -27,6 +27,13 @@ namespace Invaders
 
         private Brush kolorPocisku;
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="lokalizacja"></param>
+        /// <param name="kierunek"></param>
+        /// <param name="granice"></param>
+        /// <param name="kolorPocisku"></param>
         public Strzal(Point lokalizacja, Direction kierunek, Rectangle granice, Brush kolorPocisku)
         {
             this.Lokalizacja = lokalizacja;
@@ -40,6 +47,10 @@ namespace Invaders
             g.FillRectangle(kolorPocisku, new Rectangle(Lokalizacja.X + 25, Lokalizacja.Y, szerokoscPocisku, dlugoscPocisku));
         }
 
+        /// <summary>
+        /// Przesuwanie pocisku po erkanie. Jeżelo pocisk przesunie się poza obszar rysowania metoda zwraca false;
+        /// </summary>
+        /// <returns></returns>
         public bool PrzesunPocisk()
         {
             if (kierunek == Direction.Gora)

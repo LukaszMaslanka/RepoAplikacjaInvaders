@@ -50,6 +50,10 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Dodawanie i usuwanie punktów w losowych miejscach
+        /// </summary>
+        /// <param name="losuj"></param>
         public void Migotanie(Random losuj)
         {
             for (int i = gwiazdki.Count -1; i > 295; i--)

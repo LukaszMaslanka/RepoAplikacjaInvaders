@@ -133,17 +133,31 @@ namespace Invaders
             invadersBanner1.banerAnimation(banerAnimationTimer);
         }
 
+        /// <summary>
+        /// Odczyt danych z pliku wyniki.txt i przedstawienie danych w textBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void statystyki_Click(object sender, EventArgs e)
         {
             string wyniki = "";
-            StreamReader odczytDanych = new StreamReader("wyniki.txt");
-            while (!odczytDanych.EndOfStream)
+            try
             {
-                wyniki = odczytDanych.ReadToEnd();
+                StreamReader odczytDanych = new StreamReader("wyniki.txt");
+                while (!odczytDanych.EndOfStream)
+                {
+                    wyniki = odczytDanych.ReadToEnd();
+                }
+                odczytDanych.Close();
+                textBox1.Visible = true;
+                textBox1.Text = wyniki;
             }
-            odczytDanych.Close();
-            textBox1.Visible = true;
-            textBox1.Text = wyniki;
+            catch (Exception error)
+            {
+
+                MessageBox.Show("Błąd: Nie można odnaleźć pliku z wynikam." + "\n" +
+                    "Czy rozgrałeś już pierwszą partie gry?", "Błąd" );
+            }
         }
     }
 }

@@ -36,6 +36,7 @@ namespace Invaders
             }
         }
 
+        //publiczna właściwość zachowujące się jak pole tylko do odczytu
         public int IloscPunktow { get; private set; }
 
         public Najezdzca(TypNajezdzcy typNajezdzcy, Point lokalizacja, int iloscPunktow, Bitmap obraz)
@@ -47,6 +48,10 @@ namespace Invaders
             InicjalizacjaObrazow();
         }
 
+        /// <summary>
+        /// Przesuwanie najeźdzców po ekranie o określoną wartośc zdefiniowaną w stałych
+        /// </summary>
+        /// <param name="kierunekNajezdzcy"></param>
         public void Przesun(Direction kierunekNajezdzcy)
         {
             switch (kierunekNajezdzcy)
@@ -90,6 +95,9 @@ namespace Invaders
             eksplozja[5] = Rysuj.KonwertujNaBitmap(Properties.Resources.boom_6, 51, 51);
         }
 
+        /// <summary>
+        /// Animacja wybuchu statku
+        /// </summary>
         int klatka = 0;
         public Bitmap StatekDestroy()
         {

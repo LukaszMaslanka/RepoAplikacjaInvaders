@@ -35,12 +35,16 @@ namespace Invaders
         public event EventHandler GameOVer;
         public event EventHandler PlayerWins;
 
-        //dzwieki
+        /***Dodanie dźwięków z wykorzystaniem bibliotek WMPLib. Takie rozwiązanie gwarantuje
+        odtworzenie kilku dźwięków na raz***/
         WMPLib.WindowsMediaPlayer laserShot = new WMPLib.WindowsMediaPlayer();
         WMPLib.WindowsMediaPlayer boom = new WMPLib.WindowsMediaPlayer();
 
         public static bool wavSkopiowane = true;
 
+        /// <summary>
+        /// Kopiowanie plików *.wav do folderu Temp
+        /// </summary>
         public static void kopiujWav()
         {
             if (File.Exists(Path.GetTempPath() + "SoundLaserShot.wav"))
@@ -83,6 +87,13 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Konstruktor klasy Gra
+        /// </summary>
+        /// <param name="gwiazdy"></param>
+        /// <param name="statekGracza"></param>
+        /// <param name="obszarGry"></param>
+        /// <param name="losuj"></param>
         public Gra(Gwiazdy gwiazdy, StatekGracza statekGracza, Rectangle obszarGry, Random losuj)
         {           
             this.gwiazdy = gwiazdy;
@@ -92,6 +103,18 @@ namespace Invaders
             InicjalizacjaNajezdzcow();
         }
 
+        /// <summary>
+        /// Rysowanie gry na formularzu. 
+        /// Najpierw rysowany jest kwadrat który wzynacza granicę gry.
+        /// Następnie rysowane są:
+        /// Gwiazdy
+        /// Statki Najeźdzców
+        /// Pociski Najeźedzców
+        /// Statek Gracza
+        /// Pociski Gracza
+        /// Na końcu rysowane są napisy znajdujące się w stopcje formularza
+        /// </summary>
+        /// <param name="g"></param>
         public void RysujGre(Graphics g)
         {
             g.DrawRectangle(new Pen(Brushes.Black, 0), granice);
@@ -117,6 +140,9 @@ namespace Invaders
                 " Poziom trudności: " + (poziomTrudnosci - 3), new Font("Arial",10,FontStyle.Regular),Brushes.Green,0,640);
         }
 
+        /// <summary>
+        /// Inicjalizacja najeźdzców. poziomTrudnośc odpowiada za ilość najeźdzców w fali.
+        /// </summary>
         private void InicjalizacjaNajezdzcow()
         {
             int j = 1;
@@ -146,10 +172,16 @@ namespace Invaders
         {
             if (statekGracza.Zywy == true)
             {
-                statekGracza.PrzesunStatek(kierunek);
+                statekGracza.PrzesunStatek(kierunek,granice);
             }
         }
 
+        /// <summary>
+        /// Dodanie pocisku gracza do listy pociskiGracza. Lokalizacja.Y jest zmieniona ze względu na lokacje pocisku
+        /// Po wywłoaniu metoda zostaje odtworzony dźwięk laserShot.
+        /// Na ekranie mogą przebywać maks dwa pociki gracza
+        /// </summary>
+        /// <param name="Lokalizacja"></param>
         public void WystrzelPociskGracza(Point Lokalizacja)
         {
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
@@ -163,6 +195,11 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Metoda grupuje strzelców po lokalizacji X. Następnie strzelec jest losowany i wybierany
+        /// Do strzelca jest przypiswany pocik z zmienioną lokalizacją Y. Generowany jest nowy obiekt strzał
+        /// i jeżeli liczba pocisków najeźdzców jest mniejsza od dozwolonych strzałów pociski są dodawane do listy
+        /// </summary>
         private void WystzelPociskNajezdzcy()
         {
             if (Najezdzcy.Count == 0) return;
@@ -184,6 +221,13 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Metoda sprawdza czy najeźdzca został trafiony pociskiem gracza.
+        /// Tworzone są dwie listy następnie w zapytaniu sprawdzany jest warunek czy lokalizacja pocisku gracza
+        /// pokrywa się z lokalizacją najeźdzcy. Jeżeli tak dane są dodwana do list.
+        /// Dla każdego najeźdzyc w liście zestrzeleniNajezdzcy generowany jest dźwięk wybuchu a falga trafiony
+        /// zsotaje zmieniona na true. Następnie pociki są usuwane z listy pociskiGracza
+        /// </summary>
         private void NajezdzcaTrafiony()
         {
             List<Strzal> strzalytrafione = new List<Strzal>();
@@ -213,7 +257,6 @@ namespace Invaders
                     boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }
                 najezdzca.Zestrzelony = true;
-                //punkty += najezdzca.IloscPunktow;
             }
 
             foreach (Strzal shot in strzalytrafione)
@@ -222,6 +265,9 @@ namespace Invaders
             }
         }
         
+        /// <summary>
+        /// Analogicznie do NajeźdzcaTrafiony. Gdy iloscZyc Gracza jest == 0 zostaje wygenerowany Event GameOver
+        /// </summary>
         private void GraczTrafiony()
         {   
             bool usunPocisk = false;
@@ -260,12 +306,16 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Generowanie kolejne Falii najeźdzców. w zależności od poziomu trudności zmieniania jest zmienna
+        /// iloscStrzalowNajezdzcy
+        /// </summary>
         private void nastepnaFala()
         {
             if (Najezdzcy.Count == 0)
             {
                 // Poziom trudnosci -1 dla poprawnego czyszczenia najezdzcow po zakonczonej fali 9
-                if (poziomTrudnosci > 3)
+                if (poziomTrudnosci > 9)
                 {
                     pociskiGracza.Clear();
                     pociskiNajezdzcow.Clear();
@@ -277,7 +327,7 @@ namespace Invaders
 
                     kierunekNajezdzcow = Direction.Prawo;
 
-                    if (iloscStrzalowNajezdzcy <= 2 && poziomTrudnosci > 8)
+                    if (iloscStrzalowNajezdzcy <= 2 && poziomTrudnosci > 9)
                         iloscStrzalowNajezdzcy++;
 
                     Najezdzcy.Clear();
@@ -286,6 +336,10 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Linq sprawdzę czy falaNajeźdzców dotarła do którejś z krawędzie. 
+        /// Jeżeli tak to wykonywana jest procedura przesunięcia najeźdzców
+        /// </summary>
         private void PrzesunNajezdzcow()
         {
             var najezdzcyPrawo = from _najezdzcy in Najezdzcy
@@ -335,14 +389,19 @@ namespace Invaders
                 GameOVer(this, e);
             }
 
+            //Przesunięcie całej falii najeźców
             for (int i = 0; i < Najezdzcy.Count; i++)
             {
                 Najezdzcy[i].Przesun(kierunekNajezdzcow);
             }
         }
-
+        /// <summary>
+        /// Metoda steruje całą rozgrywką
+        /// </summary>
         public void Go()
         {
+            //Przesuwanie pocisków najeźdzcy. Jeżeli metoda zwróci false to znaczy że pocisk znalazł się poza 
+            //obszarem rysowania i pocisk jest usuwany z listy
             for (int i = 0; i < pociskiNajezdzcow.Count; i++)
             {
                 if (!pociskiNajezdzcow[i].PrzesunPocisk())
@@ -351,6 +410,8 @@ namespace Invaders
                 }
             }
 
+            //Przesuwanie pocisków gracza. eżeli metoda zwróci false to znaczy że pocisk znalazł się poza 
+            //obszarem rysowania i pocisk jest usuwany z listy
             for (int i = 0; i < pociskiGracza.Count; i++)
             {
                 if (!pociskiGracza[i].PrzesunPocisk())
@@ -364,13 +425,14 @@ namespace Invaders
             GraczTrafiony();
             NajezdzcaTrafiony();
 
+            //Usuwanie najeźdzców odbywa się w metodzie Go() ze względu na anicmacje wybuchu.
+            //Suma punktów odbywa się tutuaj aby nie dodawać punktów graczowi za trafienie w wybuch.
             for (int i = 0; i < Najezdzcy.Count; i++)
             {
                 if (Najezdzcy[i].Zestrzelony == true && Najezdzcy[i].koniecAnimacji == true)
                 {
                     punkty += Najezdzcy[i].IloscPunktow;
-                    Najezdzcy.RemoveAt(i);
-                    
+                    Najezdzcy.RemoveAt(i); 
                 }
             }
 

@@ -13,16 +13,24 @@ namespace Invaders
             InicjalizacjaObrazow();
         }
 
-        public static Bitmap KonwertujNaBitmap(Image Obraz, int Szerokosc, int Wysokosc)
+        /// <summary>
+        /// Statyczna metda kowertująca grafikę na bitmapy
+        /// </summary>
+        /// <param name="Obraz"></param>
+        /// <param name="szerokoscObrazu"></param>
+        /// <param name="wysokoscObrazu"></param>
+        /// <returns></returns>
+        public static Bitmap KonwertujNaBitmap(Image Obraz, int szerokoscObrazu, int wysokoscObrazu)
         {
-            Bitmap bitmap = new Bitmap(Szerokosc, Wysokosc);
+            Bitmap bitmap = new Bitmap(szerokoscObrazu, wysokoscObrazu);
             using (Graphics grafika = Graphics.FromImage(bitmap))
             {
-                grafika.DrawImage(Obraz, 0, 0, Szerokosc, Wysokosc);
+                grafika.DrawImage(Obraz, 0, 0, szerokoscObrazu, wysokoscObrazu);
             }
             return bitmap;
         }
 
+        //Animacja tła formularza1
         Bitmap[] tloBitmap;
         private void InicjalizacjaObrazow()
         {

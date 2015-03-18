@@ -16,7 +16,7 @@ namespace Invaders
 
         private Bitmap obraz;
 
-        private Rectangle obszarGry;
+        //private Rectangle obszarGry;
 
         public Rectangle wielkoscStatku
         {
@@ -43,12 +43,18 @@ namespace Invaders
         Bitmap[] statekGracz2Bitmap;
         Bitmap[] eksplozja;
 
-        public StatekGracza(Point lokalizacja, Gracze TypGracza, Rectangle obszarGry,String nazwaStatku)
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="lokalizacja"></param>
+        /// <param name="TypGracza"></param>
+        /// <param name="obszarGry"></param>
+        /// <param name="nazwaStatku"></param>
+        public StatekGracza(Point lokalizacja, Gracze TypGracza,String nazwaStatku)
         {
             this.NazwaStatku = nazwaStatku;
             this.typGracza = TypGracza;
             this.Lokalizacja = lokalizacja;
-            this.obszarGry = obszarGry;
             InicjalizacjaObrazow();
         }
 
@@ -89,7 +95,12 @@ namespace Invaders
             }
         }
 
-        public void PrzesunStatek(Direction kierunek)
+        /// <summary>
+        /// Przesuwanie statku gracza ograniczone obszaremGry.
+        /// </summary>
+        /// <param name="kierunek"></param>
+        /// <param name="obszarGry"></param>
+        public void PrzesunStatek(Direction kierunek, Rectangle obszarGry)
         {
             if (kierunek == Direction.Prawo)
             {
@@ -115,6 +126,9 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Animacja statków Gracza
+        /// </summary>
         int klatka = 0;
         private Bitmap ObrazStatku()
         {
@@ -143,6 +157,9 @@ namespace Invaders
             }  
         }
 
+        /// <summary>
+        /// Animacja wybuchu statku gracza
+        /// </summary>
         int klatka2 = 0;
         private Bitmap statekDestroy()
         {
