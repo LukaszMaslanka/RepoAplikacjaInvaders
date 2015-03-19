@@ -12,13 +12,13 @@ namespace Invaders
     {
         public int PoziomTrudnosci = 1;
         int iloscStrzalowNajezdzcy = 1;
-        public int iloscNajezdzcowWLinii = 4;
+        public int IloscNajezdzcowWLinii = 4;
 
-        public String wyniki;
+        public String Wyniki;
         
         Direction kierunekNajezdzcow = Direction.Prawo;
         
-        public Rectangle granice;
+        public Rectangle Granice;
 
         Random losuj;
 
@@ -38,10 +38,11 @@ namespace Invaders
         public Gra(Gwiazdy gwiazdy, Rectangle granice, Random losuj)
         {
             this.Gwiazdy = gwiazdy;
-            this.granice = granice;
+            this.Granice = granice;
             this.losuj = losuj;
         }
 
+        //Wirtualna metoda do przesłonienia w klasach potomnych
         virtual public void RysujGre(Graphics g)
         {
 
@@ -52,7 +53,7 @@ namespace Invaders
         /// <summary>
         /// Kopiowanie plików *.wav do folderu Temp
         /// </summary>
-        public static void kopiujWav()
+        public static void KopiujWav()
         {
             if (File.Exists(Path.GetTempPath() + "SoundLaserShot.wav"))
             {
@@ -100,12 +101,12 @@ namespace Invaders
         }
 
         /// <summary>
-        /// Inicjalizacja najeźdzców. poziomTrudnośc odpowiada za ilość najeźdzców w fali.
+        /// Inicjalizacja najeźdzców.
         /// </summary>
         public void InicjalizacjaNajezdzcow()
         {
             int j = 1;
-            for (int i = 0; i < iloscNajezdzcowWLinii; i++)
+            for (int i = 0; i < IloscNajezdzcowWLinii; i++)
             {
                 Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Niszczyciel, new Point(j, 0), 30,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.Niszczyciel, 51, 51)));
@@ -122,22 +123,25 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Przesunięcie najeźdzców do granicy pola walki. Nastepnie następuje procedura zmiany kierunku.
+        /// </summary>
         public void PrzesunNajezdzcow()
         {
             var najezdzcyPrawo = from _najezdzcy in Najezdzcy
-                                 where _najezdzcy.wielkoscNajezdzcy.Right >= granice.Right
+                                 where _najezdzcy.WielkoscNajezdzcy.Right >= Granice.Right
                                  group _najezdzcy by _najezdzcy.TypNajezdzcy
                                      into _najezdzcyGroup
                                      select _najezdzcyGroup;
 
             var najezdzcyLewo = from _najezdzcy in Najezdzcy
-                                where _najezdzcy.wielkoscNajezdzcy.Left <= granice.Left
+                                where _najezdzcy.WielkoscNajezdzcy.Left <= Granice.Left
                                 group _najezdzcy by _najezdzcy.TypNajezdzcy
                                     into _najezdzcyGroup
                                     select _najezdzcyGroup;
 
             var najezdzcyDol = from _najezdzcy in Najezdzcy
-                               where _najezdzcy.wielkoscNajezdzcy.Bottom >= granice.Bottom - 51
+                               where _najezdzcy.WielkoscNajezdzcy.Bottom >= Granice.Bottom - 51
                                group _najezdzcy by _najezdzcy.TypNajezdzcy
                                    into _najezdzcyGroup
                                    select _najezdzcyGroup;
@@ -177,6 +181,9 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Pogrupowanie najeźdzców według lokalizacji X. Wylosowanie strzelca i dodanie pocisku o lokalizacji strzelca.
+        /// </summary>
         public void WystzelPociskNajezdzcy()
         {
             if (Najezdzcy.Count == 0) return;
@@ -190,7 +197,7 @@ namespace Invaders
             var dolnyStrzelec = losujStrzelca.Last();
 
             Point lokalizacjaPocisku = new Point(dolnyStrzelec.Lokalizacja.X, dolnyStrzelec.Lokalizacja.Y + 26);
-            Strzal pociskNajezdzcy = new Strzal(lokalizacjaPocisku, Direction.Dol, granice, Brushes.Red);
+            Strzal pociskNajezdzcy = new Strzal(lokalizacjaPocisku, Direction.Dol, Granice, Brushes.Red);
 
             if (pociskiNajezdzcow.Count < iloscStrzalowNajezdzcy)
             {
@@ -200,7 +207,7 @@ namespace Invaders
 
         /// <summary>
         /// Generowanie kolejne Falii najeźdzców. w zależności od poziomu trudności zmieniania jest zmienna
-        /// iloscStrzalowNajezdzcy
+        /// Poziom trudnosci.
         /// </summary>
         public void nastepnaFala(int iloscFal)
         {
@@ -215,7 +222,7 @@ namespace Invaders
                 }
                 else
                 {
-                    iloscNajezdzcowWLinii++;
+                    IloscNajezdzcowWLinii++;
                     PoziomTrudnosci++;
 
                     kierunekNajezdzcow = Direction.Prawo;

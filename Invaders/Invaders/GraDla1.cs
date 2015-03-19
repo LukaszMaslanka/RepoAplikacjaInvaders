@@ -17,7 +17,7 @@ namespace Invaders
         EventArgs e;
         public event EventHandler GameOverGracz1;
 
-        public int punkty = 0;
+        public int Punkty = 0;
         private int iloscZyc = 3;
 
         
@@ -33,7 +33,7 @@ namespace Invaders
         {           
             this.statekGracza = statekGracza;
 
-            iloscNajezdzcowWLinii = 4;
+            IloscNajezdzcowWLinii = 4;
             InicjalizacjaNajezdzcow();
         }
 
@@ -51,7 +51,7 @@ namespace Invaders
         /// <param name="g"></param>
         override public void RysujGre(Graphics g)
         {
-            g.DrawRectangle(new Pen(Brushes.Black, 0), granice);
+            g.DrawRectangle(new Pen(Brushes.Black, 0), Granice);
             Gwiazdy.RysujGwiazdy(g);
          
             statekGracza.RysujStatek(g);
@@ -69,21 +69,24 @@ namespace Invaders
                 pociskiNajezdzcow[i].RysujPocisk(g);
             }
 
-            g.DrawString("Pilot: " + statekGracza.NazwaStatku + " Ilość żyć: " + iloscZyc + " punkty: " + punkty + 
+            g.DrawString("Pilot: " + statekGracza.NazwaStatku + " Ilość żyć: " + iloscZyc + " punkty: " + Punkty + 
                 " Poziom trudności: " + (PoziomTrudnosci), new Font("Arial",10,FontStyle.Regular),Brushes.Green,0,640);
         }
-
+        /// <summary>
+        /// Przesuwanie gracza do granic pola walki.
+        /// </summary>
+        /// <param name="kierunek"></param>
         public void PrzesunGracza(Direction kierunek)
         {
             if (statekGracza.Zywy == true)
             {
-                statekGracza.PrzesunStatek(kierunek,granice);
+                statekGracza.PrzesunStatek(kierunek,Granice);
             }
         }
 
         /// <summary>
         /// Dodanie pocisku gracza do listy pociskiGracza. Lokalizacja.Y jest zmieniona ze względu na lokacje pocisku
-        /// Po wywłoaniu metoda zostaje odtworzony dźwięk laserShot.
+        /// Po wywłoaniu metody zostaje odtworzony dźwięk laserShot.
         /// Na ekranie mogą przebywać maks dwa pociki gracza
         /// </summary>
         /// <param name="Lokalizacja"></param>
@@ -92,7 +95,7 @@ namespace Invaders
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
             if (pociskiGracza.Count < 2)
             {
-                pociskiGracza.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, granice, Brushes.DeepSkyBlue));
+                pociskiGracza.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, Granice, Brushes.DeepSkyBlue));
                 if (wavSkopiowane)
                 {
                     LaserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
@@ -115,7 +118,7 @@ namespace Invaders
             foreach (Strzal strzal in pociskiGracza)
             {
                 var zestrzeleni = from _najezdzca in Najezdzcy
-                    where _najezdzca.wielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
+                    where _najezdzca.WielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
                         && strzal.Kierunek == Direction.Gora
                     select new {zestrzeleniNajezdzcy = _najezdzca, StrzalTrafiony = strzal};
                 
@@ -151,7 +154,7 @@ namespace Invaders
         {   
             bool usunPocisk = false;
             var graczZestrzelony = from celnyPocisk in pociskiNajezdzcow
-                                   where celnyPocisk.Kierunek == Direction.Dol && statekGracza.wielkoscStatku.Contains(celnyPocisk.Lokalizacja)
+                                   where celnyPocisk.Kierunek == Direction.Dol && statekGracza.WielkoscStatku.Contains(celnyPocisk.Lokalizacja)
                                    select celnyPocisk;
             
             if (graczZestrzelony.Count() > 0)
@@ -216,9 +219,9 @@ namespace Invaders
             //Suma punktów odbywa się tutuaj aby nie dodawać punktów graczowi za trafienie w wybuch.
             for (int i = 0; i < Najezdzcy.Count; i++)
             {
-                if (Najezdzcy[i].Zestrzelony == true && Najezdzcy[i].koniecAnimacji == true)
+                if (Najezdzcy[i].Zestrzelony == true && Najezdzcy[i].KoniecAnimacji == true)
                 {
-                    punkty += Najezdzcy[i].IloscPunktow;
+                    Punkty += Najezdzcy[i].IloscPunktow;
                     Najezdzcy.RemoveAt(i); 
                 }
             }

@@ -28,7 +28,7 @@ namespace Invaders
         }
 
         /// <summary>
-        /// Zapis do pliku wyniki.txt. Plik zapisuje się w lokalizacja programu.
+        /// Zapis do pliku wyniki.txt.
         /// </summary>
         public static void ZapiszDane(StatekGracza statekGracza, int punkty)
         {

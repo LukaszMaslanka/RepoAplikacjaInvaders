@@ -19,7 +19,7 @@ namespace Invaders
         }
 
         public System.Media.SoundPlayer odtDzwiek;
-        public bool wycisz = true;
+        public bool wycisz = false;
         bool statyWidocznosc = false;
         private bool dwochGraczy = false;
         public string GraczName1;
@@ -42,7 +42,7 @@ namespace Invaders
         }
 
         /// <summary>
-        /// Powiazanie animacji z formularzem. Btak zaklocen podczas przesuwania formy.
+        /// Powiazanie animacji z formularzem. Brak zaklocen podczas przesuwania formy.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -60,7 +60,7 @@ namespace Invaders
         private void Form1_Load(object sender, EventArgs e)
         {
             odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.GameTheme);
-             wyciszDzwiek();
+            wyciszDzwiek();
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Invaders
       
         private void grajBtn_Click(object sender, EventArgs e)
         {
-            Gra.kopiujWav();
+            Gra.KopiujWav();
 
             this.Hide();
 

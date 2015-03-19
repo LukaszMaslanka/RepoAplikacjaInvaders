@@ -17,7 +17,7 @@ namespace Invaders
 
         public TypNajezdzcy TypNajezdzcy { get; private set; }
 
-        public Rectangle wielkoscNajezdzcy
+        public Rectangle WielkoscNajezdzcy
         {
             get
             {
@@ -25,7 +25,7 @@ namespace Invaders
             }
         }
 
-        public bool koniecAnimacji = false;
+        public bool KoniecAnimacji = false;
         private bool zestrzelony = false;
         public bool Zestrzelony 
         {
@@ -110,7 +110,7 @@ namespace Invaders
                 case 4: obraz = eksplozja[3]; return obraz;
                 case 5: obraz = eksplozja[4]; return obraz;
                 case 6: obraz = eksplozja[5]; return obraz;
-                default: klatka = 0; obraz = eksplozja[0]; koniecAnimacji = true; return obraz;
+                default: klatka = 0; obraz = eksplozja[0]; KoniecAnimacji = true; return obraz;
 	        }
         }
     }

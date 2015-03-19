@@ -18,8 +18,8 @@ namespace Invaders
         public event EventHandler GameOverGracz1;
         public event EventHandler GameOverGracz2;
 
-        public int punktyGracz1 = 0;
-        public int punktyGracz2 = 0;
+        public int PunktyGracz1 = 0;
+        public int PunktyGracz2 = 0;
         int iloscZycGracz1 = 3;
         int iloscZycGracz2 = 3;
 
@@ -30,13 +30,13 @@ namespace Invaders
             this.statekGracza1 = statekGracza1;
             this.statekGracza2 = statekGracza2;
 
-            iloscNajezdzcowWLinii = 10;
+            IloscNajezdzcowWLinii = 10;
             InicjalizacjaNajezdzcow();
         }
 
         override public void RysujGre(Graphics g)
         {
-            g.DrawRectangle(new Pen(Brushes.Yellow, 1), granice);
+            g.DrawRectangle(new Pen(Brushes.Yellow, 1), Granice);
             Gwiazdy.RysujGwiazdy(g);
 
             statekGracza1.RysujStatek(g);
@@ -61,10 +61,10 @@ namespace Invaders
                 pociskiNajezdzcow[i].RysujPocisk(g);
             }
 
-            g.DrawString("Pilot: " + statekGracza1.NazwaStatku + " Ilość żyć: " + iloscZycGracz1 + " punkty: " + punktyGracz1 +
+            g.DrawString("Pilot: " + statekGracza1.NazwaStatku + " Ilość żyć: " + iloscZycGracz1 + " punkty: " + PunktyGracz1 +
                 " Poziom trudności: " + (PoziomTrudnosci), new Font("Arial", 10, FontStyle.Regular), Brushes.DeepSkyBlue,595 , 630);
 
-            g.DrawString("Pilot: " + statekGracza2.NazwaStatku + " Ilość żyć: " + iloscZycGracz2 + " punkty: " + punktyGracz2 +
+            g.DrawString("Pilot: " + statekGracza2.NazwaStatku + " Ilość żyć: " + iloscZycGracz2 + " punkty: " + PunktyGracz2 +
                 " Poziom trudności: " + (PoziomTrudnosci), new Font("Arial", 10, FontStyle.Regular), Brushes.Violet, 0, 630);
         }
 
@@ -72,7 +72,7 @@ namespace Invaders
         {
             if (statekGracza1.Zywy == true)
             {
-                statekGracza1.PrzesunStatek(kierunek, granice);
+                statekGracza1.PrzesunStatek(kierunek, Granice);
             }
         }
         
@@ -81,7 +81,7 @@ namespace Invaders
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
             if (pociskiGracza1.Count < 2)
             {
-                pociskiGracza1.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, granice, Brushes.DeepSkyBlue));
+                pociskiGracza1.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, Granice, Brushes.DeepSkyBlue));
                 if (wavSkopiowane)
                 {
                     LaserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
@@ -93,7 +93,7 @@ namespace Invaders
         {
             if (statekGracza2.Zywy == true)
             {
-                statekGracza2.PrzesunStatek(kierunek,granice);
+                statekGracza2.PrzesunStatek(kierunek,Granice);
             }
         }
         public void WystrzelPociskGracza2(Point Lokalizacja)
@@ -101,7 +101,7 @@ namespace Invaders
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
             if (pociskiGracza2.Count < 2)
             {
-                pociskiGracza2.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, granice, Brushes.Violet));
+                pociskiGracza2.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, Granice, Brushes.Violet));
                 if (wavSkopiowane)
                 {
                     LaserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
@@ -109,13 +109,6 @@ namespace Invaders
             }
         }
 
-        /// <summary>
-        /// Metoda sprawdza czy najeźdzca został trafiony pociskiem któregoś z graczy.
-        /// Tworzone są trzy listy następnie w zapytaniu sprawdzany jest warunek czy lokalizacja pocisku gracza
-        /// pokrywa się z lokalizacją najeźdzcy. Jeżeli tak dane są dodwana do list.
-        /// Dla każdego najeźdzyc w liście zestrzeleniNajezdzcy generowany jest dźwięk wybuchu a flaga trafiony
-        /// zsotaje zmieniona na true. Następnie pociki są usuwane z listy pociskiGracza
-        /// </summary>
         private void NajezdzcaTrafiony()
         {
             List<Strzal> strzalytrafione = new List<Strzal>();
@@ -125,7 +118,7 @@ namespace Invaders
             foreach (Strzal strzal in pociskiGracza1)
             {
                 var zestrzeleni = from _najezdzca in Najezdzcy
-                                  where _najezdzca.wielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
+                                  where _najezdzca.WielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
                                       && strzal.Kierunek == Direction.Gora
                                   select new { zestrzeleniNajezdzcyGracz1 = _najezdzca, StrzalTrafiony = strzal };
 
@@ -146,13 +139,13 @@ namespace Invaders
                     Boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }
                 najezdzca.Zestrzelony = true;
-                punktyGracz1 += najezdzca.IloscPunktow;
+                PunktyGracz1 += najezdzca.IloscPunktow;
             }
 
             foreach (Strzal strzal in pociskiGracza2)
             {
                 var zestrzeleni = from _najezdzca in Najezdzcy
-                                  where _najezdzca.wielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
+                                  where _najezdzca.WielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
                                       && strzal.Kierunek == Direction.Gora
                                   select new { zestrzeleniNajezdzcy = _najezdzca, StrzalTrafiony = strzal };
 
@@ -173,7 +166,7 @@ namespace Invaders
                     Boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }
                 najezdzca.Zestrzelony = true;
-                punktyGracz2 += najezdzca.IloscPunktow;
+                PunktyGracz2 += najezdzca.IloscPunktow;
             }
 
             foreach (Strzal shot in strzalytrafione)
@@ -187,11 +180,11 @@ namespace Invaders
         {
             bool usunPocisk = false;
             var gracz1Zestrzelony = from celnyPocisk in pociskiNajezdzcow
-                                    where celnyPocisk.Kierunek == Direction.Dol && statekGracza1.wielkoscStatku.Contains(celnyPocisk.Lokalizacja) == true
+                                    where celnyPocisk.Kierunek == Direction.Dol && statekGracza1.WielkoscStatku.Contains(celnyPocisk.Lokalizacja) == true
                                     select celnyPocisk;
 
             var gracz2Zestrzelony = from celnyPocisk in pociskiNajezdzcow
-                                    where celnyPocisk.Kierunek == Direction.Dol && statekGracza2.wielkoscStatku.Contains(celnyPocisk.Lokalizacja) == true
+                                    where celnyPocisk.Kierunek == Direction.Dol && statekGracza2.WielkoscStatku.Contains(celnyPocisk.Lokalizacja) == true
                                     select celnyPocisk;
 
             if (gracz1Zestrzelony.Count() > 0)
@@ -249,7 +242,7 @@ namespace Invaders
         
         public void Go()
         {
-            //Przesuwanie pocisków gracza. eżeli metoda zwróci false to znaczy że pocisk znalazł się poza 
+            //Przesuwanie pocisków gracza. jeżeli metoda zwróci false to znaczy że pocisk znalazł się poza 
             //obszarem rysowania i pocisk jest usuwany z listy
             for (int i = 0; i < pociskiGracza1.Count; i++)
             {
@@ -259,7 +252,7 @@ namespace Invaders
                 }
             }
             
-            //Przesuwanie pocisków gracza. eżeli metoda zwróci false to znaczy że pocisk znalazł się poza 
+            //Przesuwanie pocisków gracza. jeżeli metoda zwróci false to znaczy że pocisk znalazł się poza 
             //obszarem rysowania i pocisk jest usuwany z listy
             for (int i = 0; i < pociskiGracza2.Count; i++)
             {
@@ -287,7 +280,7 @@ namespace Invaders
             //Usuwanie najeźdzców odbywa się w metodzie Go() ze względu na anicmacje wybuchu.
             for (int i = 0; i < Najezdzcy.Count; i++)
             {
-                if (Najezdzcy[i].Zestrzelony == true && Najezdzcy[i].koniecAnimacji == true)
+                if (Najezdzcy[i].Zestrzelony == true && Najezdzcy[i].KoniecAnimacji == true)
                 {
                     Najezdzcy.RemoveAt(i);
                 }

@@ -58,11 +58,11 @@ namespace Invaders
         {
             if (gra.GraczWygral)
             {
-                if (gra.punktyGracz1 > gra.punktyGracz2)
+                if (gra.PunktyGracz1 > gra.PunktyGracz2)
                 {
                     gra_GameOverGracz2(this,e);
                 }
-                else if (gra.punktyGracz1 < gra.punktyGracz2)
+                else if (gra.PunktyGracz1 < gra.PunktyGracz2)
                 {
                     gra_GameOverGracz1(this, e);
                 }
@@ -81,7 +81,7 @@ namespace Invaders
             form1.odtDzwiek.Play();
             //Gdy gracz przegra dane zostają zapisane do pliku
             ObslugaPlikow.OdczytajDane();
-            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.punktyGracz1, gra.punktyGracz2);
+            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
         }
         /// <summary>
         /// Procedura obsługi zdarzenia GameOver
@@ -100,7 +100,7 @@ namespace Invaders
             form1.odtDzwiek.Play();
             //Gdy gracz przegra dane zostają zapisane do pliku
             ObslugaPlikow.OdczytajDane();
-            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.punktyGracz1, gra.punktyGracz2);
+            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
         }
 
         private void BattleField2_FormClosing(object sender, FormClosingEventArgs e)

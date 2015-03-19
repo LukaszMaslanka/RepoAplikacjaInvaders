@@ -61,7 +61,7 @@ namespace Invaders
             koniecGry = true;
             //Gdy gracz przegra dane zostają zapisane do pliku
             ObslugaPlikow.OdczytajDane();
-            ObslugaPlikow.ZapiszDane(statekGracza, gra.punkty);
+            ObslugaPlikow.ZapiszDane(statekGracza, gra.Punkty);
 
         }
 

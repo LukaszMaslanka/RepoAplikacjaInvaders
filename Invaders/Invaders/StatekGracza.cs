@@ -16,9 +16,7 @@ namespace Invaders
 
         private Bitmap obraz;
 
-        //private Rectangle obszarGry;
-
-        public Rectangle wielkoscStatku
+        public Rectangle WielkoscStatku
         {
             get
             {
@@ -96,7 +94,7 @@ namespace Invaders
         }
 
         /// <summary>
-        /// Przesuwanie statku gracza ograniczone obszaremGry.
+        /// Przesuwanie statku gracza ograniczone obszarem gry.
         /// </summary>
         /// <param name="kierunek"></param>
         /// <param name="obszarGry"></param>
