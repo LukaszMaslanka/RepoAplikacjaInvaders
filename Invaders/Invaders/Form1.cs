@@ -20,6 +20,7 @@ namespace Invaders
 
         public System.Media.SoundPlayer odtDzwiek;
         public bool wycisz = true;
+        bool statyWidocznosc = false;
         private bool dwochGraczy = false;
         public string GraczName1;
         public string GraczName2;
@@ -140,18 +141,17 @@ namespace Invaders
         /// <param name="e"></param>
         private void statystyki_Click(object sender, EventArgs e)
         {
-            try
+            if (!statyWidocznosc)
             {
+                statyWidocznosc = true;
                 ObslugaPlikow.OdczytajDane();
                 textBox1.Text = ObslugaPlikow.wyniki;
-                textBox1.Visible = true;
-                
             }
-            catch (Exception error)
+            else
             {
-                MessageBox.Show("Błąd: Nie można odnaleźć pliku z wynikam." + "\n" +
-                    "Czy rozgrałeś już pierwszą partie gry?", "Błąd" );
+                statyWidocznosc = false;
             }
+            textBox1.Visible = statyWidocznosc;
         }
     }
 }

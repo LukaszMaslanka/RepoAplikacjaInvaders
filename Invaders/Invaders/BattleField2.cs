@@ -26,10 +26,12 @@ namespace Invaders
         bool koniecGry = false;
         bool gracz1Wygral = false;
         bool gracz2Wygral = false;
+        EventArgs e;
 
         public BattleField2(Form1 form1)
         {
             InitializeComponent();
+
             obszarRysowania = new Rectangle(0, 0, this.Width-7, this.Height-60);
             losuj = new Random();
             gwiazdy = new Gwiazdy(obszarRysowania,losuj);
@@ -39,55 +41,45 @@ namespace Invaders
 
             gra = new GraDla2(gwiazdy,obszarRysowania,losuj,statekGracza1,statekGracza2);
 
+            gra.GameOver += new EventHandler(gra_GameOver);
             gra.GameOverGracz1 += new EventHandler(gra_GameOverGracz1);
             gra.GameOverGracz2 += new EventHandler(gra_GameOverGracz2);
-            gra.PlayerWins += new EventHandler(gra_PlayerWins);
-            gra.PlayerWins2 += new EventHandler(gra_PlayerWins2);
 
             this.form1 = form1;
-            form1.odtDzwiek.Stop();
+            if (form1.wycisz)
+            {
+                form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.GameSound);
+                form1.odtDzwiek.PlayLooping();
+            }
             
+        }
+
+        void gra_GameOver(object sender, EventArgs e)
+        {
+            if (gra.GraczWygral)
+            {
+                if (gra.punktyGracz1 > gra.punktyGracz2)
+                {
+                    gra_GameOverGracz2(this,e);
+                }
+                else if (gra.punktyGracz1 < gra.punktyGracz2)
+                {
+                    gra_GameOverGracz1(this, e);
+                }
+            }
+            gameTimer.Stop();
         }
 
         void gra_GameOverGracz2(object sender, EventArgs e)
         {
-            gameTimer.Stop();
-            form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
-            form1.odtDzwiek.Play();
             koniecGry = true;
-            //Gdy gracz przegra dane zostają zapisane do pliku
-            ObslugaPlikow.OdczytajDane();
-            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.punktyGracz1, gra.punktyGracz2);
-            MessageBox.Show("Wygrał " + statekGracza1.NazwaStatku);
-        }
-        /// <summary>
-        /// Procedura obsługi zdarzenia PlayerWins2.
-        /// Wygrywa Gracz 2
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void gra_PlayerWins2(object sender, EventArgs e)
-        {
-            gameTimer.Stop();
-            form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
-            form1.odtDzwiek.Play();
-            gracz2Wygral = true;
-            //Gdy gracz wygra dane zostają zapisane do pliku
-            ObslugaPlikow.OdczytajDane();
-            ObslugaPlikow.ZapiszDane(statekGracza1,statekGracza2,gra.punktyGracz1,gra.punktyGracz2);
-        }
-        /// <summary>
-        /// Procedura obsługi zdarzenia PlayerWins
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void gra_PlayerWins(object sender, EventArgs e)
-        {
-            gameTimer.Stop();
-            form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
-            form1.odtDzwiek.Play();
             gracz1Wygral = true;
-            //Gdy gracz wygra dane zostają zapisane do pliku
+            gracz2Wygral = false;
+
+            gameTimer.Stop();
+            form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
+            form1.odtDzwiek.Play();
+            //Gdy gracz przegra dane zostają zapisane do pliku
             ObslugaPlikow.OdczytajDane();
             ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.punktyGracz1, gra.punktyGracz2);
         }
@@ -99,14 +91,16 @@ namespace Invaders
         /// <param name="e"></param>
         void gra_GameOverGracz1(object sender, EventArgs e)
         {
+            koniecGry = true;
+            gracz1Wygral = false;
+            gracz2Wygral = true;
+
             gameTimer.Stop();
             form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
             form1.odtDzwiek.Play();
-            koniecGry = true;
             //Gdy gracz przegra dane zostają zapisane do pliku
             ObslugaPlikow.OdczytajDane();
             ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.punktyGracz1, gra.punktyGracz2);
-            MessageBox.Show("Wygrał " + statekGracza2.NazwaStatku);
         }
 
         private void BattleField2_FormClosing(object sender, FormClosingEventArgs e)
@@ -115,7 +109,7 @@ namespace Invaders
             gameTimer.Stop();
             if (e.Cancel = MessageBox.Show("Czy przerwać grę?", "Koniec gry", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
-                if (koniecGry == false && graczWygral == false)
+                if (koniecGry == false && gracz1Wygral == false && gracz2Wygral == false)
                 {
                     gameTimer.Start();
                     animationTimer.Start();
@@ -137,7 +131,23 @@ namespace Invaders
             Graphics g = e.Graphics;
             gra.RysujGre(g);
 
-            if (koniecGry)
+            if (koniecGry && gracz1Wygral == true && gracz2Wygral == false)
+            {
+                g.DrawString(statekGracza1.NazwaStatku + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 960, 630);
+                g.DrawString(statekGracza2.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 365, 630);
+                animationTimer.Stop();
+                gameOverBanner1.Visible = true;
+            }
+
+            if (koniecGry && gracz1Wygral == false && gracz2Wygral == true)
+            {
+                g.DrawString(statekGracza1.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 960, 630);
+                g.DrawString(statekGracza2.NazwaStatku + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 365, 630);
+                animationTimer.Stop();
+                gameOverBanner1.Visible = true;
+            }
+
+            if (koniecGry && gracz1Wygral == false && gracz2Wygral == false)
             {
                 g.DrawString(statekGracza1.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 960, 630);
                 g.DrawString(statekGracza2.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 365, 630);
@@ -154,8 +164,7 @@ namespace Invaders
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            gra.PrzesunNajezdzcow();
-            gra.WystzelPociskNajezdzcy();
+            gra.nastepnaFala(5);
             gra.Go();
 
             if (keyLeft && keyD)

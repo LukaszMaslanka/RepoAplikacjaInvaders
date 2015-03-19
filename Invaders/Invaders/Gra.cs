@@ -10,8 +10,9 @@ namespace Invaders
 {
     public class Gra
     {
-        int iloscStrzalowNajezdzcy = 10;
-        public int poziomTrudnosci = 4;
+        public int PoziomTrudnosci = 1;
+        int iloscStrzalowNajezdzcy = 1;
+        public int iloscNajezdzcowWLinii = 4;
 
         public String wyniki;
         
@@ -21,6 +22,8 @@ namespace Invaders
 
         Random losuj;
 
+        public bool GraczWygral = false;
+
         public List<Najezdzca> Najezdzcy = new List<Najezdzca>();
         public List<Strzal> pociskiNajezdzcow = new List<Strzal>();
 
@@ -28,7 +31,6 @@ namespace Invaders
 
         EventArgs e = null;
         public event EventHandler GameOver;
-        public event EventHandler PlayerWins;
 
         public WindowsMediaPlayer LaserShot = new WindowsMediaPlayer();
         public WindowsMediaPlayer Boom = new WindowsMediaPlayer();
@@ -103,7 +105,7 @@ namespace Invaders
         public void InicjalizacjaNajezdzcow()
         {
             int j = 1;
-            for (int i = 0; i < poziomTrudnosci; i++)
+            for (int i = 0; i < iloscNajezdzcowWLinii; i++)
             {
                 Najezdzcy.Add(new Najezdzca(TypNajezdzcy.Niszczyciel, new Point(j, 0), 30,
                     Rysuj.KonwertujNaBitmap(Properties.Resources.Niszczyciel, 51, 51)));
@@ -165,7 +167,7 @@ namespace Invaders
             foreach (var najezdzca in najezdzcyDol)
             {
                 pociskiNajezdzcow.Clear();
-                GameOver(this, e);
+                GameOver(this,e);
             }
 
             //Przesunięcie całej falii najeźców
@@ -195,10 +197,36 @@ namespace Invaders
                 pociskiNajezdzcow.Add(pociskNajezdzcy);
             }
         }
-        /*virtual public void Go()
+
+        /// <summary>
+        /// Generowanie kolejne Falii najeźdzców. w zależności od poziomu trudności zmieniania jest zmienna
+        /// iloscStrzalowNajezdzcy
+        /// </summary>
+        public void nastepnaFala(int iloscFal)
         {
+            if (Najezdzcy.Count == 0)
+            {
+                // Poziom trudnosci -1 dla poprawnego czyszczenia najezdzcow po zakonczonej fali 9
+                if (PoziomTrudnosci == iloscFal)
+                {
+                    pociskiNajezdzcow.Clear();
+                    GraczWygral = true;
+                    GameOver(this, e);
+                }
+                else
+                {
+                    iloscNajezdzcowWLinii++;
+                    PoziomTrudnosci++;
 
-        }*/
+                    kierunekNajezdzcow = Direction.Prawo;
 
+                    if (PoziomTrudnosci > 4)
+                        iloscStrzalowNajezdzcy++;
+
+                    Najezdzcy.Clear();
+                    InicjalizacjaNajezdzcow();
+                }
+            }
+        }
     }
 }

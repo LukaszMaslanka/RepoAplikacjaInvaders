@@ -17,8 +17,6 @@ namespace Invaders
         EventArgs e;
         public event EventHandler GameOverGracz1;
         public event EventHandler GameOverGracz2;
-        public event EventHandler PlayerWins1;
-        public event EventHandler PlayerWins2;
 
         public int punktyGracz1 = 0;
         public int punktyGracz2 = 0;
@@ -32,7 +30,7 @@ namespace Invaders
             this.statekGracza1 = statekGracza1;
             this.statekGracza2 = statekGracza2;
 
-            poziomTrudnosci = 13;
+            iloscNajezdzcowWLinii = 10;
             InicjalizacjaNajezdzcow();
         }
 
@@ -64,10 +62,10 @@ namespace Invaders
             }
 
             g.DrawString("Pilot: " + statekGracza1.NazwaStatku + " Ilość żyć: " + iloscZycGracz1 + " punkty: " + punktyGracz1 +
-                " Poziom trudności: " + (poziomTrudnosci - 3), new Font("Arial", 10, FontStyle.Regular), Brushes.DeepSkyBlue,595 , 630);
+                " Poziom trudności: " + (PoziomTrudnosci), new Font("Arial", 10, FontStyle.Regular), Brushes.DeepSkyBlue,595 , 630);
 
             g.DrawString("Pilot: " + statekGracza2.NazwaStatku + " Ilość żyć: " + iloscZycGracz2 + " punkty: " + punktyGracz2 +
-                " Poziom trudności: " + (poziomTrudnosci - 3), new Font("Arial", 10, FontStyle.Regular), Brushes.Violet, 0, 630);
+                " Poziom trudności: " + (PoziomTrudnosci), new Font("Arial", 10, FontStyle.Regular), Brushes.Violet, 0, 630);
         }
 
         public void PrzesunGracza1(Direction kierunek)
@@ -280,11 +278,13 @@ namespace Invaders
                     pociskiNajezdzcow.RemoveAt(i);
                 }
             }
-
+            
+            WystzelPociskNajezdzcy();
+            PrzesunNajezdzcow();
             GraczTrafiony();
+            NajezdzcaTrafiony();
 
             //Usuwanie najeźdzców odbywa się w metodzie Go() ze względu na anicmacje wybuchu.
-            NajezdzcaTrafiony();
             for (int i = 0; i < Najezdzcy.Count; i++)
             {
                 if (Najezdzcy[i].Zestrzelony == true && Najezdzcy[i].koniecAnimacji == true)
