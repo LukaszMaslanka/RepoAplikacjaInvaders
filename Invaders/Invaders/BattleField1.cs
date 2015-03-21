@@ -37,7 +37,7 @@ namespace Invaders
 
             gwiazdy = new Gwiazdy(obszarRysowania, losuj);
 
-            statekGracza = new StatekGracza(lokalizacjaStatku,Gracze.Player1,form1.GraczName1);
+            statekGracza = new StatekGracza(lokalizacjaStatku,Gracze.Player1,form1.Gracz1Nazwa);
 
             gra = new GraDla1(gwiazdy, obszarRysowania, losuj, statekGracza);
 
@@ -130,8 +130,6 @@ namespace Invaders
             this.Refresh();
         }
 
-      
-
         /// <summary>
         /// Zegar obsługi gry. Wywołuje metodę Go z klasy Game oraz odpowiadę za obsługę przycisków dla gracza.
         /// </summary>
@@ -146,13 +144,13 @@ namespace Invaders
             {
                 if (key == Keys.Right)
                 {
-                    gra.PrzesunGracza(Direction.Prawo);
+                    gra.PrzesunGracza(Kierunek.Prawo);
                     lokalizacjaStatku = statekGracza.Lokalizacja;
                     return;
                 }
                 if (key == Keys.Left)
                 {
-                    gra.PrzesunGracza(Direction.Lewo);
+                    gra.PrzesunGracza(Kierunek.Lewo);
                     lokalizacjaStatku = statekGracza.Lokalizacja;
                     return;
                 }

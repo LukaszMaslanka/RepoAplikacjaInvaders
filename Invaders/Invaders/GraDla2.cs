@@ -15,13 +15,14 @@ namespace Invaders
         List<Strzal> pociskiGracza2 = new List<Strzal>();
 
         EventArgs e;
+        public event EventHandler Remis;
         public event EventHandler GameOverGracz1;
         public event EventHandler GameOverGracz2;
 
         public int PunktyGracz1 = 0;
         public int PunktyGracz2 = 0;
-        int iloscZycGracz1 = 3;
-        int iloscZycGracz2 = 3;
+        int iloscZycGracz1 = 300;
+        int iloscZycGracz2 = 300;
 
         public GraDla2(Gwiazdy gwiazdy, Rectangle granice, Random losuj, 
             StatekGracza statekGracza1, StatekGracza statekGracza2)
@@ -36,7 +37,7 @@ namespace Invaders
 
         override public void RysujGre(Graphics g)
         {
-            g.DrawRectangle(new Pen(Brushes.Yellow, 1), Granice);
+            g.DrawRectangle(new Pen(Brushes.Black, 1), Granice);
             Gwiazdy.RysujGwiazdy(g);
 
             statekGracza1.RysujStatek(g);
@@ -68,7 +69,7 @@ namespace Invaders
                 " Poziom trudności: " + (PoziomTrudnosci), new Font("Arial", 10, FontStyle.Regular), Brushes.Violet, 0, 630);
         }
 
-        public void PrzesunGracza1(Direction kierunek)
+        public void PrzesunGracza1(Kierunek kierunek)
         {
             if (statekGracza1.Zywy == true)
             {
@@ -81,7 +82,7 @@ namespace Invaders
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
             if (pociskiGracza1.Count < 2)
             {
-                pociskiGracza1.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, Granice, Brushes.DeepSkyBlue));
+                pociskiGracza1.Add(new Strzal(lokalizacjaPocisku, Kierunek.Gora, Granice, Brushes.DeepSkyBlue));
                 if (wavSkopiowane)
                 {
                     LaserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
@@ -89,7 +90,7 @@ namespace Invaders
             }
         }
 
-        public void PrzesunGracza2(Direction kierunek)
+        public void PrzesunGracza2(Kierunek kierunek)
         {
             if (statekGracza2.Zywy == true)
             {
@@ -101,7 +102,7 @@ namespace Invaders
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
             if (pociskiGracza2.Count < 2)
             {
-                pociskiGracza2.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, Granice, Brushes.Violet));
+                pociskiGracza2.Add(new Strzal(lokalizacjaPocisku, Kierunek.Gora, Granice, Brushes.Violet));
                 if (wavSkopiowane)
                 {
                     LaserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
@@ -119,7 +120,7 @@ namespace Invaders
             {
                 var zestrzeleni = from _najezdzca in Najezdzcy
                                   where _najezdzca.WielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
-                                      && strzal.Kierunek == Direction.Gora
+                                      && strzal.Kierunek == Kierunek.Gora
                                   select new { zestrzeleniNajezdzcyGracz1 = _najezdzca, StrzalTrafiony = strzal };
 
                 if (zestrzeleni.Count() > 0)
@@ -146,7 +147,7 @@ namespace Invaders
             {
                 var zestrzeleni = from _najezdzca in Najezdzcy
                                   where _najezdzca.WielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
-                                      && strzal.Kierunek == Direction.Gora
+                                      && strzal.Kierunek == Kierunek.Gora
                                   select new { zestrzeleniNajezdzcy = _najezdzca, StrzalTrafiony = strzal };
 
                 if (zestrzeleni.Count() > 0)
@@ -180,11 +181,11 @@ namespace Invaders
         {
             bool usunPocisk = false;
             var gracz1Zestrzelony = from celnyPocisk in pociskiNajezdzcow
-                                    where celnyPocisk.Kierunek == Direction.Dol && statekGracza1.WielkoscStatku.Contains(celnyPocisk.Lokalizacja) == true
+                                    where celnyPocisk.Kierunek == Kierunek.Dol && statekGracza1.WielkoscStatku.Contains(celnyPocisk.Lokalizacja) == true
                                     select celnyPocisk;
 
             var gracz2Zestrzelony = from celnyPocisk in pociskiNajezdzcow
-                                    where celnyPocisk.Kierunek == Direction.Dol && statekGracza2.WielkoscStatku.Contains(celnyPocisk.Lokalizacja) == true
+                                    where celnyPocisk.Kierunek == Kierunek.Dol && statekGracza2.WielkoscStatku.Contains(celnyPocisk.Lokalizacja) == true
                                     select celnyPocisk;
 
             if (gracz1Zestrzelony.Count() > 0)

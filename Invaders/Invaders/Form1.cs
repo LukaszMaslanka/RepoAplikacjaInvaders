@@ -22,8 +22,8 @@ namespace Invaders
         public bool wycisz = false;
         bool statyWidocznosc = false;
         private bool dwochGraczy = false;
-        public string GraczName1;
-        public string GraczName2;
+        public string Gracz1Nazwa;
+        public string Gracz2Nazwa;
         Rysuj animacjaTla = new Rysuj();
 
         /// <summary>
@@ -38,7 +38,6 @@ namespace Invaders
             {
                 animacjaTla.AnimujTlo(g);
             }
-            
         }
 
         /// <summary>
@@ -60,13 +59,13 @@ namespace Invaders
         private void Form1_Load(object sender, EventArgs e)
         {
             odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.GameTheme);
-            wyciszDzwiek();
+            WyciszDzwiek();
         }
 
         /// <summary>
         /// Metoda wysterowywuje przycisk wyciszBtn oraz zatrzymuje i odtwarza dzwiek w zaleznosci od pola wycisz
         /// </summary>
-        private void wyciszDzwiek()
+        private void WyciszDzwiek()
         {
             if (wycisz)
             {
@@ -84,7 +83,7 @@ namespace Invaders
 
         private void wyciszBtn_Click(object sender, EventArgs e)
         {
-            wyciszDzwiek();
+            WyciszDzwiek();
         }
 
         private void jedenGraczBtn_Click(object sender, EventArgs e)
@@ -116,14 +115,14 @@ namespace Invaders
 
             if (dwochGraczy)
             {
-                GraczName1 = player1Name.Text;
-                GraczName2 = player2Name.Text;
+                Gracz1Nazwa = player1Name.Text;
+                Gracz2Nazwa = player2Name.Text;
                 BattleField2 battlefield2 = new BattleField2(this);
                 battlefield2.ShowDialog();
             }
             else
             {
-                GraczName1 = player1Name.Text;
+                Gracz1Nazwa = player1Name.Text;
                 BattleField1 battlefield1 = new BattleField1(this);
                 battlefield1.ShowDialog();
             }

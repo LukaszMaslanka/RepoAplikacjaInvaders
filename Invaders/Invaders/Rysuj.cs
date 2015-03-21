@@ -16,16 +16,16 @@ namespace Invaders
         /// <summary>
         /// Statyczna metda kowertująca grafikę na bitmapy
         /// </summary>
-        /// <param name="Obraz"></param>
+        /// <param name="obraz"></param>
         /// <param name="szerokoscObrazu"></param>
         /// <param name="wysokoscObrazu"></param>
         /// <returns></returns>
-        public static Bitmap KonwertujNaBitmap(Image Obraz, int szerokoscObrazu, int wysokoscObrazu)
+        public static Bitmap KonwertujNaBitmap(Image obraz, int szerokoscObrazu, int wysokoscObrazu)
         {
             Bitmap bitmap = new Bitmap(szerokoscObrazu, wysokoscObrazu);
             using (Graphics grafika = Graphics.FromImage(bitmap))
             {
-                grafika.DrawImage(Obraz, 0, 0, szerokoscObrazu, wysokoscObrazu);
+                grafika.DrawImage(obraz, 0, 0, szerokoscObrazu, wysokoscObrazu);
             }
             return bitmap;
         }
@@ -48,33 +48,32 @@ namespace Invaders
             tloBitmap[10] = KonwertujNaBitmap(Properties.Resources.background11, 800, 700);
         }
 
-        int cell = 0;
+        int komorkaAnimacji = 0;
         int klatka = 0;
         public void AnimujTlo(Graphics g)
         {
             klatka++;
-            if (klatka >= 11)
+            if (klatka >= 10)
             {
                 klatka = 0;
             }
             switch (klatka)
             {
-                case 0: cell = 0; break;
-                case 1: cell = 1; break;
-                case 2: cell = 2; break;
-                case 3: cell = 3; break;
-                case 4: cell = 4; break;
-                case 5: cell = 5; break;
-                case 6: cell = 6; break;
-                case 7: cell = 7; break;
-                case 8: cell = 8; break;
-                case 9: cell = 9; break;
-                case 10: cell = 10; break;
-                case 11: cell = 11; break;
-                default: cell = 0;
+                case 0: komorkaAnimacji = 0; break;
+                case 1: komorkaAnimacji = 1; break;
+                case 2: komorkaAnimacji = 2; break;
+                case 3: komorkaAnimacji = 3; break;
+                case 4: komorkaAnimacji = 4; break;
+                case 5: komorkaAnimacji = 5; break;
+                case 6: komorkaAnimacji = 6; break;
+                case 7: komorkaAnimacji = 7; break;
+                case 8: komorkaAnimacji = 8; break;
+                case 9: komorkaAnimacji = 9; break;
+                case 10: komorkaAnimacji = 10; break;
+                default: komorkaAnimacji = 0;
                     break;
             }
-            g.DrawImage(tloBitmap[cell],0,0);
+            g.DrawImage(tloBitmap[komorkaAnimacji],0,0);
         }
     }
 }

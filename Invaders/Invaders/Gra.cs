@@ -16,7 +16,7 @@ namespace Invaders
 
         public String Wyniki;
         
-        Direction kierunekNajezdzcow = Direction.Prawo;
+        Kierunek kierunekNajezdzcow = Kierunek.Prawo;
         
         public Rectangle Granice;
 
@@ -148,29 +148,30 @@ namespace Invaders
 
             foreach (var najezdzca in najezdzcyPrawo)
             {
-                kierunekNajezdzcow = Direction.Dol;
+                kierunekNajezdzcow = Kierunek.Dol;
                 for (int i = 0; i < Najezdzcy.Count; i++)
                 {
                     Najezdzcy[i].Przesun(kierunekNajezdzcow);
                 }
-                kierunekNajezdzcow = Direction.Lewo;
+                kierunekNajezdzcow = Kierunek.Lewo;
                 break;
             }
 
             foreach (var najezdzca in najezdzcyLewo)
             {
-                kierunekNajezdzcow = Direction.Dol;
+                kierunekNajezdzcow = Kierunek.Dol;
                 for (int i = 0; i < Najezdzcy.Count; i++)
                 {
                     Najezdzcy[i].Przesun(kierunekNajezdzcow);
                 }
-                kierunekNajezdzcow = Direction.Prawo;
+                kierunekNajezdzcow = Kierunek.Prawo;
                 break;
             }
 
             foreach (var najezdzca in najezdzcyDol)
             {
                 pociskiNajezdzcow.Clear();
+                GraczWygral = true;
                 GameOver(this,e);
             }
 
@@ -197,7 +198,7 @@ namespace Invaders
             var dolnyStrzelec = losujStrzelca.Last();
 
             Point lokalizacjaPocisku = new Point(dolnyStrzelec.Lokalizacja.X, dolnyStrzelec.Lokalizacja.Y + 26);
-            Strzal pociskNajezdzcy = new Strzal(lokalizacjaPocisku, Direction.Dol, Granice, Brushes.Red);
+            Strzal pociskNajezdzcy = new Strzal(lokalizacjaPocisku, Kierunek.Dol, Granice, Brushes.Red);
 
             if (pociskiNajezdzcow.Count < iloscStrzalowNajezdzcy)
             {
@@ -225,7 +226,7 @@ namespace Invaders
                     IloscNajezdzcowWLinii++;
                     PoziomTrudnosci++;
 
-                    kierunekNajezdzcow = Direction.Prawo;
+                    kierunekNajezdzcow = Kierunek.Prawo;
 
                     if (PoziomTrudnosci > 4)
                         iloscStrzalowNajezdzcy++;

@@ -14,8 +14,8 @@ namespace Invaders
 
         public Point Lokalizacja;
 
-        private Direction kierunek;
-        public Direction Kierunek 
+        private Kierunek kierunek;
+        public Kierunek Kierunek 
         {
             get
             {
@@ -34,7 +34,7 @@ namespace Invaders
         /// <param name="kierunek"></param>
         /// <param name="granice"></param>
         /// <param name="kolorPocisku"></param>
-        public Strzal(Point lokalizacja, Direction kierunek, Rectangle granice, Brush kolorPocisku)
+        public Strzal(Point lokalizacja, Kierunek kierunek, Rectangle granice, Brush kolorPocisku)
         {
             this.Lokalizacja = lokalizacja;
             this.kierunek = kierunek;
@@ -53,7 +53,7 @@ namespace Invaders
         /// <returns></returns>
         public bool PrzesunPocisk()
         {
-            if (kierunek == Direction.Gora)
+            if (kierunek == Kierunek.Gora)
             {
                 if (Lokalizacja.Y >= granice.Top)
                 {

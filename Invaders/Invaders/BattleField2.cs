@@ -24,6 +24,7 @@ namespace Invaders
         StatekGracza statekGracza1;
         StatekGracza statekGracza2;
         bool koniecGry = false;
+        bool remis = false;
         bool gracz1Wygral = false;
         bool gracz2Wygral = false;
         EventArgs e;
@@ -36,12 +37,13 @@ namespace Invaders
             losuj = new Random();
             gwiazdy = new Gwiazdy(obszarRysowania,losuj);
 
-            statekGracza1 = new StatekGracza(lokalizacjaStatek1,Gracze.Player1,form1.GraczName1);
-            statekGracza2 = new StatekGracza(lokalizacjaStatek2, Gracze.Player2, form1.GraczName2);
+            statekGracza1 = new StatekGracza(lokalizacjaStatek1,Gracze.Player1,form1.Gracz1Nazwa);
+            statekGracza2 = new StatekGracza(lokalizacjaStatek2, Gracze.Player2, form1.Gracz2Nazwa);
 
             gra = new GraDla2(gwiazdy,obszarRysowania,losuj,statekGracza1,statekGracza2);
 
             gra.GameOver += new EventHandler(gra_GameOver);
+            gra.Remis += new EventHandler(gra_Remis);
             gra.GameOverGracz1 += new EventHandler(gra_GameOverGracz1);
             gra.GameOverGracz2 += new EventHandler(gra_GameOverGracz2);
 
@@ -51,7 +53,6 @@ namespace Invaders
                 form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.GameSound);
                 form1.odtDzwiek.PlayLooping();
             }
-            
         }
 
         void gra_GameOver(object sender, EventArgs e)
@@ -66,8 +67,26 @@ namespace Invaders
                 {
                     gra_GameOverGracz1(this, e);
                 }
+                else if (gra.PunktyGracz1 == gra.PunktyGracz2)
+                {
+                    gra_Remis(this ,e);
+                }
             }
+         }
+
+        void gra_Remis(object sender, EventArgs e)
+        {
+            koniecGry = true;
+            remis = true;
+            gracz1Wygral = false;
+            gracz2Wygral = false;
+
             gameTimer.Stop();
+            form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
+            form1.odtDzwiek.Play();
+            //Gdy gracz przegra dane zostają zapisane do pliku
+            ObslugaPlikow.OdczytajDane();
+            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
         }
 
         void gra_GameOverGracz2(object sender, EventArgs e)
@@ -131,6 +150,14 @@ namespace Invaders
             Graphics g = e.Graphics;
             gra.RysujGre(g);
 
+            if (koniecGry && remis == true)
+            {
+                g.DrawString(" Remis!", new Font("Arial", 10, FontStyle.Regular), Brushes.White, 1060, 630);
+                g.DrawString(" Remis!", new Font("Arial", 10, FontStyle.Regular), Brushes.White, 465, 630);
+                animationTimer.Stop();
+                gameOverBanner1.Visible = true;
+            }
+
             if (koniecGry && gracz1Wygral == true && gracz2Wygral == false)
             {
                 g.DrawString(statekGracza1.NazwaStatku + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 960, 630);
@@ -169,61 +196,61 @@ namespace Invaders
 
             if (keyLeft && keyD)
             {
-                statekGracza1.PrzesunStatek(Direction.Lewo,obszarRysowania);
+                statekGracza1.PrzesunStatek(Kierunek.Lewo,obszarRysowania);
                 lokalizacjaStatek1 = statekGracza1.Lokalizacja;
 
-                statekGracza2.PrzesunStatek(Direction.Prawo,obszarRysowania);
+                statekGracza2.PrzesunStatek(Kierunek.Prawo,obszarRysowania);
                 lokalizacjaStatek2 = statekGracza2.Lokalizacja;
             }
 
             if (keyRight && keyA)
             {
-                statekGracza1.PrzesunStatek(Direction.Prawo, obszarRysowania);
+                statekGracza1.PrzesunStatek(Kierunek.Prawo, obszarRysowania);
                 lokalizacjaStatek1 = statekGracza1.Lokalizacja;
 
-                statekGracza2.PrzesunStatek(Direction.Lewo, obszarRysowania);
+                statekGracza2.PrzesunStatek(Kierunek.Lewo, obszarRysowania);
                 lokalizacjaStatek2 = statekGracza2.Lokalizacja;
             }
 
             if (keyRight && keyD)
             {
-                statekGracza1.PrzesunStatek(Direction.Prawo, obszarRysowania);
+                statekGracza1.PrzesunStatek(Kierunek.Prawo, obszarRysowania);
                 lokalizacjaStatek1 = statekGracza1.Lokalizacja;
 
-                statekGracza2.PrzesunStatek(Direction.Prawo, obszarRysowania);
+                statekGracza2.PrzesunStatek(Kierunek.Prawo, obszarRysowania);
                 lokalizacjaStatek2 = statekGracza2.Lokalizacja;
             }
 
             if (keyLeft && keyA)
             {
-                statekGracza1.PrzesunStatek(Direction.Lewo,obszarRysowania);
+                statekGracza1.PrzesunStatek(Kierunek.Lewo,obszarRysowania);
                 lokalizacjaStatek1 = statekGracza1.Lokalizacja;
 
-                statekGracza2.PrzesunStatek(Direction.Lewo, obszarRysowania);
+                statekGracza2.PrzesunStatek(Kierunek.Lewo, obszarRysowania);
                 lokalizacjaStatek2 = statekGracza2.Lokalizacja;
             }
 
             if (keyA == false && keyD == false && keyRight == true)
             {
-                statekGracza1.PrzesunStatek(Direction.Prawo, obszarRysowania);
+                statekGracza1.PrzesunStatek(Kierunek.Prawo, obszarRysowania);
                 lokalizacjaStatek1 = statekGracza1.Lokalizacja;
             }
 
             if (keyA == false && keyD == false && keyLeft == true)
             {
-                statekGracza1.PrzesunStatek(Direction.Lewo, obszarRysowania);
+                statekGracza1.PrzesunStatek(Kierunek.Lewo, obszarRysowania);
                 lokalizacjaStatek1 = statekGracza1.Lokalizacja;
             }
 
             if (keyRight == false && keyLeft == false && keyD == true)
             {
-                statekGracza2.PrzesunStatek(Direction.Prawo, obszarRysowania);
+                statekGracza2.PrzesunStatek(Kierunek.Prawo, obszarRysowania);
                 lokalizacjaStatek2 = statekGracza2.Lokalizacja;
             }
 
             if (keyRight == false && keyLeft == false && keyA == true)
             {
-                statekGracza2.PrzesunStatek(Direction.Lewo, obszarRysowania);
+                statekGracza2.PrzesunStatek(Kierunek.Lewo, obszarRysowania);
                 lokalizacjaStatek2 = statekGracza2.Lokalizacja;
             }
         }

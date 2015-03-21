@@ -76,7 +76,7 @@ namespace Invaders
         /// Przesuwanie gracza do granic pola walki.
         /// </summary>
         /// <param name="kierunek"></param>
-        public void PrzesunGracza(Direction kierunek)
+        public void PrzesunGracza(Kierunek kierunek)
         {
             if (statekGracza.Zywy == true)
             {
@@ -95,7 +95,7 @@ namespace Invaders
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
             if (pociskiGracza.Count < 2)
             {
-                pociskiGracza.Add(new Strzal(lokalizacjaPocisku, Direction.Gora, Granice, Brushes.DeepSkyBlue));
+                pociskiGracza.Add(new Strzal(lokalizacjaPocisku, Kierunek.Gora, Granice, Brushes.DeepSkyBlue));
                 if (wavSkopiowane)
                 {
                     LaserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
@@ -119,7 +119,7 @@ namespace Invaders
             {
                 var zestrzeleni = from _najezdzca in Najezdzcy
                     where _najezdzca.WielkoscNajezdzcy.Contains(strzal.Lokalizacja) == true
-                        && strzal.Kierunek == Direction.Gora
+                        && strzal.Kierunek == Kierunek.Gora
                     select new {zestrzeleniNajezdzcy = _najezdzca, StrzalTrafiony = strzal};
                 
                 if (zestrzeleni.Count() > 0)
@@ -154,7 +154,7 @@ namespace Invaders
         {   
             bool usunPocisk = false;
             var graczZestrzelony = from celnyPocisk in pociskiNajezdzcow
-                                   where celnyPocisk.Kierunek == Direction.Dol && statekGracza.WielkoscStatku.Contains(celnyPocisk.Lokalizacja)
+                                   where celnyPocisk.Kierunek == Kierunek.Dol && statekGracza.WielkoscStatku.Contains(celnyPocisk.Lokalizacja)
                                    select celnyPocisk;
             
             if (graczZestrzelony.Count() > 0)

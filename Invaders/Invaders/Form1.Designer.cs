@@ -59,7 +59,7 @@
             // animationTimer
             // 
             this.animationTimer.Enabled = true;
-            this.animationTimer.Interval = 150;
+            this.animationTimer.Interval = 125;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             // 
             // wyciszBtn
@@ -213,7 +213,7 @@
             // banerAnimationTimer
             // 
             this.banerAnimationTimer.Enabled = true;
-            this.banerAnimationTimer.Interval = 2000;
+            this.banerAnimationTimer.Interval = 125;
             this.banerAnimationTimer.Tick += new System.EventHandler(this.banerAnimationTimer_Tick);
             // 
             // textBox1

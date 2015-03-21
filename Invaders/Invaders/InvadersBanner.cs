@@ -41,8 +41,8 @@ namespace Invaders
             klatka++;
             switch (klatka)
             {
-                case 1: BackgroundImage = bannerBitmap[0]; banerAnimationTimer.Interval = 2000; break;
-                case 2: BackgroundImage = bannerBitmap[1]; banerAnimationTimer.Interval = 125; break;
+                case 1: BackgroundImage = bannerBitmap[0]; banerAnimationTimer.Interval = 125; break;
+                case 2: BackgroundImage = bannerBitmap[1]; break;
                 case 3: BackgroundImage = bannerBitmap[2]; break;
                 case 4: BackgroundImage = bannerBitmap[3]; break;
                 case 5: BackgroundImage = bannerBitmap[4]; break;

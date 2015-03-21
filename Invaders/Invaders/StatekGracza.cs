@@ -81,14 +81,14 @@ namespace Invaders
 
         public void RysujStatek(Graphics g)
         {
-            if (Zywy == true)
+            if (zywy == true)
             {
                 ObrazStatku();
                 g.DrawImage(obraz, Lokalizacja);
             }
             else
             {
-                statekDestroy();
+                StatekDestroy();
                 g.DrawImage(obraz, Lokalizacja);
             }
         }
@@ -98,9 +98,9 @@ namespace Invaders
         /// </summary>
         /// <param name="kierunek"></param>
         /// <param name="obszarGry"></param>
-        public void PrzesunStatek(Direction kierunek, Rectangle obszarGry)
+        public void PrzesunStatek(Kierunek kierunek, Rectangle obszarGry)
         {
-            if (kierunek == Direction.Prawo)
+            if (kierunek == Kierunek.Prawo)
             {
                 if (Lokalizacja.X + 51 >= obszarGry.Right)
                 {
@@ -111,7 +111,7 @@ namespace Invaders
                     Lokalizacja.X += 10;
                 }
             }
-            else if (kierunek == Direction.Lewo)
+            else if (kierunek == Kierunek.Lewo)
             {
                 if (Lokalizacja.X <= obszarGry.Left)
                 {
@@ -159,7 +159,7 @@ namespace Invaders
         /// Animacja wybuchu statku gracza
         /// </summary>
         int klatka2 = 0;
-        private Bitmap statekDestroy()
+        private Bitmap StatekDestroy()
         {
             klatka2++;
             switch (klatka2)

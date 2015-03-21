@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Invaders
 {
-    public enum Direction
+    public enum Kierunek
     {
         Lewo,
         Prawo,

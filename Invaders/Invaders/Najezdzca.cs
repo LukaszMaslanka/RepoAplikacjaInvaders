@@ -26,14 +26,10 @@ namespace Invaders
         }
 
         public bool KoniecAnimacji = false;
-        private bool zestrzelony = false;
-        public bool Zestrzelony 
+        public bool Zestrzelony
         {
-            get { return zestrzelony; } 
-            set
-            {
-                zestrzelony = value;
-            }
+            get;
+            set;
         }
 
         //publiczna właściwość zachowujące się jak pole tylko do odczytu
@@ -52,17 +48,17 @@ namespace Invaders
         /// Przesuwanie najeźdzców po ekranie o określoną wartośc zdefiniowaną w stałych
         /// </summary>
         /// <param name="kierunekNajezdzcy"></param>
-        public void Przesun(Direction kierunekNajezdzcy)
+        public void Przesun(Kierunek kierunekNajezdzcy)
         {
             switch (kierunekNajezdzcy)
             {
-                case Direction.Lewo: Lokalizacja.X -= PoziomyInterval;
+                case Kierunek.Lewo: Lokalizacja.X -= PoziomyInterval;
                     break;
-                case Direction.Prawo: Lokalizacja.X += PoziomyInterval;
+                case Kierunek.Prawo: Lokalizacja.X += PoziomyInterval;
                     break;
-                case Direction.Gora: Lokalizacja.Y -= PionowyInterval;
+                case Kierunek.Gora: Lokalizacja.Y -= PionowyInterval;
                     break;
-                case Direction.Dol: Lokalizacja.Y += PionowyInterval;
+                case Kierunek.Dol: Lokalizacja.Y += PionowyInterval;
                     break;
                 default: Lokalizacja.X -= PoziomyInterval;
                     break;
@@ -71,7 +67,7 @@ namespace Invaders
 
         public void RysujStatek(Graphics g)
         {
-            if (zestrzelony)
+            if (Zestrzelony)
             {
                 StatekDestroy();
                 g.DrawImage(obraz, Lokalizacja);  
