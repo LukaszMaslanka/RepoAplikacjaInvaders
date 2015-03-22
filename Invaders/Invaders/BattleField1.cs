@@ -96,6 +96,7 @@ namespace Invaders
             else
             {
                 form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.GameTheme);
+                form1.textBox1.Visible = false;
                 form1.Show();
                 if (form1.wycisz)
                     form1.odtDzwiek.PlayLooping();
@@ -137,7 +138,7 @@ namespace Invaders
         /// <param name="e"></param>
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            gra.nastepnaFala(5);
+            gra.NastepnaFala(5);
             gra.Go();
 
             foreach (Keys key in keysPressed)

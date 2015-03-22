@@ -109,7 +109,7 @@ namespace Invaders
       
         private void grajBtn_Click(object sender, EventArgs e)
         {
-            Gra.KopiujWav();
+            ObslugaPlikow.KopiujWav();
 
             this.Hide();
 

@@ -13,8 +13,6 @@ namespace Invaders
         public int PoziomTrudnosci = 1;
         int iloscStrzalowNajezdzcy = 1;
         public int IloscNajezdzcowWLinii = 4;
-
-        public String Wyniki;
         
         Kierunek kierunekNajezdzcow = Kierunek.Prawo;
         
@@ -46,53 +44,6 @@ namespace Invaders
         virtual public void RysujGre(Graphics g)
         {
 
-        }
-
-        public static bool wavSkopiowane = true;
-
-        /// <summary>
-        /// Kopiowanie plików *.wav do folderu Temp
-        /// </summary>
-        public static void KopiujWav()
-        {
-            if (File.Exists(Path.GetTempPath() + "SoundLaserShot.wav"))
-            {
-                //Plik istnieje;
-                wavSkopiowane = true;
-            }
-            else
-            {
-                try
-                {
-                    File.Copy(@"Resources\SoundLaserShot.wav", Path.GetTempPath() + "SoundLaserShot.wav");
-                    wavSkopiowane = true;
-                }
-                catch (Exception e)
-                {
-                    System.Windows.Forms.MessageBox.Show("Błąd: " + e.Message);
-                    wavSkopiowane = false;
-                }
-
-            }
-
-            if (File.Exists(Path.GetTempPath() + "SoundBoom.wav"))
-            {
-                //Plik istnieje
-                wavSkopiowane = true;
-            }
-            else
-            {
-                try
-                {
-                    File.Copy(@"Resources\SoundBoom.wav", Path.GetTempPath() + "SoundBoom.wav");
-                    wavSkopiowane = true;
-                }
-                catch (Exception e)
-                {
-                    System.Windows.Forms.MessageBox.Show("Błąd: " + e.Message);
-                    wavSkopiowane = false;
-                }
-            }
         }
 
         public void MrugajGwiazdami()
@@ -206,15 +157,10 @@ namespace Invaders
             }
         }
 
-        /// <summary>
-        /// Generowanie kolejne Falii najeźdzców. w zależności od poziomu trudności zmieniania jest zmienna
-        /// Poziom trudnosci.
-        /// </summary>
-        public void nastepnaFala(int iloscFal)
+        public void NastepnaFala(int iloscFal)
         {
             if (Najezdzcy.Count == 0)
             {
-                // Poziom trudnosci -1 dla poprawnego czyszczenia najezdzcow po zakonczonej fali 9
                 if (PoziomTrudnosci == iloscFal)
                 {
                     pociskiNajezdzcow.Clear();

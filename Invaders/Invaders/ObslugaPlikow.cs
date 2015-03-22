@@ -119,5 +119,52 @@ namespace Invaders
 
             zapisDanych.Close();
         }
+
+        public static bool wavSkopiowane = true;
+
+        /// <summary>
+        /// Kopiowanie plików *.wav do folderu Temp
+        /// </summary>
+        public static void KopiujWav()
+        {
+            if (File.Exists(Path.GetTempPath() + "SoundLaserShot.wav"))
+            {
+                //Plik istnieje;
+                wavSkopiowane = true;
+            }
+            else
+            {
+                try
+                {
+                    File.Copy(@"Resources\SoundLaserShot.wav", Path.GetTempPath() + "SoundLaserShot.wav");
+                    wavSkopiowane = true;
+                }
+                catch (Exception e)
+                {
+                    System.Windows.Forms.MessageBox.Show("Błąd: " + e.Message);
+                    wavSkopiowane = false;
+                }
+
+            }
+
+            if (File.Exists(Path.GetTempPath() + "SoundBoom.wav"))
+            {
+                //Plik istnieje
+                wavSkopiowane = true;
+            }
+            else
+            {
+                try
+                {
+                    File.Copy(@"Resources\SoundBoom.wav", Path.GetTempPath() + "SoundBoom.wav");
+                    wavSkopiowane = true;
+                }
+                catch (Exception e)
+                {
+                    System.Windows.Forms.MessageBox.Show("Błąd: " + e.Message);
+                    wavSkopiowane = false;
+                }
+            }
+        }
     }
 }

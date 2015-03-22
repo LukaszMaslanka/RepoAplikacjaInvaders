@@ -96,7 +96,7 @@ namespace Invaders
             if (pociskiGracza.Count < 2)
             {
                 pociskiGracza.Add(new Strzal(lokalizacjaPocisku, Kierunek.Gora, Granice, Brushes.DeepSkyBlue));
-                if (wavSkopiowane)
+                if (ObslugaPlikow.wavSkopiowane)
                 {
                     LaserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
                 }
@@ -134,7 +134,7 @@ namespace Invaders
 
             foreach (Najezdzca najezdzca in zestrzeleniNajezdzcy)
             {
-                if (wavSkopiowane)
+                if (ObslugaPlikow.wavSkopiowane)
                 {
                     Boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }
@@ -160,7 +160,7 @@ namespace Invaders
             if (graczZestrzelony.Count() > 0)
             {
                 iloscZyc--;
-                if (wavSkopiowane)
+                if (ObslugaPlikow.wavSkopiowane)
                 {
                     Boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }

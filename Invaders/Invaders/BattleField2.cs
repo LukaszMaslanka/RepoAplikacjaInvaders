@@ -102,12 +102,7 @@ namespace Invaders
             ObslugaPlikow.OdczytajDane();
             ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
         }
-        /// <summary>
-        /// Procedura obsługi zdarzenia GameOver
-        /// Wygrywa Gracz 1
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        
         void gra_GameOverGracz1(object sender, EventArgs e)
         {
             koniecGry = true;
@@ -137,6 +132,7 @@ namespace Invaders
             else
             {
                 form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.GameTheme);
+                form1.textBox1.Visible = false;
                 form1.Show();
                 if (form1.wycisz)
                     form1.odtDzwiek.PlayLooping();
@@ -191,7 +187,7 @@ namespace Invaders
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            gra.nastepnaFala(5);
+            gra.NastepnaFala(5);
             gra.Go();
 
             if (keyLeft && keyD)

@@ -83,7 +83,7 @@ namespace Invaders
             if (pociskiGracza1.Count < 2)
             {
                 pociskiGracza1.Add(new Strzal(lokalizacjaPocisku, Kierunek.Gora, Granice, Brushes.DeepSkyBlue));
-                if (wavSkopiowane)
+                if (ObslugaPlikow.wavSkopiowane)
                 {
                     LaserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
                 }
@@ -103,7 +103,7 @@ namespace Invaders
             if (pociskiGracza2.Count < 2)
             {
                 pociskiGracza2.Add(new Strzal(lokalizacjaPocisku, Kierunek.Gora, Granice, Brushes.Violet));
-                if (wavSkopiowane)
+                if (ObslugaPlikow.wavSkopiowane)
                 {
                     LaserShot.URL = Path.GetTempPath() + "SoundLaserShot.wav";
                 }
@@ -135,7 +135,7 @@ namespace Invaders
 
             foreach (Najezdzca najezdzca in zestrzeleniNajezdzcyGracz1)
             {
-                if (wavSkopiowane)
+                if (ObslugaPlikow.wavSkopiowane)
                 {
                     Boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }
@@ -162,7 +162,7 @@ namespace Invaders
 
             foreach (Najezdzca najezdzca in zestrzeleniNajezdzcyGracz2)
             {
-                if (wavSkopiowane)
+                if (ObslugaPlikow.wavSkopiowane)
                 {
                     Boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }
@@ -191,7 +191,7 @@ namespace Invaders
             if (gracz1Zestrzelony.Count() > 0)
             {
                 iloscZycGracz1--;
-                if (wavSkopiowane)
+                if (ObslugaPlikow.wavSkopiowane)
                 {
                     Boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }
@@ -213,7 +213,7 @@ namespace Invaders
             if (gracz2Zestrzelony.Count() > 0)
             {
                 iloscZycGracz2--;
-                if (wavSkopiowane)
+                if (ObslugaPlikow.wavSkopiowane)
                 {
                     Boom.URL = Path.GetTempPath() + "SoundBoom.wav";
                 }
