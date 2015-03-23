@@ -42,11 +42,11 @@ namespace Invaders
         /// Najpierw rysowany jest kwadrat który wzynacza granicę gry.
         /// Następnie rysowane są:
         /// Gwiazdy
-        /// Statki Najeźdzców
-        /// Pociski Najeźedzców
+        /// Statki Najezdzcow
+        /// Pociski Najezdzcow
         /// Statek Gracza
         /// Pociski Gracza
-        /// Na końcu rysowane są napisy znajdujące się w stopcje formularza
+        /// Na końcu rysowane są napisy znajdujące się w stopce formularza
         /// </summary>
         /// <param name="g"></param>
         override public void RysujGre(Graphics g)

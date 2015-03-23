@@ -34,7 +34,10 @@ namespace Invaders
             IloscNajezdzcowWLinii = 10;
             InicjalizacjaNajezdzcow();
         }
-
+        /// <summary>
+        /// Przesłoniona metoda RysujGre
+        /// </summary>
+        /// <param name="g"></param>
         override public void RysujGre(Graphics g)
         {
             g.DrawRectangle(new Pen(Brushes.Black, 1), Granice);
@@ -68,7 +71,10 @@ namespace Invaders
             g.DrawString("Pilot: " + statekGracza2.NazwaStatku + " Ilość żyć: " + iloscZycGracz2 + " punkty: " + PunktyGracz2 +
                 " Poziom trudności: " + (PoziomTrudnosci), new Font("Arial", 10, FontStyle.Regular), Brushes.Violet, 0, 630);
         }
-
+        /// <summary>
+        /// Przesuwanie po formatce gracza1
+        /// </summary>
+        /// <param name="kierunek"></param>
         public void PrzesunGracza1(Kierunek kierunek)
         {
             if (statekGracza1.Zywy == true)
@@ -76,7 +82,10 @@ namespace Invaders
                 statekGracza1.PrzesunStatek(kierunek, Granice);
             }
         }
-        
+        /// <summary>
+        /// Dodanie nowego pocisku do listy pociskiGracza1
+        /// </summary>
+        /// <param name="Lokalizacja"></param>
         public void WystrzelPociskGracza1(Point Lokalizacja)
         {
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
@@ -89,7 +98,10 @@ namespace Invaders
                 }
             }
         }
-
+        /// <summary>
+        /// Przesuwanie po formatce gracza2
+        /// </summary>
+        /// <param name="kierunek"></param>
         public void PrzesunGracza2(Kierunek kierunek)
         {
             if (statekGracza2.Zywy == true)
@@ -97,6 +109,10 @@ namespace Invaders
                 statekGracza2.PrzesunStatek(kierunek,Granice);
             }
         }
+        /// <summary>
+        /// Dodanie nowego pocisku do listy pociskiGracza2
+        /// </summary>
+        /// <param name="Lokalizacja"></param>
         public void WystrzelPociskGracza2(Point Lokalizacja)
         {
             Point lokalizacjaPocisku = new Point(Lokalizacja.X, Lokalizacja.Y - 25);
@@ -109,7 +125,9 @@ namespace Invaders
                 }
             }
         }
-
+        /// <summary>
+        /// Metoda sprawdza czy pocisk graczy pokrywają się z polem najeźdzcy.
+        /// </summary>
         private void NajezdzcaTrafiony()
         {
             List<Strzal> strzalytrafione = new List<Strzal>();
@@ -177,6 +195,9 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Metoda sprawdza czy pocisk najeźdzcy pokrywa się z polem gracza.
+        /// </summary>
         private void GraczTrafiony()
         {
             bool usunPocisk = false;

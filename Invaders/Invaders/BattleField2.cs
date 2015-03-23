@@ -21,14 +21,28 @@ namespace Invaders
 
         Point lokalizacjaStatek1 = new Point(600, 580);
         Point lokalizacjaStatek2 = new Point(100, 580);
+
         StatekGracza statekGracza1;
         StatekGracza statekGracza2;
+
+        //Flagi do obsługi zdarzeń
         bool koniecGry = false;
         bool remis = false;
         bool gracz1Wygral = false;
         bool gracz2Wygral = false;
+
+        //Flagi do obsługi klawiszy/sterowanie statkami
+        bool keyLeft = false;
+        bool keyRight = false;
+        bool keyD = false;
+        bool keyA = false;
+
         EventArgs e;
 
+        /// <summary>
+        /// Konstruktor formy. Parametrem konstruktora jest Form1 aby móc uzyskać refernecje do form1 i móc zmieniać publiczne obiekty formy.
+        /// </summary>
+        /// <param name="form1"></param>
         public BattleField2(Form1 form1)
         {
             InitializeComponent();
@@ -55,6 +69,11 @@ namespace Invaders
             }
         }
 
+        /// <summary>
+        /// Zdarzenie GameOver
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void gra_GameOver(object sender, EventArgs e)
         {
             if (gra.GraczWygral)
@@ -73,7 +92,11 @@ namespace Invaders
                 }
             }
          }
-
+        /// <summary>
+        /// Procedura obsługi zdarzenia Remis. Ustawienie flag koniecGry, remis, gracz1Wygral, gracz2Wygral
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void gra_Remis(object sender, EventArgs e)
         {
             koniecGry = true;
@@ -88,7 +111,11 @@ namespace Invaders
             ObslugaPlikow.OdczytajDane();
             ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
         }
-
+        /// <summary>
+        /// Procedura obsługi zdarzenia GameOVerGracz2. Ustawienie flag koniecGry, gracz1Wygral, gracz2Wygral
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void gra_GameOverGracz2(object sender, EventArgs e)
         {
             koniecGry = true;
@@ -102,7 +129,11 @@ namespace Invaders
             ObslugaPlikow.OdczytajDane();
             ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
         }
-        
+        /// <summary>
+        /// Procedura obsługi zdarzenia GameOVerGracz1. Ustawienie flag koniecGry, gracz1Wygral, gracz2Wygral
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void gra_GameOverGracz1(object sender, EventArgs e)
         {
             koniecGry = true;
@@ -116,7 +147,11 @@ namespace Invaders
             ObslugaPlikow.OdczytajDane();
             ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
         }
-
+        /// <summary>
+        /// Obsługa zdarzenia zamknięcia formy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BattleField2_FormClosing(object sender, FormClosingEventArgs e)
         {
             animationTimer.Stop();
@@ -140,7 +175,12 @@ namespace Invaders
                     form1.odtDzwiek.Stop();
             }
         }
-
+        /// <summary>
+        /// Zdarzenie Paint formy. 
+        /// W zależności od flag ustawionych przez evemtu po zakończeniu gry na ekranie są wyświetlane odpowiednie informacje.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BattleField2_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -178,13 +218,23 @@ namespace Invaders
                 gameOverBanner1.Visible = true;
             }
         }
-
+        /// <summary>
+        /// Animacja tła.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void animationTimer_Tick(object sender, EventArgs e)
         {
             gra.MrugajGwiazdami();
             this.Refresh();
         }
-
+        /// <summary>
+        /// Zegar animacji. 
+        /// Wywołuje odpowiednie metody.
+        /// Przesuwa statek gracza po formatce.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             gra.NastepnaFala(5);
@@ -250,11 +300,11 @@ namespace Invaders
                 lokalizacjaStatek2 = statekGracza2.Lokalizacja;
             }
         }
-
-        bool keyLeft = false;
-        bool keyRight = false;
-        bool keyD = false;
-        bool keyA = false;
+        /// <summary>
+        /// Zdarzenie KeyDown. Po wciśnięciu odpowiedniego klawisza ustawia odpowiednie flagi na TRUE.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BattleField2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
@@ -275,7 +325,11 @@ namespace Invaders
                 keyA = true;
             }
         }
-
+        /// <summary>
+        /// Zdarzenie KeyUp. Po zwolnieniu odpowiedniego klawisza ustawia odpowiednie flagi na FALSE.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BattleField2_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)

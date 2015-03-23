@@ -11,8 +11,8 @@ namespace Invaders
     public class Gra
     {
         public int PoziomTrudnosci = 1;
-        int iloscStrzalowNajezdzcy = 1;
         public int IloscNajezdzcowWLinii = 4;
+        int iloscStrzalowNajezdzcy = 1;
         
         Kierunek kierunekNajezdzcow = Kierunek.Prawo;
         
@@ -45,7 +45,9 @@ namespace Invaders
         {
 
         }
-
+        /// <summary>
+        /// Wywołanie metody z klasy Gwiazdy
+        /// </summary>
         public void MrugajGwiazdami()
         {
             Gwiazdy.Migotanie(losuj);
@@ -156,7 +158,10 @@ namespace Invaders
                 pociskiNajezdzcow.Add(pociskNajezdzcy);
             }
         }
-
+        /// <summary>
+        /// Generowanie następnej fali najeźdzcow
+        /// </summary>
+        /// <param name="iloscFal"></param>
         public void NastepnaFala(int iloscFal)
         {
             if (Najezdzcy.Count == 0)

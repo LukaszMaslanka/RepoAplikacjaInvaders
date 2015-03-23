@@ -25,6 +25,7 @@ namespace Invaders
         
         List<Keys> keysPressed = new List<Keys>();
 
+        //flagi do obsługi zdarzeń
         private bool koniecGry = false;
         private bool graczWygral = false;
 
@@ -44,7 +45,6 @@ namespace Invaders
             gra.GameOver += new EventHandler(gra_GameOver);
             gra.GameOverGracz1 += new EventHandler(gra_GameOverGracz1);
 
-
             this.form1 = form1;
             if (form1.wycisz)
             {
@@ -52,7 +52,11 @@ namespace Invaders
                 form1.odtDzwiek.PlayLooping();
             }           
         }
-
+        /// <summary>
+        /// Procedura obsługi zdarzenia GameOverGracz1. Zmienia flage koniecGry na TRUE.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void gra_GameOverGracz1(object sender, EventArgs e)
         {
             gameTimer.Stop();
@@ -64,7 +68,12 @@ namespace Invaders
             ObslugaPlikow.ZapiszDane(statekGracza, gra.Punkty);
 
         }
-
+        /// <summary>
+        /// Procedura Obsługi zdarzenia GameOver.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //Sprawdzanie warunku czy GraczWygral i uruchomienie zdarzenia GameOverGracz1
         void gra_GameOver(object sender, EventArgs e)
         {
             if (gra.GraczWygral)
@@ -104,7 +113,11 @@ namespace Invaders
                     form1.odtDzwiek.Stop();
             }
         }
-
+        /// <summary>
+        /// Zdarzneie Paint formularza BattleField1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BattleField1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -130,7 +143,6 @@ namespace Invaders
             gra.MrugajGwiazdami();
             this.Refresh();
         }
-
         /// <summary>
         /// Zegar obsługi gry. Wywołuje metodę Go z klasy Game oraz odpowiadę za obsługę przycisków dla gracza.
         /// </summary>

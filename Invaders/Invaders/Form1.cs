@@ -19,11 +19,15 @@ namespace Invaders
         }
 
         public System.Media.SoundPlayer odtDzwiek;
+
         public bool wycisz = false;
         bool statyWidocznosc = false;
+
         private bool dwochGraczy = false;
+
         public string Gracz1Nazwa;
         public string Gracz2Nazwa;
+
         Rysuj animacjaTla = new Rysuj();
 
         /// <summary>
@@ -31,7 +35,6 @@ namespace Invaders
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        
         private void animationTimer_Tick(object sender, EventArgs e)
         {
             using (Graphics g = CreateGraphics())
@@ -127,7 +130,11 @@ namespace Invaders
                 battlefield1.ShowDialog();
             }
         }
-
+        /// <summary>
+        /// Wywołanie metody banerAnimation z obiketu InvadersBaner. Parametrem metody jest obiekt Timer. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void banerAnimationTimer_Tick(object sender, EventArgs e)
         {
             invadersBanner1.banerAnimation(banerAnimationTimer);
