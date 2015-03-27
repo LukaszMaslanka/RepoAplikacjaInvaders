@@ -21,8 +21,8 @@ namespace Invaders
 
         public int PunktyGracz1 = 0;
         public int PunktyGracz2 = 0;
-        int iloscZycGracz1 = 300;
-        int iloscZycGracz2 = 300;
+        int iloscZycGracz1 = 3;
+        int iloscZycGracz2 = 3;
 
         public GraDla2(Gwiazdy gwiazdy, Rectangle granice, Random losuj, 
             StatekGracza statekGracza1, StatekGracza statekGracza2)

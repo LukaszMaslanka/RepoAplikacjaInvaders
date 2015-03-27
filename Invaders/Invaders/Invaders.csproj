@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -177,12 +177,8 @@
     <None Include="Resources\InvadersBanner6.gif" />
     <None Include="Resources\InvadersBanner7.gif" />
     <None Include="Resources\InvadersBanner8.gif" />
-    <None Include="Resources\GameSound.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\GameTheme.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\GameSound.wav" />
+    <None Include="Resources\GameTheme.wav" />
     <None Include="Resources\muteSound.png" />
     <None Include="Resources\playSound.png" />
     <None Include="Resources\Player1.gif" />

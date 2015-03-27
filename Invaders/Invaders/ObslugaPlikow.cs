@@ -121,7 +121,6 @@ namespace Invaders
         }
 
         public static bool wavSkopiowane = true;
-
         /// <summary>
         /// Kopiowanie plików *.wav do folderu Temp
         /// </summary>
