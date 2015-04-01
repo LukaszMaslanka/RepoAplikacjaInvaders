@@ -98,7 +98,7 @@
             // player1Name
             // 
             this.player1Name.Location = new System.Drawing.Point(0, 38);
-            this.player1Name.MaxLength = 20;
+            this.player1Name.MaxLength = 10;
             this.player1Name.Name = "player1Name";
             this.player1Name.Size = new System.Drawing.Size(108, 20);
             this.player1Name.TabIndex = 3;
@@ -138,7 +138,7 @@
             // player2Name
             // 
             this.player2Name.Location = new System.Drawing.Point(60, 38);
-            this.player2Name.MaxLength = 20;
+            this.player2Name.MaxLength = 10;
             this.player2Name.Name = "player2Name";
             this.player2Name.Size = new System.Drawing.Size(108, 20);
             this.player2Name.TabIndex = 3;
@@ -219,13 +219,14 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(199, 416);
+            this.textBox1.Location = new System.Drawing.Point(107, 416);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(386, 158);
+            this.textBox1.Size = new System.Drawing.Size(571, 220);
             this.textBox1.TabIndex = 11;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.Visible = false;
             // 
             // invadersBanner1

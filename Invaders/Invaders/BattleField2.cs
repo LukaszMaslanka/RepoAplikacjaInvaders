@@ -107,9 +107,10 @@ namespace Invaders
             gameTimer.Stop();
             form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
             form1.odtDzwiek.Play();
+            statekGracza1.Punkty = gra.PunktyGracz1;
+            statekGracza2.Punkty = gra.PunktyGracz2;
             //Gdy gracz przegra dane zostają zapisane do pliku
-            ObslugaPlikow.OdczytajDane();
-            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
+            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2);
         }
         /// <summary>
         /// Procedura obsługi zdarzenia GameOVerGracz2. Ustawienie flag koniecGry, gracz1Wygral, gracz2Wygral
@@ -125,9 +126,10 @@ namespace Invaders
             gameTimer.Stop();
             form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
             form1.odtDzwiek.Play();
+            statekGracza1.Punkty = gra.PunktyGracz1;
+            statekGracza2.Punkty = gra.PunktyGracz2;
             //Gdy gracz przegra dane zostają zapisane do pliku
-            ObslugaPlikow.OdczytajDane();
-            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
+            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2);
         }
         /// <summary>
         /// Procedura obsługi zdarzenia GameOVerGracz1. Ustawienie flag koniecGry, gracz1Wygral, gracz2Wygral
@@ -143,9 +145,10 @@ namespace Invaders
             gameTimer.Stop();
             form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
             form1.odtDzwiek.Play();
+            statekGracza1.Punkty = gra.PunktyGracz1;
+            statekGracza2.Punkty = gra.PunktyGracz2;
             //Gdy gracz przegra dane zostają zapisane do pliku
-            ObslugaPlikow.OdczytajDane();
-            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2, gra.PunktyGracz1, gra.PunktyGracz2);
+            ObslugaPlikow.ZapiszDane(statekGracza1, statekGracza2);
         }
         /// <summary>
         /// Obsługa zdarzenia zamknięcia formy.

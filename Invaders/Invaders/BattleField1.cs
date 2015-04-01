@@ -63,10 +63,10 @@ namespace Invaders
             form1.odtDzwiek = new System.Media.SoundPlayer(Properties.Resources.SoundGameOver);
             form1.odtDzwiek.Play();
             koniecGry = true;
+            //W celu stworzenia listy statkow gracza do sortowania po ilosci punktow
+            statekGracza.Punkty = gra.Punkty;
             //Gdy gracz przegra dane zostają zapisane do pliku
-            ObslugaPlikow.OdczytajDane();
-            ObslugaPlikow.ZapiszDane(statekGracza, gra.Punkty);
-
+            ObslugaPlikow.ZapiszDane(statekGracza);
         }
         /// <summary>
         /// Procedura Obsługi zdarzenia GameOver.

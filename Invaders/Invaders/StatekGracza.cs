@@ -8,6 +8,8 @@ namespace Invaders
 {
     class StatekGracza
     {
+        public int Punkty;
+
         public String NazwaStatku;
 
         private Gracze typGracza;

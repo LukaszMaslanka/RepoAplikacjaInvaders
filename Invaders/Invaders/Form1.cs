@@ -113,6 +113,7 @@ namespace Invaders
         private void grajBtn_Click(object sender, EventArgs e)
         {
             ObslugaPlikow.KopiujWav();
+            statyWidocznosc = false;
 
             this.Hide();
 
@@ -155,6 +156,8 @@ namespace Invaders
             }
             else
             {
+                ObslugaPlikow.wyniki = " ";
+                textBox1.Clear();
                 statyWidocznosc = false;
             }
             textBox1.Visible = statyWidocznosc;
