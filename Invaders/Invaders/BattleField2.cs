@@ -191,15 +191,15 @@ namespace Invaders
 
             if (koniecGry && remis == true)
             {
-                g.DrawString(" Remis!", new Font("Arial", 10, FontStyle.Regular), Brushes.White, 1060, 630);
-                g.DrawString(" Remis!", new Font("Arial", 10, FontStyle.Regular), Brushes.White, 465, 630);
+                g.DrawString(" Remis!", new Font("Arial", 10, FontStyle.Regular), Brushes.White, 1000, 630);
+                g.DrawString(" Remis!", new Font("Arial", 10, FontStyle.Regular), Brushes.White, 365, 630);
                 animationTimer.Stop();
                 gameOverBanner1.Visible = true;
             }
 
             if (koniecGry && gracz1Wygral == true && gracz2Wygral == false)
             {
-                g.DrawString(statekGracza1.NazwaStatku + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 960, 630);
+                g.DrawString(statekGracza1.NazwaStatku + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 1000, 630);
                 g.DrawString(statekGracza2.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 365, 630);
                 animationTimer.Stop();
                 gameOverBanner1.Visible = true;
@@ -207,7 +207,7 @@ namespace Invaders
 
             if (koniecGry && gracz1Wygral == false && gracz2Wygral == true)
             {
-                g.DrawString(statekGracza1.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 960, 630);
+                g.DrawString(statekGracza1.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 1000, 630);
                 g.DrawString(statekGracza2.NazwaStatku + " Wygrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Green, 365, 630);
                 animationTimer.Stop();
                 gameOverBanner1.Visible = true;
@@ -215,7 +215,7 @@ namespace Invaders
 
             if (koniecGry && gracz1Wygral == false && gracz2Wygral == false)
             {
-                g.DrawString(statekGracza1.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 960, 630);
+                g.DrawString(statekGracza1.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 1000, 630);
                 g.DrawString(statekGracza2.NazwaStatku + " Przegrał!", new Font("Arial", 10, FontStyle.Regular), Brushes.Red, 365, 630);
                 animationTimer.Stop();
                 gameOverBanner1.Visible = true;

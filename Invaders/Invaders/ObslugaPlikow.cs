@@ -35,10 +35,12 @@ namespace Invaders
                     //doczytanie pliku ze splitem
                     var line = odczytDanych.ReadLine();
                     var values = line.Split(';');
+
                     //wpisywanie do struktury danych z pliku
                     wynikGracza.NazwaStatku = values[0];
                     wynikGracza.Punkty = int.Parse(values[1]);
                     wynikGracza.DataRyzgrywki = values[2];
+
                     //dodanie struktury do listy struktur
                     wynikiGraczy.Add(wynikGracza);
                 }
